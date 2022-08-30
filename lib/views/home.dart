@@ -17,7 +17,26 @@ class Panchanga extends StatefulWidget {
 class _PanchangaState extends State<Panchanga> {
   final Future<Widget> displayDesignWidget = Future<Widget>.delayed(
     const Duration(seconds: 2),
-    () => DisplayDesign(),
+    () => DisplayDesign(
+        ayana: '',
+        karana: '',
+        date: '',
+        calendarmark: '',
+        masa: '',
+        masaniyamaka: '',
+        month: '',
+        rutu: '',
+        nakshatra: '',
+        paksha: '',
+        sunrise: '',
+        samvatsara: '',
+        shradhatithi: '',
+        tithi: '',
+        vasara: '',
+        year: '',
+        vishesha: '',
+        yoga: '',
+        sunset: ''),
   );
 
   Future<String> get _localPath async {
@@ -47,7 +66,7 @@ class _PanchangaState extends State<Panchanga> {
   var langValue;
 
   // ignore: deprecated_member_use
-  List<Day> panchangalistmodel = List<Day>();
+  List<Day> panchangalistmodel = <Day>[];
 
   var appScriptURLEnglish =
       'https://script.google.com/macros/s/AKfycbzfg606bFaPDAvOD5FMS33-1HO6LjABr9g41aFMSQ/exec';
@@ -64,26 +83,45 @@ class _PanchangaState extends State<Panchanga> {
   var jsonPanchanga;
 
   getEnglishPanchanga() async {
-    // var raw = await http.get(Uri.parse(appScriptURLEnglish));
-    var raw = await rootBundle.loadString(
-        "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/EnglishLanguage.json");
+    File? myfile;
+    myfile = await _localFile;
+    final contents = myfile.readAsString();
+    print("Inside English Panchanga");
+    // ignore: unnecessary_null_comparison
+    if (contents == null) {
+      print("Inside English Panchanga If");
+      var raw = await http.get(Uri.parse(appScriptURLEnglish));
+      jsonPanchanga = convert.jsonDecode(raw.body);
+
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+
+      // final file = await _localFile;
+      String jsondata = raw.body
+          .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
+        return "'${match.group(0)}'";
+      });
+      return myfile.writeAsString(jsondata);
+    } else {
+      print("Inside English Panchanga else");
+      var raw = await rootBundle.loadString(
+          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/EnglishLanguage.json");
+      jsonPanchanga = convert.jsonDecode(raw);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+    }
+
     // jsonPanchanga = convert.jsonDecode(raw.replaceAll(r'\', r' '));
     // print(jsonPanchanga);
     // var aaa = convert.jsonEncode(raw.body);
     // print(aaa);
     // jsonPanchanga = convert.jsonDecode(raw.body);
-    jsonPanchanga = convert.jsonDecode(raw);
 
-    setState(() {
-      getPanchangaDataFromSheet();
-    });
-
-    // final file = await _localFile;
-    // String jsondata = raw.body
-    //     .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
-    //   return "'${match.group(0)}'";
+    // setState(() {
+    //   getPanchangaDataFromSheet();
     // });
-    // return file.writeAsString(jsondata);
   }
 
   getHindiPanchanga() async {
@@ -132,7 +170,26 @@ class _PanchangaState extends State<Panchanga> {
     jsonPanchanga.forEach((element) {
       print('Default English Panchanga List');
       print(element);
-      Day day = new Day();
+      Day day = new Day(
+          ayana: '',
+          karana: '',
+          date: '',
+          calendarmark: '',
+          masa: '',
+          masaniyamaka: '',
+          month: '',
+          rutu: '',
+          nakshatra: '',
+          paksha: '',
+          sunrise: '',
+          samvatsara: '',
+          shradhatithi: '',
+          tithi: '',
+          vasara: '',
+          year: '',
+          vishesha: '',
+          yoga: '',
+          sunset: '');
       day.date = element['date'].toString();
       day.month = element['month'].toString();
       day.year = element['year'].toString();
@@ -197,7 +254,26 @@ class _PanchangaState extends State<Panchanga> {
 
   Stream<Widget> aaa = (() async* {
     await Future<Void>.delayed(const Duration(seconds: 5));
-    yield DisplayDesign();
+    yield DisplayDesign(
+        ayana: '',
+        karana: '',
+        date: '',
+        calendarmark: '',
+        masa: '',
+        masaniyamaka: '',
+        month: '',
+        rutu: '',
+        nakshatra: '',
+        paksha: '',
+        sunrise: '',
+        samvatsara: '',
+        shradhatithi: '',
+        tithi: '',
+        vasara: '',
+        year: '',
+        vishesha: '',
+        yoga: '',
+        sunset: '');
   })();
 
   @override
@@ -453,7 +529,27 @@ class _PanchangaTitleState extends State<PanchangaTitle> {
       controller: _controller,
       scrollDirection: Axis.horizontal,
       children: [
-        DisplayDesign(),
+        DisplayDesign(
+          ayana: '',
+          karana: '',
+          date: '',
+          calendarmark: '',
+          masa: '',
+          masaniyamaka: '',
+          month: '',
+          rutu: '',
+          nakshatra: '',
+          paksha: '',
+          sunrise: '',
+          samvatsara: '',
+          shradhatithi: '',
+          tithi: '',
+          vasara: '',
+          year: '',
+          vishesha: '',
+          yoga: '',
+          sunset: '',
+        ),
       ],
     );
   }
@@ -481,25 +577,25 @@ class DisplayDesign extends StatefulWidget {
       shradhatithi,
       vishesha;
   DisplayDesign(
-      {this.date,
-      this.month,
-      this.year,
-      this.samvatsara,
-      this.ayana,
-      this.rutu,
-      this.masa,
-      this.masaniyamaka,
-      this.paksha,
-      this.tithi,
-      this.calendarmark,
-      this.vasara,
-      this.nakshatra,
-      this.yoga,
-      this.karana,
-      this.sunrise,
-      this.sunset,
-      this.shradhatithi,
-      this.vishesha});
+      {required this.date,
+      required this.month,
+      required this.year,
+      required this.samvatsara,
+      required this.ayana,
+      required this.rutu,
+      required this.masa,
+      required this.masaniyamaka,
+      required this.paksha,
+      required this.tithi,
+      required this.calendarmark,
+      required this.vasara,
+      required this.nakshatra,
+      required this.yoga,
+      required this.karana,
+      required this.sunrise,
+      required this.sunset,
+      required this.shradhatithi,
+      required this.vishesha});
 
   @override
   State<DisplayDesign> createState() => _DisplayDesignState();

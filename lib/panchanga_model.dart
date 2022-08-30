@@ -20,25 +20,25 @@ class Day {
   String tithi;
 
   Day(
-      {this.date,
-      this.month,
-      this.year,
-      this.samvatsara,
-      this.ayana,
-      this.rutu,
-      this.masa,
-      this.masaniyamaka,
-      this.paksha,
-      this.tithi,
-      this.calendarmark,
-      this.vasara,
-      this.nakshatra,
-      this.yoga,
-      this.karana,
-      this.sunrise,
-      this.sunset,
-      this.shradhatithi,
-      this.vishesha});
+      {required this.date,
+      required this.month,
+      required this.year,
+      required this.samvatsara,
+      required this.ayana,
+      required this.rutu,
+      required this.masa,
+      required this.masaniyamaka,
+      required this.paksha,
+      required this.tithi,
+      required this.calendarmark,
+      required this.vasara,
+      required this.nakshatra,
+      required this.yoga,
+      required this.karana,
+      required this.sunrise,
+      required this.sunset,
+      required this.shradhatithi,
+      required this.vishesha});
 
   factory Day.fromJson(dynamic json) {
     return Day(
