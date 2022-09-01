@@ -1,4 +1,3 @@
-// import 'dart:convert';
 import 'dart:ffi';
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -39,22 +38,77 @@ class _PanchangaState extends State<Panchanga> {
         sunset: ''),
   );
 
-  Future<String> get _localPath async {
+  Future<String> get localPathEnglish async {
     final directory = await getApplicationDocumentsDirectory();
     return directory.path;
   }
 
-  Future<File> get _localFile async {
-    final path = await _localPath;
+  Future<File> get localEnglishFile async {
+    final path = await localPathEnglish;
     return File(
         '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/EnglishLanguage.json');
+  }
+
+  Future<String> get localPathKannada async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
+
+  Future<File> get localKannadaFile async {
+    final path = await localPathKannada;
+    return File(
+        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/KannadaLanuage.json');
+  }
+
+  Future<String> get localPathHindi async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
+
+  Future<File> get localHindiFile async {
+    final path = await localPathHindi;
+    return File(
+        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/HindiLanuage.json');
+  }
+
+  Future<String> get localPathTamil async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
+
+  Future<File> get localTamilFile async {
+    final path = await localPathTamil;
+    return File(
+        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/TamilLanuage.json');
+  }
+
+  Future<String> get localPathTelugu async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
+
+  Future<File> get localTeluguFile async {
+    final path = await localPathTelugu;
+    return File(
+        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/TeluguLanuage.json');
+  }
+
+  Future<String> get localPathSanskrit async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
+
+  Future<File> get localSanskritFile async {
+    final path = await localPathSanskrit;
+    return File(
+        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/SanskritLanuage.json');
   }
 
   // Future<int> readCounter() async {
   //   try {
   //     final file = await _localFile;
   //     // Read the file
-  //     final contents = await file.readAsString();
+  //     final contents = await file.readAsLines();
   //     return int.parse(contents);
   //   } catch (e) {
   //     // If encountering an error, return 0
@@ -84,11 +138,12 @@ class _PanchangaState extends State<Panchanga> {
 
   getEnglishPanchanga() async {
     File? myfile;
-    myfile = await _localFile;
-    final contents = myfile.readAsString();
+    myfile = await localEnglishFile;
+    String? contents = await myfile.readAsString();
+
+    print(contents);
     print("Inside English Panchanga");
-    // ignore: unnecessary_null_comparison
-    if (contents == null) {
+    if (contents.isEmpty) {
       print("Inside English Panchanga If");
       var raw = await http.get(Uri.parse(appScriptURLEnglish));
       jsonPanchanga = convert.jsonDecode(raw.body);
@@ -112,56 +167,156 @@ class _PanchangaState extends State<Panchanga> {
         getPanchangaDataFromSheet();
       });
     }
-
-    // jsonPanchanga = convert.jsonDecode(raw.replaceAll(r'\', r' '));
-    // print(jsonPanchanga);
-    // var aaa = convert.jsonEncode(raw.body);
-    // print(aaa);
-    // jsonPanchanga = convert.jsonDecode(raw.body);
-
-    // setState(() {
-    //   getPanchangaDataFromSheet();
-    // });
   }
 
   getHindiPanchanga() async {
-    var raw = await http.get(Uri.parse(appScriptURLHindi));
-    jsonPanchanga = convert.jsonDecode(raw.body);
-    setState(() {
-      getPanchangaDataFromSheet();
-    });
+    File? myfile;
+    myfile = await localHindiFile;
+    String? contents = await myfile.readAsString();
+    print("Inside Hindi Panchanga");
+    // ignore: unnecessary_null_comparison
+    if (contents.isEmpty) {
+      print("Inside Hindi Panchanga If");
+      var raw = await http.get(Uri.parse(appScriptURLHindi));
+      jsonPanchanga = convert.jsonDecode(raw.body);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+
+      String jsondata = raw.body
+          .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
+        return "'${match.group(0)}'";
+      });
+      return myfile.writeAsString(jsondata);
+    } else {
+      print("Inside Hindi Panchanga else");
+      var raw = await rootBundle.loadString(
+          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/HindiLanguage.json");
+      jsonPanchanga = convert.jsonDecode(raw);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+    }
   }
 
   getTamilPanchanga() async {
-    var raw = await http.get(Uri.parse(appScriptURLTamil));
-    jsonPanchanga = convert.jsonDecode(raw.body);
-    setState(() {
-      getPanchangaDataFromSheet();
-    });
+    File? myfile;
+    myfile = await localTamilFile;
+    String? contents = await myfile.readAsString();
+    print("Inside Tamil Panchanga");
+    if (contents.isEmpty) {
+      print("Inside Tamil Panchanga If");
+      var raw = await http.get(Uri.parse(appScriptURLTamil));
+      jsonPanchanga = convert.jsonDecode(raw.body);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+
+      // final file = await _localFile;
+      String jsondata = raw.body
+          .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
+        return "'${match.group(0)}'";
+      });
+      return myfile.writeAsString(jsondata);
+    } else {
+      print("Inside Tamil Panchanga else");
+      var raw = await rootBundle.loadString(
+          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/TamilLanguage.json");
+      jsonPanchanga = convert.jsonDecode(raw);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+    }
   }
 
   getTeluguPanchanga() async {
-    var raw = await http.get(Uri.parse(appScriptURLTelugu));
-    jsonPanchanga = convert.jsonDecode(raw.body);
-    setState(() {
-      getPanchangaDataFromSheet();
-    });
+    File? myfile;
+    myfile = await localTeluguFile;
+    String? contents = await myfile.readAsString();
+    print("Inside Telugu Panchanga");
+    if (contents.isEmpty) {
+      print("Inside Telugu Panchanga If");
+      var raw = await http.get(Uri.parse(appScriptURLTelugu));
+      jsonPanchanga = convert.jsonDecode(raw.body);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+
+      // final file = await _localFile;
+      String jsondata = raw.body
+          .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
+        return "'${match.group(0)}'";
+      });
+      return myfile.writeAsString(jsondata);
+    } else {
+      print("Inside Telugu Panchanga else");
+      var raw = await rootBundle.loadString(
+          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/TeluguLanguage.json");
+      jsonPanchanga = convert.jsonDecode(raw);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+    }
   }
 
   getSanskritPanchanga() async {
-    var raw = await http.get(Uri.parse(appScriptURLSanskrit));
-    jsonPanchanga = convert.jsonDecode(raw.body);
-    setState(() {
-      getPanchangaDataFromSheet();
-    });
+    File? myfile;
+    myfile = await localSanskritFile;
+    String? contents = await myfile.readAsString();
+    print("Inside Sanskrit Panchanga");
+    if (contents.isEmpty) {
+      print("Inside Sanskrit Panchanga If");
+      var raw = await http.get(Uri.parse(appScriptURLSanskrit));
+      jsonPanchanga = convert.jsonDecode(raw.body);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+
+      // final file = await _localFile;
+      String jsondata = raw.body
+          .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
+        return "'${match.group(0)}'";
+      });
+      return myfile.writeAsString(jsondata);
+    } else {
+      print("Inside Sanskrit Panchanga else");
+      var raw = await rootBundle.loadString(
+          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/SanskritLanguage.json");
+      jsonPanchanga = convert.jsonDecode(raw);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+    }
   }
 
   getKannadaPanchanga() async {
-    var raw = await http.get(Uri.parse(appScriptURLKannada));
-    jsonPanchanga = convert.jsonDecode(raw.body);
-    setState(() {
-      getPanchangaDataFromSheet();
-    });
+    File? myfile;
+    myfile = await localKannadaFile;
+    String? contents = await myfile.readAsString();
+    print("Inside Kannada Panchanga");
+    if (contents.isEmpty) {
+      print("Inside Kannada Panchanga If");
+      var raw = await http.get(Uri.parse(appScriptURLKannada));
+      jsonPanchanga = convert.jsonDecode(raw.body);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+
+      // final file = await _localFile;
+      String jsondata = raw.body
+          .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
+        return "'${match.group(0)}'";
+      });
+      return myfile.writeAsString(jsondata);
+    } else {
+      print("Inside Kannada Panchanga else");
+      var raw = await rootBundle.loadString(
+          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/KannadaLanguage.json");
+      jsonPanchanga = convert.jsonDecode(raw);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+    }
   }
 
   getPanchangaDataFromSheet() async {
@@ -252,29 +407,29 @@ class _PanchangaState extends State<Panchanga> {
     }
   }
 
-  Stream<Widget> aaa = (() async* {
-    await Future<Void>.delayed(const Duration(seconds: 5));
-    yield DisplayDesign(
-        ayana: '',
-        karana: '',
-        date: '',
-        calendarmark: '',
-        masa: '',
-        masaniyamaka: '',
-        month: '',
-        rutu: '',
-        nakshatra: '',
-        paksha: '',
-        sunrise: '',
-        samvatsara: '',
-        shradhatithi: '',
-        tithi: '',
-        vasara: '',
-        year: '',
-        vishesha: '',
-        yoga: '',
-        sunset: '');
-  })();
+  // Stream<Widget> aaa = (() async* {
+  //   await Future<Void>.delayed(const Duration(seconds: 5));
+  //   yield DisplayDesign(
+  //       ayana: '',
+  //       karana: '',
+  //       date: '',
+  //       calendarmark: '',
+  //       masa: '',
+  //       masaniyamaka: '',
+  //       month: '',
+  //       rutu: '',
+  //       nakshatra: '',
+  //       paksha: '',
+  //       sunrise: '',
+  //       samvatsara: '',
+  //       shradhatithi: '',
+  //       tithi: '',
+  //       vasara: '',
+  //       year: '',
+  //       vishesha: '',
+  //       yoga: '',
+  //       sunset: '');
+  // })();
 
   @override
   Widget build(BuildContext context) {
@@ -337,47 +492,49 @@ class _PanchangaState extends State<Panchanga> {
           ],
         ),
       ),
-      body: StreamBuilder(
-          stream: aaa,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator.adaptive());
-            }
-            if (snapshot.hasError) {
-              return const Text('Error');
-            } else {
-              return Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: PageView.builder(
-                    itemCount: panchangalistmodel.length,
-                    // scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return DisplayDesign(
-                        date: panchangalistmodel[index].date,
-                        month: panchangalistmodel[index].month,
-                        year: panchangalistmodel[index].year,
-                        samvatsara: panchangalistmodel[index].samvatsara,
-                        ayana: panchangalistmodel[index].ayana,
-                        rutu: panchangalistmodel[index].rutu,
-                        masa: panchangalistmodel[index].masa,
-                        masaniyamaka: panchangalistmodel[index].masaniyamaka,
-                        calendarmark: panchangalistmodel[index].calendarmark,
-                        vasara: panchangalistmodel[index].vasara,
-                        nakshatra: panchangalistmodel[index].nakshatra,
-                        yoga: panchangalistmodel[index].yoga,
-                        karana: panchangalistmodel[index].karana,
-                        sunrise: panchangalistmodel[index].sunrise,
-                        sunset: panchangalistmodel[index].sunset,
-                        tithi: panchangalistmodel[index].tithi,
-                        paksha: panchangalistmodel[index].paksha,
-                        shradhatithi: panchangalistmodel[index].shradhatithi,
-                        vishesha: panchangalistmodel[index].vishesha,
-                      );
-                    }),
+      body:
+          //  StreamBuilder(
+          //     stream: aaa,
+          //     builder: (context, snapshot) {
+          //       if (snapshot.connectionState == ConnectionState.waiting) {
+          //         return const Center(child: CircularProgressIndicator.adaptive());
+          //       }
+          //       if (!snapshot.hasData) {
+          //         return const Text('snfuajskdfijhaskdfijadsfaijodfjaodis');
+          //       } else {
+          //         return
+          Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: PageView.builder(
+            itemCount: panchangalistmodel.length,
+            // scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return DisplayDesign(
+                date: panchangalistmodel[index].date,
+                month: panchangalistmodel[index].month,
+                year: panchangalistmodel[index].year,
+                samvatsara: panchangalistmodel[index].samvatsara,
+                ayana: panchangalistmodel[index].ayana,
+                rutu: panchangalistmodel[index].rutu,
+                masa: panchangalistmodel[index].masa,
+                masaniyamaka: panchangalistmodel[index].masaniyamaka,
+                calendarmark: panchangalistmodel[index].calendarmark,
+                vasara: panchangalistmodel[index].vasara,
+                nakshatra: panchangalistmodel[index].nakshatra,
+                yoga: panchangalistmodel[index].yoga,
+                karana: panchangalistmodel[index].karana,
+                sunrise: panchangalistmodel[index].sunrise,
+                sunset: panchangalistmodel[index].sunset,
+                tithi: panchangalistmodel[index].tithi,
+                paksha: panchangalistmodel[index].paksha,
+                shradhatithi: panchangalistmodel[index].shradhatithi,
+                vishesha: panchangalistmodel[index].vishesha,
               );
-            }
-          }),
+            }),
+      ),
+      // }
+      // }),
     );
   }
 

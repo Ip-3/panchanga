@@ -27,7 +27,6 @@ dependencies:
   translator: ^0.1.7
   carousel_slider: ^4.1.1 
   path_provider:
-  dio:
 
 
   # The following adds the Cupertino Icons font to your application.
