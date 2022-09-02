@@ -50,9 +50,15 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/languageTranslation/
+    - assets/languageTranslation/EnglishLanguage.json
+    - assets/languageTranslation/HindiLanuage.json
+    - assets/languageTranslation/TeluguLanuage.json
+    - assets/languageTranslation/SanskritLanuage.json
+    - assets/languageTranslation/KannadaLanuage.json
+    - assets/languageTranslation/TamilLanuage.json
 
-languageTranslation:
-    - languageTranslation/
+
   
 
   #   - images/a_dot_burr.jpeg

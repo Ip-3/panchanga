@@ -1,4 +1,4 @@
-import 'dart:ffi';
+// import 'dart:ffi';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,7 +6,7 @@ import 'package:panchanga/panchanga_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 // import 'package:dio/dio.dart';
-import 'package:path_provider/path_provider.dart';
+// import 'package:path_provider/path_provider.dart';
 
 class Panchanga extends StatefulWidget {
   @override
@@ -38,70 +38,70 @@ class _PanchangaState extends State<Panchanga> {
         sunset: ''),
   );
 
-  Future<String> get localPathEnglish async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
-  }
+  // Future<String> get localPathEnglish async {
+  //   final directory = await getApplicationDocumentsDirectory();
+  //   return directory.path;
+  // }
 
   Future<File> get localEnglishFile async {
-    final path = await localPathEnglish;
+    // final path = await localPathEnglish;
     return File(
-        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/EnglishLanguage.json');
+        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/EnglishLanguage.json');
   }
 
-  Future<String> get localPathKannada async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
-  }
+  // Future<String> get localPathKannada async {
+  //   final directory = await getApplicationDocumentsDirectory();
+  //   return directory.path;
+  // }
 
   Future<File> get localKannadaFile async {
-    final path = await localPathKannada;
+    // final path = await localPathKannada;
     return File(
-        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/KannadaLanuage.json');
+        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/KannadaLanuage.json');
   }
 
-  Future<String> get localPathHindi async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
-  }
+  // Future<String> get localPathHindi async {
+  //   final directory = await getApplicationDocumentsDirectory();
+  //   return directory.path;
+  // }
 
   Future<File> get localHindiFile async {
-    final path = await localPathHindi;
+    // final path = await localPathHindi;
     return File(
-        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/HindiLanuage.json');
+        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/HindiLanuage.json');
   }
 
-  Future<String> get localPathTamil async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
-  }
+  // Future<String> get localPathTamil async {
+  //   final directory = await getApplicationDocumentsDirectory();
+  //   return directory.path;
+  // }
 
   Future<File> get localTamilFile async {
-    final path = await localPathTamil;
+    // final path = await localPathTamil;
     return File(
-        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/TamilLanuage.json');
+        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/TamilLanuage.json');
   }
 
-  Future<String> get localPathTelugu async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
-  }
+  // Future<String> get localPathTelugu async {
+  //   final directory = await getApplicationDocumentsDirectory();
+  //   return directory.path;
+  // }
 
   Future<File> get localTeluguFile async {
-    final path = await localPathTelugu;
+    // final path = await localPathTelugu;
     return File(
-        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/TeluguLanuage.json');
+        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/TeluguLanuage.json');
   }
 
-  Future<String> get localPathSanskrit async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
-  }
+  // Future<String> get localPathSanskrit async {
+  //   final directory = await getApplicationDocumentsDirectory();
+  //   return directory.path;
+  // }
 
   Future<File> get localSanskritFile async {
-    final path = await localPathSanskrit;
+    // final path = await localPathSanskrit;
     return File(
-        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/SanskritLanuage.json');
+        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/SanskritLanuage.json');
   }
 
   // Future<int> readCounter() async {
@@ -140,10 +140,9 @@ class _PanchangaState extends State<Panchanga> {
     File? myfile;
     myfile = await localEnglishFile;
     String? contents = await myfile.readAsString();
-
     print(contents);
     print("Inside English Panchanga");
-    if (contents.isEmpty) {
+    if (contents.isEmpty == true) {
       print("Inside English Panchanga If");
       var raw = await http.get(Uri.parse(appScriptURLEnglish));
       jsonPanchanga = convert.jsonDecode(raw.body);
@@ -161,7 +160,7 @@ class _PanchangaState extends State<Panchanga> {
     } else {
       print("Inside English Panchanga else");
       var raw = await rootBundle.loadString(
-          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/EnglishLanguage.json");
+          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/EnglishLanguage.json");
       jsonPanchanga = convert.jsonDecode(raw);
       setState(() {
         getPanchangaDataFromSheet();
@@ -175,7 +174,7 @@ class _PanchangaState extends State<Panchanga> {
     String? contents = await myfile.readAsString();
     print("Inside Hindi Panchanga");
     // ignore: unnecessary_null_comparison
-    if (contents.isEmpty) {
+    if (contents.isEmpty == true) {
       print("Inside Hindi Panchanga If");
       var raw = await http.get(Uri.parse(appScriptURLHindi));
       jsonPanchanga = convert.jsonDecode(raw.body);
@@ -191,7 +190,7 @@ class _PanchangaState extends State<Panchanga> {
     } else {
       print("Inside Hindi Panchanga else");
       var raw = await rootBundle.loadString(
-          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/HindiLanguage.json");
+          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/HindiLanuage.json");
       jsonPanchanga = convert.jsonDecode(raw);
       setState(() {
         getPanchangaDataFromSheet();
@@ -221,7 +220,7 @@ class _PanchangaState extends State<Panchanga> {
     } else {
       print("Inside Tamil Panchanga else");
       var raw = await rootBundle.loadString(
-          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/TamilLanguage.json");
+          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/TamilLanuage.json");
       jsonPanchanga = convert.jsonDecode(raw);
       setState(() {
         getPanchangaDataFromSheet();
@@ -251,7 +250,7 @@ class _PanchangaState extends State<Panchanga> {
     } else {
       print("Inside Telugu Panchanga else");
       var raw = await rootBundle.loadString(
-          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/TeluguLanguage.json");
+          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/TeluguLanuage.json");
       jsonPanchanga = convert.jsonDecode(raw);
       setState(() {
         getPanchangaDataFromSheet();
@@ -281,7 +280,7 @@ class _PanchangaState extends State<Panchanga> {
     } else {
       print("Inside Sanskrit Panchanga else");
       var raw = await rootBundle.loadString(
-          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/SanskritLanguage.json");
+          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/SanskritLanuage.json");
       jsonPanchanga = convert.jsonDecode(raw);
       setState(() {
         getPanchangaDataFromSheet();
@@ -294,7 +293,7 @@ class _PanchangaState extends State<Panchanga> {
     myfile = await localKannadaFile;
     String? contents = await myfile.readAsString();
     print("Inside Kannada Panchanga");
-    if (contents.isEmpty) {
+    if (contents.isEmpty == true) {
       print("Inside Kannada Panchanga If");
       var raw = await http.get(Uri.parse(appScriptURLKannada));
       jsonPanchanga = convert.jsonDecode(raw.body);
@@ -311,7 +310,7 @@ class _PanchangaState extends State<Panchanga> {
     } else {
       print("Inside Kannada Panchanga else");
       var raw = await rootBundle.loadString(
-          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/languageTranslation/KannadaLanguage.json");
+          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/KannadaLanuage.json");
       jsonPanchanga = convert.jsonDecode(raw);
       setState(() {
         getPanchangaDataFromSheet();
