@@ -118,12 +118,13 @@ class _PanchangaState extends State<Panchanga> {
 
   var output;
   var langValue;
+  var updatelanguage;
 
   // ignore: deprecated_member_use
   List<Day> panchangalistmodel = <Day>[];
 
   var appScriptURLEnglish =
-      'https://script.google.com/macros/s/AKfycbzfg606bFaPDAvOD5FMS33-1HO6LjABr9g41aFMSQ/exec';
+      'https://script.google.com/macros/s/AKfycbyOxa6X8lPU1_QZ40ny-oCmqqi8RK7f0sjqwAxgXt8NppwbFzr2wAe8phRcis2PXu1Vjw/exec';
   var appScriptURLKannada =
       'https://script.google.com/macros/s/AKfycbwIWXVoIZiuvYSlofAoacBDVgJ7ZTeqyxi3DMbTW00Zq1LtELzR_tRRY2q4k9YogabN/exec';
   var appScriptURLTelugu =
@@ -140,7 +141,7 @@ class _PanchangaState extends State<Panchanga> {
     File? myfile;
     myfile = await localEnglishFile;
     String? contents = await myfile.readAsString();
-    print(contents);
+    // print(contents);
     print("Inside English Panchanga");
     if (contents.isEmpty == true) {
       print("Inside English Panchanga If");
@@ -159,6 +160,35 @@ class _PanchangaState extends State<Panchanga> {
       return myfile.writeAsString(jsondata);
     } else {
       print("Inside English Panchanga else");
+      var raw = await rootBundle.loadString(
+          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/EnglishLanguage.json");
+      jsonPanchanga = convert.jsonDecode(raw);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+    }
+    if (updatelanguage == true && contents.isEmpty == false) {
+      print("Inside English Panchanga Update If");
+      var request = appScriptURLEnglish + '/' + "&&aaa=jenu";
+      // var request = Uri.parse(appScriptURLEnglish).queryParameters["aaa"];
+      print(request);
+      // if (request != null) {
+      await http.post(Uri.parse(request));
+      var raw = await http.get(Uri.parse(appScriptURLEnglish));
+      print(raw);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+      // final file = await _localFile;
+      String jsondata = raw.body
+          .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
+        return "'${match.group(0)}'";
+      });
+      print(myfile.writeAsString(jsondata));
+      return myfile.writeAsString(jsondata);
+      // }
+    } else {
+      print("Inside English Panchanga Update else");
       var raw = await rootBundle.loadString(
           "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/EnglishLanguage.json");
       jsonPanchanga = convert.jsonDecode(raw);
@@ -322,8 +352,8 @@ class _PanchangaState extends State<Panchanga> {
     // var raw = await http.get(Uri.parse(appScriptURLEnglish));
     // jsonPanchanga = convert.jsonDecode(raw.body);
     jsonPanchanga.forEach((element) {
-      print('Default English Panchanga List');
-      print(element);
+      // print('Default English Panchanga List');
+      // print(element);
       Day day = new Day(
           ayana: '',
           karana: '',
@@ -365,7 +395,7 @@ class _PanchangaState extends State<Panchanga> {
       day.vishesha = element['vishesha'].toString();
       panchangalistmodel.add(day);
 
-      print('${panchangalistmodel[0]}');
+      // print('${panchangalistmodel[0]}');
     });
   }
 
@@ -373,7 +403,7 @@ class _PanchangaState extends State<Panchanga> {
   void initState() {
     // getPanchangaDataFromSheet();
     print("Inside the init");
-    print(langValue);
+
     switch (langValue) {
       case 1:
         getEnglishPanchanga();
@@ -657,6 +687,17 @@ class _PanchangaState extends State<Panchanga> {
             },
           ),
         ),
+        PopupMenuItem<int>(
+            value: 2,
+            child: TextButton(
+              child: const Text('Update'),
+              onPressed: () {
+                // output = 'updateApp';
+                panchangalistmodel.clear();
+                updatelanguage = true;
+                getEnglishPanchanga();
+              },
+            )),
         PopupMenuItem<int>(
             value: 2,
             child: TextButton(
