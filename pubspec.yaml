@@ -57,7 +57,7 @@ flutter:
     - assets/languageTranslation/SanskritLanuage.json
     - assets/languageTranslation/KannadaLanuage.json
     - assets/languageTranslation/TamilLanuage.json
-    - assets/languageTranslation/updatedDataEnglish.json
+    - assets/lanuageUpdated/
 
 
   

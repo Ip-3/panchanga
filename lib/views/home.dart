@@ -1,6 +1,6 @@
 // import 'dart:ffi';
 import 'dart:async';
-import 'dart:convert';
+// import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,8 +9,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 // import 'package:dio/dio.dart';
 
-import 'package:path/path.dart' as p;
-import 'package:path_provider/path_provider.dart';
+// import 'package:path/path.dart' as p;
+// import 'package:path_provider/path_provider.dart';
 
 class Panchanga extends StatefulWidget {
   @override
@@ -19,7 +19,7 @@ class Panchanga extends StatefulWidget {
 
 class _PanchangaState extends State<Panchanga> {
   final Future<Widget> displayDesignWidget = Future<Widget>.delayed(
-    const Duration(seconds: 2),
+    const Duration(seconds: 5),
     () => DisplayDesign(
         ayana: '',
         karana: '',
@@ -42,25 +42,28 @@ class _PanchangaState extends State<Panchanga> {
         sunset: ''),
   );
 
-  Future<String> get localPathEnglish async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
-  }
+  var output;
+  var langValue;
+  var updatelanguage;
+
+  // Future<String> get localPathEnglish async {
+  //   final directory = await getApplicationDocumentsDirectory();
+  //   return directory.path;
+  // }
 
   Future<File> get localEnglishFile async {
-    final path = await localPathEnglish;
+    // final path = await localPathEnglish;
     // var absPath = p.isRootRelative('$path/EnglishLanguage.json');
-    print(path);
+    // print(path);
     return File(
         '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/EnglishLanguage.json');
   }
 
   Future<File> get localUpdateEnglishFile async {
-    final path = await localPathEnglish;
-    // var absPath = p.isRootRelative('$path/EnglishLanguage.json');
-    print(path);
+    // final path = await localPathEnglish;
+    // print(path);
     return File(
-        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/updatedDataEnglish.json');
+        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/lanuageUpdated/updatedDataEnglish.json');
   }
 
   // Future<String> get localPathKannada async {
@@ -74,6 +77,12 @@ class _PanchangaState extends State<Panchanga> {
         '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/KannadaLanuage.json');
   }
 
+  Future<File> get localUpdateKannadaFile async {
+    // final path = await localPathEnglish;
+    // print(path);
+    return File(
+        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/lanuageUpdated/updatedDataKannada.json');
+  }
   // Future<String> get localPathHindi async {
   //   final directory = await getApplicationDocumentsDirectory();
   //   return directory.path;
@@ -83,6 +92,13 @@ class _PanchangaState extends State<Panchanga> {
     // final path = await localPathHindi;
     return File(
         '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/HindiLanuage.json');
+  }
+
+  Future<File> get localUpdateHindiFile async {
+    // final path = await localPathEnglish;
+    // print(path);
+    return File(
+        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/lanuageUpdated/updatedDataHindi.json');
   }
 
   // Future<String> get localPathTamil async {
@@ -96,6 +112,13 @@ class _PanchangaState extends State<Panchanga> {
         '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/TamilLanuage.json');
   }
 
+  Future<File> get localUpdateTamilFile async {
+    // final path = await localPathEnglish;
+    // print(path);
+    return File(
+        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/lanuageUpdated/updatedDataTamil.json');
+  }
+
   // Future<String> get localPathTelugu async {
   //   final directory = await getApplicationDocumentsDirectory();
   //   return directory.path;
@@ -105,6 +128,13 @@ class _PanchangaState extends State<Panchanga> {
     // final path = await localPathTelugu;
     return File(
         '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/TeluguLanuage.json');
+  }
+
+  Future<File> get localUpdateTeluguFile async {
+    // final path = await localPathEnglish;
+    // print(path);
+    return File(
+        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/lanuageUpdated/updatedDataTelugu.json');
   }
 
   // Future<String> get localPathSanskrit async {
@@ -118,6 +148,12 @@ class _PanchangaState extends State<Panchanga> {
         '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/SanskritLanuage.json');
   }
 
+  Future<File> get localUpdateSanskritFile async {
+    // final path = await localPathEnglish;
+    // print(path);
+    return File(
+        '/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/lanuageUpdated/updatedDataSanskrit.json');
+  }
   // Future<int> readCounter() async {
   //   try {
   //     final file = await _localFile;
@@ -130,10 +166,6 @@ class _PanchangaState extends State<Panchanga> {
   //   }
   // }
 
-  var output;
-  var langValue;
-  var updatelanguage;
-
   // ignore: deprecated_member_use
   List<Day> panchangalistmodel = <Day>[];
   List<Day> panchangalistmodelUpdate = <Day>[];
@@ -141,16 +173,17 @@ class _PanchangaState extends State<Panchanga> {
   var appScriptURLEnglish =
       'https://script.google.com/macros/s/AKfycbxIQNJzrGKgbhuu7fJ0pv6UpRbIQEG8Qz21Zgv0rJkxEUzft0ktmhB9f0Ql4zCqTrbZMA/exec';
   var appScriptURLKannada =
-      'https://script.google.com/macros/s/AKfycbwIWXVoIZiuvYSlofAoacBDVgJ7ZTeqyxi3DMbTW00Zq1LtELzR_tRRY2q4k9YogabN/exec';
+      "https://script.google.com/macros/s/AKfycbz2ArI1em5o3jI9FbkXgoV7YgA2HaYT5XOevtlPAYoutTjQ9pjWrZCw8gMxY0_kep-2/exec";
   var appScriptURLTelugu =
-      'https://script.google.com/macros/s/AKfycbz_koOsE6hISCYEhc2Z8C9LxNc93lRFTfsdmGVJaenHSh_VHTRoSdUJyUPWl5NMXB6Y/exec';
+      "https://script.google.com/macros/s/AKfycby6oDkxpT-dqMqteMHMbNkIpB4KNda06bDEJsejZks-FN-jmnwSDQ9ZJOF2nhVEroAY/exec";
   var appScriptURLTamil =
-      'https://script.google.com/macros/s/AKfycbz_LnGqI3ld0bmR9bRLGChNFa3rFQl27e1zWEDEbbsHiMGXvQRxoVoGf99noPZ0FgP_rw/exec';
+      "https://script.google.com/macros/s/AKfycbzcjH5hPG5FR-mP5BiPIFxcSg_1-G2YTJz9rQlYxrxhqFOptVkMvj-dJPS_PUeJiwqZdA/exec";
   var appScriptURLSanskrit =
-      'https://script.google.com/macros/s/AKfycbzH14HdU4qJi0TEt6LBGElfm3coomWeL8DI43mDSOBBChYXmBUZCtnbcaxSg3-s7K1BaQ/exec';
+      "https://script.google.com/macros/s/AKfycbzqBvKyCknqlItNuVzzNxF6h6cRUiJnNBByqFEbdHyLpv1NmfccDDIyru2mBRP0EhYbyQ/exec";
   var appScriptURLHindi =
-      'https://script.google.com/macros/s/AKfycbwVmttGzQXMd6RplF8JKIhzI2Rh5Tv2tJe-cgET2-ZfgC-e0pG9xBBrZYy5KgqZIc4D/exec';
+      "https://script.google.com/macros/s/AKfycbyebmCB2xv6KWRnQHUZAS3JeJxoe8jWkvePx2o601T18RovlwJnlV69M6D-0w5mn8J-/exec";
   var jsonPanchanga;
+  File? myUpdatedfile;
 
   getEnglishPanchanga() async {
     File? myfile;
@@ -209,74 +242,123 @@ class _PanchangaState extends State<Panchanga> {
       });
       print(myUpdatedfile.writeAsString(jsondata));
       myUpdatedfile.writeAsString(jsondata);
-
+      // getUpdateDayObject();
+      String? compare2 = await myUpdatedfile.readAsString();
+      var comparejson2 = convert.jsonDecode(compare2);
+      comparejson2.forEach((element) {
+        // print('Default English Panchanga List');
+        // print(element);
+        Day day = new Day(
+            ayana: '',
+            karana: '',
+            date: '',
+            calendarmark: '',
+            masa: '',
+            masaniyamaka: '',
+            month: '',
+            rutu: '',
+            nakshatra: '',
+            paksha: '',
+            sunrise: '',
+            samvatsara: '',
+            shradhatithi: '',
+            tithi: '',
+            vasara: '',
+            year: '',
+            vishesha: '',
+            yoga: '',
+            sunset: '');
+        day.date = element['date'].toString();
+        day.month = element['month'].toString();
+        day.year = element['year'].toString();
+        day.samvatsara = element['samvatsara'].toString();
+        day.ayana = element["ayana"].toString();
+        day.paksha = element["paksha"].toString();
+        day.rutu = element['rutu'].toString();
+        day.masa = element['masa'].toString();
+        day.masaniyamaka = element['masaniyamaka'].toString();
+        day.calendarmark = element['calendarmark'].toString();
+        day.vasara = element["vasara"].toString();
+        day.nakshatra = element['nakshatra'].toString();
+        day.tithi = element['tithi'].toString();
+        day.yoga = element['yoga'].toString();
+        day.karana = element['karana'].toString();
+        day.sunrise = element['sunrise'].toString();
+        day.sunset = element["sunset"].toString();
+        day.shradhatithi = element['shradhatithi'].toString();
+        day.vishesha = element['vishesha'].toString();
+        panchangalistmodelUpdate.add(day);
+      });
       getUpdateCompare();
+
       // }
 
     } else {
       print("Inside English Panchanga Update else");
       var raw = await rootBundle.loadString(
-          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/updatedDataEnglish.json");
+          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/lanuageUpdated/updatedDataEnglish.json");
       jsonPanchanga = convert.jsonDecode(raw);
       setState(() {
         getPanchangaDataFromSheet();
       });
     }
-    String? compare1 = await myfile.readAsString();
-    var comparejson1 = convert.jsonDecode(compare1);
-
-    String? compare2 = await myUpdatedfile.readAsString();
-    var comparejson2 = convert.jsonDecode(compare2);
-    comparejson2.forEach((element) {
-      // print('Default English Panchanga List');
-      // print(element);
-      Day day = new Day(
-          ayana: '',
-          karana: '',
-          date: '',
-          calendarmark: '',
-          masa: '',
-          masaniyamaka: '',
-          month: '',
-          rutu: '',
-          nakshatra: '',
-          paksha: '',
-          sunrise: '',
-          samvatsara: '',
-          shradhatithi: '',
-          tithi: '',
-          vasara: '',
-          year: '',
-          vishesha: '',
-          yoga: '',
-          sunset: '');
-      day.date = element['date'].toString();
-      day.month = element['month'].toString();
-      day.year = element['year'].toString();
-      day.samvatsara = element['samvatsara'].toString();
-      day.ayana = element["ayana"].toString();
-      day.paksha = element["paksha"].toString();
-      day.rutu = element['rutu'].toString();
-      day.masa = element['masa'].toString();
-      day.masaniyamaka = element['masaniyamaka'].toString();
-      day.calendarmark = element['calendarmark'].toString();
-      day.vasara = element["vasara"].toString();
-      day.nakshatra = element['nakshatra'].toString();
-      day.tithi = element['tithi'].toString();
-      day.yoga = element['yoga'].toString();
-      day.karana = element['karana'].toString();
-      day.sunrise = element['sunrise'].toString();
-      day.sunset = element["sunset"].toString();
-      day.shradhatithi = element['shradhatithi'].toString();
-      day.vishesha = element['vishesha'].toString();
-      panchangalistmodelUpdate.add(day);
-    });
+    // String? compare1 = await myfile.readAsString();
+    // var comparejson1 = convert.jsonDecode(compare1);
   }
+
+  // getUpdateDayObject() async {
+  //   String? compare2 = await myUpdatedfile?.readAsString();
+  //   var comparejson2 = convert.jsonDecode(compare2!);
+  //   comparejson2.forEach((element) {
+  //     // print('Default English Panchanga List');
+  //     // print(element);
+  //     Day day = new Day(
+  //         ayana: '',
+  //         karana: '',
+  //         date: '',
+  //         calendarmark: '',
+  //         masa: '',
+  //         masaniyamaka: '',
+  //         month: '',
+  //         rutu: '',
+  //         nakshatra: '',
+  //         paksha: '',
+  //         sunrise: '',
+  //         samvatsara: '',
+  //         shradhatithi: '',
+  //         tithi: '',
+  //         vasara: '',
+  //         year: '',
+  //         vishesha: '',
+  //         yoga: '',
+  //         sunset: '');
+  //     day.date = element['date'].toString();
+  //     day.month = element['month'].toString();
+  //     day.year = element['year'].toString();
+  //     day.samvatsara = element['samvatsara'].toString();
+  //     day.ayana = element["ayana"].toString();
+  //     day.paksha = element["paksha"].toString();
+  //     day.rutu = element['rutu'].toString();
+  //     day.masa = element['masa'].toString();
+  //     day.masaniyamaka = element['masaniyamaka'].toString();
+  //     day.calendarmark = element['calendarmark'].toString();
+  //     day.vasara = element["vasara"].toString();
+  //     day.nakshatra = element['nakshatra'].toString();
+  //     day.tithi = element['tithi'].toString();
+  //     day.yoga = element['yoga'].toString();
+  //     day.karana = element['karana'].toString();
+  //     day.sunrise = element['sunrise'].toString();
+  //     day.sunset = element["sunset"].toString();
+  //     day.shradhatithi = element['shradhatithi'].toString();
+  //     day.vishesha = element['vishesha'].toString();
+  //     panchangalistmodelUpdate.add(day);
+  //   });
+  // }
 
   getUpdateCompare() async {
     // print(panchangalistmodel[0].date);
     // print(panchangalistmodelUpdate[0].date);
-    var i, j, k;
+    var i, j;
     print(panchangalistmodel.toString());
     print(panchangalistmodel.length);
     print(panchangalistmodelUpdate.length);
@@ -396,6 +478,9 @@ class _PanchangaState extends State<Panchanga> {
     File? myfile;
     myfile = await localHindiFile;
     String? contents = await myfile.readAsString();
+    File? myUpdatedfile;
+    myUpdatedfile = await localUpdateHindiFile;
+
     print("Inside Hindi Panchanga");
     // ignore: unnecessary_null_comparison
     if (contents.isEmpty == true) {
@@ -420,11 +505,92 @@ class _PanchangaState extends State<Panchanga> {
         getPanchangaDataFromSheet();
       });
     }
+    if (updatelanguage == true) {
+      print("Inside Hindi Panchanga Update If");
+      var request = appScriptURLHindi + "?aaa=hit";
+      // var request = Uri.parse(appScriptURLEnglish).queryParameters["aaa"];
+      print(request);
+      // if (request != null) {
+      await http.post(Uri.parse(request));
+      var raw = await http.get(Uri.parse(request));
+      print(raw);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+      // final file = await _localFile;
+      String jsondata = raw.body
+          .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
+        return "'${match.group(0)}'";
+      });
+      print(myUpdatedfile.writeAsString(jsondata));
+      myUpdatedfile.writeAsString(jsondata);
+      // getUpdateDayObject();
+      String? compare2 = await myUpdatedfile.readAsString();
+      var comparejson2 = convert.jsonDecode(compare2);
+      comparejson2.forEach((element) {
+        // print('Default English Panchanga List');
+        // print(element);
+        Day day = new Day(
+            ayana: '',
+            karana: '',
+            date: '',
+            calendarmark: '',
+            masa: '',
+            masaniyamaka: '',
+            month: '',
+            rutu: '',
+            nakshatra: '',
+            paksha: '',
+            sunrise: '',
+            samvatsara: '',
+            shradhatithi: '',
+            tithi: '',
+            vasara: '',
+            year: '',
+            vishesha: '',
+            yoga: '',
+            sunset: '');
+        day.date = element['date'].toString();
+        day.month = element['month'].toString();
+        day.year = element['year'].toString();
+        day.samvatsara = element['samvatsara'].toString();
+        day.ayana = element["ayana"].toString();
+        day.paksha = element["paksha"].toString();
+        day.rutu = element['rutu'].toString();
+        day.masa = element['masa'].toString();
+        day.masaniyamaka = element['masaniyamaka'].toString();
+        day.calendarmark = element['calendarmark'].toString();
+        day.vasara = element["vasara"].toString();
+        day.nakshatra = element['nakshatra'].toString();
+        day.tithi = element['tithi'].toString();
+        day.yoga = element['yoga'].toString();
+        day.karana = element['karana'].toString();
+        day.sunrise = element['sunrise'].toString();
+        day.sunset = element["sunset"].toString();
+        day.shradhatithi = element['shradhatithi'].toString();
+        day.vishesha = element['vishesha'].toString();
+        panchangalistmodelUpdate.add(day);
+      });
+      getUpdateCompare();
+
+      // }
+
+    } else {
+      print("Inside Hindi Panchanga Update else");
+      var raw = await rootBundle.loadString(
+          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/lanuageUpdated/updatedDataHindi.json");
+      jsonPanchanga = convert.jsonDecode(raw);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+    }
   }
 
   getTamilPanchanga() async {
     File? myfile;
     myfile = await localTamilFile;
+    File? myUpdatedfile;
+    myUpdatedfile = await localUpdateTamilFile;
     String? contents = await myfile.readAsString();
     print("Inside Tamil Panchanga");
     if (contents.isEmpty) {
@@ -450,11 +616,92 @@ class _PanchangaState extends State<Panchanga> {
         getPanchangaDataFromSheet();
       });
     }
+    if (updatelanguage == true) {
+      print("Inside Tamil Panchanga Update If");
+      var request = appScriptURLTamil + "?aaa=hit";
+      // var request = Uri.parse(appScriptURLEnglish).queryParameters["aaa"];
+      print(request);
+      // if (request != null) {
+      await http.post(Uri.parse(request));
+      var raw = await http.get(Uri.parse(request));
+      print(raw);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+      // final file = await _localFile;
+      String jsondata = raw.body
+          .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
+        return "'${match.group(0)}'";
+      });
+      print(myUpdatedfile.writeAsString(jsondata));
+      myUpdatedfile.writeAsString(jsondata);
+      // getUpdateDayObject();
+      String? compare2 = await myUpdatedfile.readAsString();
+      var comparejson2 = convert.jsonDecode(compare2);
+      comparejson2.forEach((element) {
+        // print('Default English Panchanga List');
+        // print(element);
+        Day day = new Day(
+            ayana: '',
+            karana: '',
+            date: '',
+            calendarmark: '',
+            masa: '',
+            masaniyamaka: '',
+            month: '',
+            rutu: '',
+            nakshatra: '',
+            paksha: '',
+            sunrise: '',
+            samvatsara: '',
+            shradhatithi: '',
+            tithi: '',
+            vasara: '',
+            year: '',
+            vishesha: '',
+            yoga: '',
+            sunset: '');
+        day.date = element['date'].toString();
+        day.month = element['month'].toString();
+        day.year = element['year'].toString();
+        day.samvatsara = element['samvatsara'].toString();
+        day.ayana = element["ayana"].toString();
+        day.paksha = element["paksha"].toString();
+        day.rutu = element['rutu'].toString();
+        day.masa = element['masa'].toString();
+        day.masaniyamaka = element['masaniyamaka'].toString();
+        day.calendarmark = element['calendarmark'].toString();
+        day.vasara = element["vasara"].toString();
+        day.nakshatra = element['nakshatra'].toString();
+        day.tithi = element['tithi'].toString();
+        day.yoga = element['yoga'].toString();
+        day.karana = element['karana'].toString();
+        day.sunrise = element['sunrise'].toString();
+        day.sunset = element["sunset"].toString();
+        day.shradhatithi = element['shradhatithi'].toString();
+        day.vishesha = element['vishesha'].toString();
+        panchangalistmodelUpdate.add(day);
+      });
+      getUpdateCompare();
+
+      // }
+
+    } else {
+      print("Inside Tamil Panchanga Update else");
+      var raw = await rootBundle.loadString(
+          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/lanuageUpdated/updatedDataTamil.json");
+      jsonPanchanga = convert.jsonDecode(raw);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+    }
   }
 
   getTeluguPanchanga() async {
     File? myfile;
     myfile = await localTeluguFile;
+    File? myUpdatedfile;
+    myUpdatedfile = await localUpdateTeluguFile;
     String? contents = await myfile.readAsString();
     print("Inside Telugu Panchanga");
     if (contents.isEmpty) {
@@ -480,11 +727,93 @@ class _PanchangaState extends State<Panchanga> {
         getPanchangaDataFromSheet();
       });
     }
+
+    if (updatelanguage == true) {
+      print("Inside Telugu Panchanga Update If");
+      var request = appScriptURLTelugu + "?aaa=hit";
+      // var request = Uri.parse(appScriptURLEnglish).queryParameters["aaa"];
+      print(request);
+      // if (request != null) {
+      await http.post(Uri.parse(request));
+      var raw = await http.get(Uri.parse(request));
+      print(raw);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+      // final file = await _localFile;
+      String jsondata = raw.body
+          .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
+        return "'${match.group(0)}'";
+      });
+      print(myUpdatedfile.writeAsString(jsondata));
+      myUpdatedfile.writeAsString(jsondata);
+      // getUpdateDayObject();
+      String? compare2 = await myUpdatedfile.readAsString();
+      var comparejson2 = convert.jsonDecode(compare2);
+      comparejson2.forEach((element) {
+        // print('Default English Panchanga List');
+        // print(element);
+        Day day = new Day(
+            ayana: '',
+            karana: '',
+            date: '',
+            calendarmark: '',
+            masa: '',
+            masaniyamaka: '',
+            month: '',
+            rutu: '',
+            nakshatra: '',
+            paksha: '',
+            sunrise: '',
+            samvatsara: '',
+            shradhatithi: '',
+            tithi: '',
+            vasara: '',
+            year: '',
+            vishesha: '',
+            yoga: '',
+            sunset: '');
+        day.date = element['date'].toString();
+        day.month = element['month'].toString();
+        day.year = element['year'].toString();
+        day.samvatsara = element['samvatsara'].toString();
+        day.ayana = element["ayana"].toString();
+        day.paksha = element["paksha"].toString();
+        day.rutu = element['rutu'].toString();
+        day.masa = element['masa'].toString();
+        day.masaniyamaka = element['masaniyamaka'].toString();
+        day.calendarmark = element['calendarmark'].toString();
+        day.vasara = element["vasara"].toString();
+        day.nakshatra = element['nakshatra'].toString();
+        day.tithi = element['tithi'].toString();
+        day.yoga = element['yoga'].toString();
+        day.karana = element['karana'].toString();
+        day.sunrise = element['sunrise'].toString();
+        day.sunset = element["sunset"].toString();
+        day.shradhatithi = element['shradhatithi'].toString();
+        day.vishesha = element['vishesha'].toString();
+        panchangalistmodelUpdate.add(day);
+      });
+      getUpdateCompare();
+
+      // }
+
+    } else {
+      print("Inside Telugu Panchanga Update else");
+      var raw = await rootBundle.loadString(
+          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/lanuageUpdated/updatedDataTelugu.json");
+      jsonPanchanga = convert.jsonDecode(raw);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+    }
   }
 
   getSanskritPanchanga() async {
     File? myfile;
     myfile = await localSanskritFile;
+    File? myUpdatedfile;
+    myUpdatedfile = await localUpdateSanskritFile;
     String? contents = await myfile.readAsString();
     print("Inside Sanskrit Panchanga");
     if (contents.isEmpty) {
@@ -510,11 +839,93 @@ class _PanchangaState extends State<Panchanga> {
         getPanchangaDataFromSheet();
       });
     }
+
+    if (updatelanguage == true) {
+      print("Inside Sanskrit Panchanga Update If");
+      var request = appScriptURLSanskrit + "?aaa=hit";
+      // var request = Uri.parse(appScriptURLEnglish).queryParameters["aaa"];
+      print(request);
+      // if (request != null) {
+      await http.post(Uri.parse(request));
+      var raw = await http.get(Uri.parse(request));
+      print(raw);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+      // final file = await _localFile;
+      String jsondata = raw.body
+          .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
+        return "'${match.group(0)}'";
+      });
+      print(myUpdatedfile.writeAsString(jsondata));
+      myUpdatedfile.writeAsString(jsondata);
+      // getUpdateDayObject();
+      String? compare2 = await myUpdatedfile.readAsString();
+      var comparejson2 = convert.jsonDecode(compare2);
+      comparejson2.forEach((element) {
+        // print('Default English Panchanga List');
+        // print(element);
+        Day day = new Day(
+            ayana: '',
+            karana: '',
+            date: '',
+            calendarmark: '',
+            masa: '',
+            masaniyamaka: '',
+            month: '',
+            rutu: '',
+            nakshatra: '',
+            paksha: '',
+            sunrise: '',
+            samvatsara: '',
+            shradhatithi: '',
+            tithi: '',
+            vasara: '',
+            year: '',
+            vishesha: '',
+            yoga: '',
+            sunset: '');
+        day.date = element['date'].toString();
+        day.month = element['month'].toString();
+        day.year = element['year'].toString();
+        day.samvatsara = element['samvatsara'].toString();
+        day.ayana = element["ayana"].toString();
+        day.paksha = element["paksha"].toString();
+        day.rutu = element['rutu'].toString();
+        day.masa = element['masa'].toString();
+        day.masaniyamaka = element['masaniyamaka'].toString();
+        day.calendarmark = element['calendarmark'].toString();
+        day.vasara = element["vasara"].toString();
+        day.nakshatra = element['nakshatra'].toString();
+        day.tithi = element['tithi'].toString();
+        day.yoga = element['yoga'].toString();
+        day.karana = element['karana'].toString();
+        day.sunrise = element['sunrise'].toString();
+        day.sunset = element["sunset"].toString();
+        day.shradhatithi = element['shradhatithi'].toString();
+        day.vishesha = element['vishesha'].toString();
+        panchangalistmodelUpdate.add(day);
+      });
+      getUpdateCompare();
+
+      // }
+
+    } else {
+      print("Inside Sanskrit Panchanga Update else");
+      var raw = await rootBundle.loadString(
+          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/lanuageUpdated/updatedDataSanskrit.json");
+      jsonPanchanga = convert.jsonDecode(raw);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+    }
   }
 
   getKannadaPanchanga() async {
     File? myfile;
     myfile = await localKannadaFile;
+    File? myUpdatedfile;
+    myUpdatedfile = await localUpdateKannadaFile;
     String? contents = await myfile.readAsString();
     print("Inside Kannada Panchanga");
     if (contents.isEmpty == true) {
@@ -535,6 +946,85 @@ class _PanchangaState extends State<Panchanga> {
       print("Inside Kannada Panchanga else");
       var raw = await rootBundle.loadString(
           "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/languageTranslation/KannadaLanuage.json");
+      jsonPanchanga = convert.jsonDecode(raw);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+    }
+    if (updatelanguage == true) {
+      print("Inside Kannada Panchanga Update If");
+      var request = appScriptURLKannada + "?aaa=hit";
+      // var request = Uri.parse(appScriptURLEnglish).queryParameters["aaa"];
+      print(request);
+      // if (request != null) {
+      await http.post(Uri.parse(request));
+      var raw = await http.get(Uri.parse(request));
+      print(raw);
+      setState(() {
+        getPanchangaDataFromSheet();
+      });
+      // final file = await _localFile;
+      String jsondata = raw.body
+          .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
+        return "'${match.group(0)}'";
+      });
+      print(myUpdatedfile.writeAsString(jsondata));
+      myUpdatedfile.writeAsString(jsondata);
+      // getUpdateDayObject();
+      String? compare2 = await myUpdatedfile.readAsString();
+      var comparejson2 = convert.jsonDecode(compare2);
+      comparejson2.forEach((element) {
+        // print('Default English Panchanga List');
+        // print(element);
+        Day day = new Day(
+            ayana: '',
+            karana: '',
+            date: '',
+            calendarmark: '',
+            masa: '',
+            masaniyamaka: '',
+            month: '',
+            rutu: '',
+            nakshatra: '',
+            paksha: '',
+            sunrise: '',
+            samvatsara: '',
+            shradhatithi: '',
+            tithi: '',
+            vasara: '',
+            year: '',
+            vishesha: '',
+            yoga: '',
+            sunset: '');
+        day.date = element['date'].toString();
+        day.month = element['month'].toString();
+        day.year = element['year'].toString();
+        day.samvatsara = element['samvatsara'].toString();
+        day.ayana = element["ayana"].toString();
+        day.paksha = element["paksha"].toString();
+        day.rutu = element['rutu'].toString();
+        day.masa = element['masa'].toString();
+        day.masaniyamaka = element['masaniyamaka'].toString();
+        day.calendarmark = element['calendarmark'].toString();
+        day.vasara = element["vasara"].toString();
+        day.nakshatra = element['nakshatra'].toString();
+        day.tithi = element['tithi'].toString();
+        day.yoga = element['yoga'].toString();
+        day.karana = element['karana'].toString();
+        day.sunrise = element['sunrise'].toString();
+        day.sunset = element["sunset"].toString();
+        day.shradhatithi = element['shradhatithi'].toString();
+        day.vishesha = element['vishesha'].toString();
+        panchangalistmodelUpdate.add(day);
+      });
+      getUpdateCompare();
+
+      // }
+
+    } else {
+      print("Inside Kannada Panchanga Update else");
+      var raw = await rootBundle.loadString(
+          "/Users/pthinks/Documents/Jhenkar/FlutterExamples/panchanga/assets/lanuageUpdated/updatedDataKannada.json");
       jsonPanchanga = convert.jsonDecode(raw);
       setState(() {
         getPanchangaDataFromSheet();
@@ -889,6 +1379,11 @@ class _PanchangaState extends State<Panchanga> {
                 panchangalistmodel.clear();
                 // getUpdatedEnglishPanchanga();
                 getEnglishPanchanga();
+                getKannadaPanchanga();
+                getHindiPanchanga();
+                getSanskritPanchanga();
+                getTamilPanchanga();
+                getTeluguPanchanga();
               },
             )),
         PopupMenuItem<int>(
