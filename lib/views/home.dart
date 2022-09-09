@@ -48,7 +48,7 @@ class _PanchangaState extends State<Panchanga> {
   var langValue;
   var updatelanguage;
 
-  Future<String?> get localPathEnglish async {
+  Future<Object> get localPathEnglish async {
     final directory = await getApplicationDocumentsDirectory();
     return directory.path;
   }
@@ -196,8 +196,8 @@ class _PanchangaState extends State<Panchanga> {
       return myfile.writeAsString(jsondata);
     } else {
       print("Inside English Panchanga else");
-      var raw = await rootBundle.loadString('$path/EnglishLanguage.json');
-      jsonPanchanga = convert.jsonDecode(raw);
+      // var raw = await rootBundle.loadString('$path/EnglishLanguage.json');
+      jsonPanchanga = convert.jsonDecode(contents);
       setState(() {
         getPanchangaDataFromSheet();
       });
@@ -274,8 +274,8 @@ class _PanchangaState extends State<Panchanga> {
 
     } else {
       print("Inside English Panchanga Update else");
-      var raw = await rootBundle.loadString('$path/updatedDataEnglish.json');
-      jsonPanchanga = convert.jsonDecode(raw);
+      // var raw = await rootBundle.loadString('$path/updatedDataEnglish.json');
+      jsonPanchanga = convert.jsonDecode(contents);
       setState(() {
         getPanchangaDataFromSheet();
       });
@@ -309,8 +309,8 @@ class _PanchangaState extends State<Panchanga> {
       return myfile.writeAsString(jsondata);
     } else {
       print("Inside Kannada Panchanga else");
-      var raw = await rootBundle.loadString('$path/KannadaLanguage.json');
-      jsonPanchanga = convert.jsonDecode(raw);
+      // var raw = await rootBundle.loadString('$path/KannadaLanguage.json');
+      jsonPanchanga = convert.jsonDecode(contents);
       setState(() {
         getPanchangaDataFromSheet();
       });
@@ -387,8 +387,8 @@ class _PanchangaState extends State<Panchanga> {
 
     } else {
       print("Inside Kannada Panchanga Update else");
-      var raw = await rootBundle.loadString('$path/updatedDataKannada.json');
-      jsonPanchanga = convert.jsonDecode(raw);
+      // var raw = await rootBundle.loadString('$path/updatedDataKannada.json');
+      jsonPanchanga = convert.jsonDecode(contents);
       setState(() {
         getPanchangaDataFromSheet();
       });
@@ -470,8 +470,8 @@ class _PanchangaState extends State<Panchanga> {
       return myfile.writeAsString(jsondata);
     } else {
       print("Inside Hindi Panchanga else");
-      var raw = await rootBundle.loadString('$path/HindiLanguage.json');
-      jsonPanchanga = convert.jsonDecode(raw);
+      // var raw = await rootBundle.loadString('$path/HindiLanguage.json');
+      jsonPanchanga = convert.jsonDecode(contents);
       setState(() {
         getPanchangaDataFromSheet();
       });
@@ -548,8 +548,8 @@ class _PanchangaState extends State<Panchanga> {
 
     } else {
       print("Inside Hindi Panchanga Update else");
-      var raw = await rootBundle.loadString('$path/updatedDataHindi.json');
-      jsonPanchanga = convert.jsonDecode(raw);
+      // var raw = await rootBundle.loadString('$path/updatedDataHindi.json');
+      jsonPanchanga = convert.jsonDecode(contents);
       setState(() {
         getPanchangaDataFromSheet();
       });
@@ -583,8 +583,8 @@ class _PanchangaState extends State<Panchanga> {
       return myfile.writeAsString(jsondata);
     } else {
       print("Inside Tamil Panchanga else");
-      var raw = await rootBundle.loadString('$path/TamilLanguage.json');
-      jsonPanchanga = convert.jsonDecode(raw);
+      // var raw = await rootBundle.loadString('$path/TamilLanguage.json');
+      jsonPanchanga = convert.jsonDecode(contents);
       setState(() {
         getPanchangaDataFromSheet();
       });
@@ -661,8 +661,8 @@ class _PanchangaState extends State<Panchanga> {
 
     } else {
       print("Inside Tamil Panchanga Update else");
-      var raw = await rootBundle.loadString('$path/updatedDataTamil.json');
-      jsonPanchanga = convert.jsonDecode(raw);
+      // var raw = await rootBundle.loadString('$path/updatedDataTamil.json');
+      jsonPanchanga = convert.jsonDecode(contents);
       setState(() {
         getPanchangaDataFromSheet();
       });
@@ -696,8 +696,8 @@ class _PanchangaState extends State<Panchanga> {
       return myfile.writeAsString(jsondata);
     } else {
       print("Inside Telugu Panchanga else");
-      var raw = await rootBundle.loadString('$path/TeluguLanguage.json');
-      jsonPanchanga = convert.jsonDecode(raw);
+      // var raw = await rootBundle.loadString('$path/TeluguLanguage.json');
+      jsonPanchanga = convert.jsonDecode(contents);
       setState(() {
         getPanchangaDataFromSheet();
       });
@@ -774,8 +774,8 @@ class _PanchangaState extends State<Panchanga> {
 
     } else {
       print("Inside Telugu Panchanga Update else");
-      var raw = await rootBundle.loadString('$path/updatedDataTelugu.json');
-      jsonPanchanga = convert.jsonDecode(raw);
+      // var raw = await rootBundle.loadString('$path/updatedDataTelugu.json');
+      jsonPanchanga = convert.jsonDecode(contents);
       setState(() {
         getPanchangaDataFromSheet();
       });
@@ -809,8 +809,8 @@ class _PanchangaState extends State<Panchanga> {
       return myfile.writeAsString(jsondata);
     } else {
       print("Inside English Panchanga else");
-      var raw = await rootBundle.loadString('$path/SanskritLanguage.json');
-      jsonPanchanga = convert.jsonDecode(raw);
+      // var raw = await rootBundle.loadString('$path/SanskritLanguage.json');
+      jsonPanchanga = convert.jsonDecode(contents);
       setState(() {
         getPanchangaDataFromSheet();
       });
@@ -887,8 +887,8 @@ class _PanchangaState extends State<Panchanga> {
 
     } else {
       print("Inside Sanksrit Panchanga Update else");
-      var raw = await rootBundle.loadString('$path/updatedDataSanskrit.json');
-      jsonPanchanga = convert.jsonDecode(raw);
+      // var raw = await rootBundle.loadString('$path/updatedDataSanskrit.json');
+      jsonPanchanga = convert.jsonDecode(contents);
       setState(() {
         getPanchangaDataFromSheet();
       });
