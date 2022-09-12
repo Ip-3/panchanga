@@ -2,11 +2,13 @@
 import 'dart:async';
 // import 'dart:convert';
 import 'dart:io';
+import 'package:cell_calendar/cell_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:panchanga/panchanga_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
+import 'package:panchanga/views/calendar_event.dart';
 
 import 'package:path_provider/path_provider.dart';
 // import 'package:dio/dio.dart';
@@ -17,6 +19,9 @@ import 'package:path_provider/path_provider.dart';
 class Panchanga extends StatefulWidget {
   @override
   _PanchangaState createState() => _PanchangaState();
+  final CalendarDisplay calendarDisplay = new CalendarDisplay(
+    title: 'Calendar',
+  );
 }
 
 class _PanchangaState extends State<Panchanga> {
@@ -1016,9 +1021,23 @@ class _PanchangaState extends State<Panchanga> {
         backgroundColor: Color.fromARGB(255, 247, 206, 73),
         actions: <Widget>[
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Icon(Icons.search, color: Colors.black),
-          ),
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: IconButton(
+                    iconSize: 28,
+                    icon: const Icon(
+                      Icons.search,
+                      color: Colors.black,
+                    ),
+                    onPressed: () {},
+                  ))
+
+              //     showSearch(
+              //   context: context,
+              //   delegate: CustomSearchDelegate(),
+              // );
+              ),
           _NomalPopMenu(),
         ],
       ),
@@ -1401,7 +1420,14 @@ class _DisplayDesignState extends State<DisplayDesign> {
                         IconButton(
                           iconSize: 20,
                           icon: const Icon(Icons.calendar_month),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CalendarDisplay(
+                                          title: 'Calendar',
+                                        )));
+                          },
                         ),
                         Text(
                           widget.date,
