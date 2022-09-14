@@ -16,6 +16,7 @@ class CalendarDisplay extends StatelessWidget {
           title,
           style: TextStyle(color: Colors.black),
         ),
+        iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Color.fromARGB(255, 247, 206, 73),
       ),
       body: CellCalendar(

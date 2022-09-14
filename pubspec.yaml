@@ -36,6 +36,7 @@ dependencies:
   lecle_flutter_absolute_path: ^0.0.1+3
   path_provider: ^2.0.11
   cell_calendar:
+  suntime:
 
 dev_dependencies:
   flutter_test:
