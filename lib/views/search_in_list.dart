@@ -1,8 +1,6 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:panchanga/panchanga_model.dart';
-import 'package:panchanga/views/home.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:convert' as convert;
 
