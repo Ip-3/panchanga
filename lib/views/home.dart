@@ -1188,15 +1188,15 @@ class _PanchangaState extends State<Panchanga> {
                     onPressed: () {
                       // print("OnPressed Butten of Search");
                       // print(panchangalistmodel.toString());
-                      // showSearch(
-                      //   context: context,
-                      //   delegate: SearchInList(title: 'Search',);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SearchInList()),
-                      );
+                      showSearch(
+                          context: context,
+                          delegate: SearchInList(panchangalistmodel)
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(builder: (context) => SearchInList()),
+                          // );
 
-                      // );
+                          );
                     },
                   ))
 
@@ -1741,7 +1741,7 @@ class _DisplayDesignState extends State<DisplayDesign> {
                               Expanded(
                                 flex: 1,
                                 child: Text(widget.masaniyamaka,
-                                    // textAlign: TextAlign.justify,
+                                    textAlign: TextAlign.justify,
                                     style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold)),
