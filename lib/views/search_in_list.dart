@@ -41,18 +41,10 @@ class SearchInList extends SearchDelegate {
     List<String> allNames = panchangaSearchList
         .map((panchanagaSearch) => panchanagaSearch.vishesha)
         .toList();
-    // final List<String> allNames =
-    //     panchangaSearchList.map((e) => e.toString()).toList();
+ 
     var suggestion = panchangaSearchList
         .map((panchanagaSearch) => panchanagaSearch.vishesha)
         .toList();
-    ;
-    // var pItem;
-    // List.generate(panchangaSearchList.length, (index) {
-    //   pItem = panchangaSearchList[index];
-    //   // print(pItem.vishesha);
-    //   allNames.add(pItem.vishesha);
-    // });
 
     searchResult.clear();
     searchResult = allNames
