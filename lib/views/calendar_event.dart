@@ -1,15 +1,18 @@
 import 'package:cell_calendar/cell_calendar.dart';
 import 'package:panchanga/views/sample_event.dart';
 import 'package:flutter/material.dart';
+import 'package:panchanga/views/home.dart';
 
 class CalendarDisplay extends StatelessWidget {
   CalendarDisplay({Key? key, required this.title}) : super(key: key);
   final String title;
-
   @override
   Widget build(BuildContext context) {
+    // final _calendarPanchanagaDAtes = Panchanga();
+    // _calendarPanchanagaDAtes;
     final _sampleEvents = sampleEvents();
     final cellCalendarPageController = CellCalendarPageController();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(

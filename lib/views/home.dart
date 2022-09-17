@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:panchanga/views/search_in_list.dart';
@@ -28,17 +28,21 @@ class _PanchangaState extends State<Panchanga> {
   List<Day> updatedSanskritPanchanaga = <Day>[];
 
   late Day updatedDay;
-
+  var dateData, monthData, yearData;
   var jsonPanchanga;
   var jsonPanchangaUpdate;
   var comparejson2;
 
-  var Languagecount;
-  File? myUpdatedfile;
-
   final CalendarDisplay calendarDisplay = new CalendarDisplay(
     title: 'Calendar',
   );
+  // void getDate() {
+  //   jsonPanchanga
+  //   dateData;
+  //   monthData;
+  //   yearData;
+  // }
+
   final Future<Widget> displayDesignWidget = Future<Widget>.delayed(
     const Duration(seconds: 5),
     () => DisplayDesign(
@@ -62,13 +66,26 @@ class _PanchangaState extends State<Panchanga> {
         yoga: '',
         sunset: ''),
   );
+  var path;
+  Future<Object> get localSettingsPath async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
+
+  Future<File> get localSettingsFile async {
+    path = await localSettingsPath;
+    print("Settings");
+    print(path);
+    return new File('$path/settings.txt').create(recursive: true);
+  }
+
+  File? mySettingsFile;
 
   Future<Object> get localPathEnglish async {
     final directory = await getApplicationDocumentsDirectory();
     return directory.path;
   }
 
-  var path;
   Future<File> get localEnglishFile async {
     path = await localPathEnglish;
     print("English");
@@ -190,11 +207,8 @@ class _PanchangaState extends State<Panchanga> {
   var appScriptURLHindi =
       "https://script.google.com/macros/s/AKfycbyebmCB2xv6KWRnQHUZAS3JeJxoe8jWkvePx2o601T18RovlwJnlV69M6D-0w5mn8J-/exec";
 
-  void getSearchResult() async {
-    panchangalistmodel.toString();
-  }
-
   getEnglishPanchanga() async {
+    langValue = 1;
     File? myfile;
     File? myUpdatedfile;
     myfile = await localEnglishFile;
@@ -312,7 +326,7 @@ class _PanchangaState extends State<Panchanga> {
       });
       setState(() {
         panchangalistmodel.clear();
-        panchangalistmodelUpdate.clear();
+        // panchangalistmodelUpdate.clear();
         getUpdatedEnglishLanguageData();
         getUpdateLanguageCompareData();
       });
@@ -323,9 +337,14 @@ class _PanchangaState extends State<Panchanga> {
         getPanchangaDataFromSheet();
       });
     }
+
+    getDateData() {
+      var a = panchangalistmodel.asMap();
+    }
   }
 
   getKannadaPanchanga() async {
+    langValue = 2;
     File? myfile;
     File? myUpdatedfile;
     myfile = await localKannadaFile;
@@ -443,7 +462,7 @@ class _PanchangaState extends State<Panchanga> {
       });
       setState(() {
         panchangalistmodel.clear();
-        panchangalistmodelUpdate.clear();
+        // panchangalistmodelUpdate.clear();
         getUpdatedKannadaLanguageData();
         getUpdateLanguageCompareData();
       });
@@ -457,6 +476,7 @@ class _PanchangaState extends State<Panchanga> {
   }
 
   getHindiPanchanga() async {
+    langValue = 3;
     File? myfile;
     File? myUpdatedfile;
     myfile = await localHindiFile;
@@ -573,7 +593,7 @@ class _PanchangaState extends State<Panchanga> {
       });
       setState(() {
         panchangalistmodel.clear();
-        panchangalistmodelUpdate.clear();
+        // panchangalistmodelUpdate.clear();
         getUpdatedHindiLanguageData();
         getUpdateLanguageCompareData();
       });
@@ -587,6 +607,7 @@ class _PanchangaState extends State<Panchanga> {
   }
 
   getTamilPanchanga() async {
+    langValue = 4;
     File? myfile;
     File? myUpdatedfile;
     myfile = await localTamilFile;
@@ -703,7 +724,7 @@ class _PanchangaState extends State<Panchanga> {
       });
       setState(() {
         panchangalistmodel.clear();
-        panchangalistmodelUpdate.clear();
+        // panchangalistmodelUpdate.clear();
         getUpdatedTamilLanguageData();
         getUpdateLanguageCompareData();
       });
@@ -717,6 +738,7 @@ class _PanchangaState extends State<Panchanga> {
   }
 
   getTeluguPanchanga() async {
+    langValue = 5;
     File? myfile;
     File? myUpdatedfile;
     myfile = await localTeluguFile;
@@ -833,7 +855,7 @@ class _PanchangaState extends State<Panchanga> {
       });
       setState(() {
         panchangalistmodel.clear();
-        panchangalistmodelUpdate.clear();
+        // panchangalistmodelUpdate.clear();
         getUpdatedTeluguLanguageData();
         getUpdateLanguageCompareData();
       });
@@ -847,6 +869,7 @@ class _PanchangaState extends State<Panchanga> {
   }
 
   getSanskritPanchanga() async {
+    langValue = 6;
     File? myfile;
     File? myUpdatedfile;
     myfile = await localSanskritFile;
@@ -862,7 +885,8 @@ class _PanchangaState extends State<Panchanga> {
     // print(updatedContents.length);
 
     if (contents.isEmpty == false && updatedContents.isEmpty == false) {
-      print("Original Telugu File and Modified Telugu both files are present");
+      print(
+          "Original Sanskrit File and Modified Telugu both files are present");
       if (updatedContents.isEmpty == true) {
         jsonPanchangaUpdate = {};
       } else {
@@ -887,7 +911,7 @@ class _PanchangaState extends State<Panchanga> {
     }
     if (contents.isEmpty == true) {
       print(
-          "Original Telugu File is not present in Local database, Fetching from Remote Database");
+          "Original Sanskrit File is not present in Local database, Fetching from Remote Database");
       var raw = await http.get(Uri.parse(appScriptURLSanskrit));
       jsonPanchanga = convert.jsonDecode(raw.body);
 
@@ -963,12 +987,12 @@ class _PanchangaState extends State<Panchanga> {
       });
       setState(() {
         panchangalistmodel.clear();
-        panchangalistmodelUpdate.clear();
+        // panchangalistmodelUpdate.clear();
         getUpdatedSanskritLanguageData();
         getUpdateLanguageCompareData();
       });
     } else {
-      print("Just show Original Telugu File from local database");
+      print("Just show Original Sanskrit File from local database");
       jsonPanchanga = convert.jsonDecode(contents);
       setState(() {
         getPanchangaDataFromSheet();
@@ -1319,9 +1343,8 @@ class _PanchangaState extends State<Panchanga> {
     // myNewStringList.toString();
 
     jsonPanchanga.forEach((element) {
-      print(Languagecount);
       // print('Default English Panchanga List');
-      print(element);
+      // print(element);
       Day day = new Day(
           ayana: '',
           karana: '',
@@ -1367,34 +1390,46 @@ class _PanchangaState extends State<Panchanga> {
 
   @override
   void initState() {
+    super.initState();
+    initialState();
+  }
+
+  void initialState() async {
     // getPanchangaDataFromSheet();
     // rm -rf ./*.tmp
-    print("Inside the init");
+    mySettingsFile = await localSettingsFile;
+    String? contents = (await mySettingsFile?.readAsString());
+    if (contents!.isNotEmpty) {
+      print("Its here");
+      langValue = int.parse(contents);
+    }
+
+    // print(contents);
 
     switch (langValue) {
       case 1:
         getEnglishPanchanga();
-        super.initState();
+        // super.initState();
         break;
       case 2:
         getKannadaPanchanga();
-        super.initState();
+        // super.initState();
         break;
       case 3:
         getHindiPanchanga();
-        super.initState();
+        // super.initState();
         break;
       case 4:
         getTamilPanchanga();
-        super.initState();
+        // super.initState();
         break;
       case 5:
         getTeluguPanchanga();
-        super.initState();
+        // super.initState();
         break;
       case 6:
         getSanskritPanchanga();
-        super.initState();
+        // super.initState();
         break;
       default:
         getEnglishPanchanga();
@@ -1457,15 +1492,15 @@ class _PanchangaState extends State<Panchanga> {
                     onPressed: () {
                       // print("OnPressed Butten of Search");
                       // print(panchangalistmodel.toString());
-                      showSearch(
-                          context: context,
-                          delegate: SearchInList(panchangalistmodel)
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(builder: (context) => SearchInList()),
-                          // );
+                      // showSearch(
+                      // context: context,
+                      // delegate: SearchInList(panchangalistmodel)
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SearchInList()),
+                      );
 
-                          );
+                      // );
                     },
                   ))
 
@@ -1593,8 +1628,10 @@ class _PanchangaState extends State<Panchanga> {
                             title: Text("English"),
                             value: "1",
                             groupValue: langValue,
-                            onChanged: (value) {
-                              setState(() {
+                            onChanged: (value) async {
+                              mySettingsFile = await localSettingsFile;
+                              mySettingsFile?.writeAsString(value.toString());
+                              setState(() async {
                                 langValue = value;
                                 panchangalistmodel.clear();
                                 panchangalistmodelUpdate.clear();
@@ -1606,7 +1643,9 @@ class _PanchangaState extends State<Panchanga> {
                             title: Text("Kannada"),
                             value: "2",
                             groupValue: langValue,
-                            onChanged: (value) {
+                            onChanged: (value) async {
+                              mySettingsFile = await localSettingsFile;
+                              mySettingsFile?.writeAsString(value.toString());
                               setState(() {
                                 langValue = value;
                                 panchangalistmodel.clear();
@@ -1619,7 +1658,9 @@ class _PanchangaState extends State<Panchanga> {
                             title: Text("Hindi"),
                             value: "3",
                             groupValue: langValue,
-                            onChanged: (value) {
+                            onChanged: (value) async {
+                              mySettingsFile = await localSettingsFile;
+                              mySettingsFile?.writeAsString(value.toString());
                               setState(() {
                                 langValue = value;
                                 panchangalistmodel.clear();
@@ -1632,7 +1673,9 @@ class _PanchangaState extends State<Panchanga> {
                             title: Text("Tamil"),
                             value: "4",
                             groupValue: langValue,
-                            onChanged: (value) {
+                            onChanged: (value) async {
+                              mySettingsFile = await localSettingsFile;
+                              mySettingsFile?.writeAsString(value.toString());
                               setState(() {
                                 langValue = value;
                                 panchangalistmodel.clear();
@@ -1645,7 +1688,9 @@ class _PanchangaState extends State<Panchanga> {
                             title: Text("Telugu"),
                             value: "5",
                             groupValue: langValue,
-                            onChanged: (value) {
+                            onChanged: (value) async {
+                              mySettingsFile = await localSettingsFile;
+                              mySettingsFile?.writeAsString(value.toString());
                               setState(() {
                                 langValue = value;
                                 panchangalistmodel.clear();
@@ -1658,7 +1703,9 @@ class _PanchangaState extends State<Panchanga> {
                             title: Text("Sanskrit"),
                             value: "6",
                             groupValue: langValue,
-                            onChanged: (value) {
+                            onChanged: (value) async {
+                              mySettingsFile = await localSettingsFile;
+                              mySettingsFile?.writeAsString(value.toString());
                               setState(() {
                                 langValue = value;
                                 panchangalistmodel.clear();
@@ -1684,22 +1731,124 @@ class _PanchangaState extends State<Panchanga> {
             value: 2,
             child: TextButton(
               child: const Text('Update'),
-              onPressed: () {
-                // output = 'updateApp';
+              onPressed: () async {
                 updatelanguage = true;
+                File? myUpdatedEnglishFile;
+                myUpdatedEnglishFile = await localUpdateEnglishFile;
+                String? updatedEnglishContents =
+                    await myUpdatedEnglishFile.readAsString();
+
+                File? myUpdatedKannadaFile;
+                myUpdatedKannadaFile = await localUpdateKannadaFile;
+                String? updatedKannadaContents =
+                    await myUpdatedKannadaFile.readAsString();
+
+                File? myUpdatedHindiFile;
+                myUpdatedHindiFile = await localUpdateHindiFile;
+                String? updatedHindiContents =
+                    await myUpdatedHindiFile.readAsString();
+
+                File? myUpdatedTamilFile;
+                myUpdatedTamilFile = await localUpdateTamilFile;
+                String? updatedTamilContents =
+                    await myUpdatedTamilFile.readAsString();
+
+                File? myUpdatedTeluguFile;
+                myUpdatedTeluguFile = await localUpdateTeluguFile;
+                String? updatedTeluguContents =
+                    await myUpdatedTeluguFile.readAsString();
+
+                File? myUpdatedSanskritFile;
+                myUpdatedSanskritFile = await localUpdateSanskritFile;
+                String? updatedSanskritContents =
+                    await myUpdatedSanskritFile.readAsString();
+
+                // output = 'updateApp';
+
                 // panchangalistmodel.clear();
                 // panchangalistmodelUpdate.clear();
                 // getUpdatedEnglishPanchanga();
-                getEnglishPanchanga();
-                getKannadaPanchanga();
-                getHindiPanchanga();
-                getSanskritPanchanga();
-                getTamilPanchanga();
-                getTeluguPanchanga();
+
+                switch (langValue) {
+                  case 1:
+                    if (updatedEnglishContents.isEmpty == false) {
+                      print("English updated file  empty");
+
+                      jsonPanchangaUpdate = {};
+                    } else {
+                      print("English updated file not empty");
+                      panchangalistmodel.clear();
+                      panchangalistmodelUpdate.clear();
+                      getEnglishPanchanga();
+                    }
+                    break;
+                  case 2:
+                    if (updatedKannadaContents.isEmpty == false) {
+                      print("Kannada updated file  empty");
+                      jsonPanchangaUpdate = {};
+                    } else {
+                      print("Kannada updated file not empty");
+                      panchangalistmodel.clear();
+                      panchangalistmodelUpdate.clear();
+                      getKannadaPanchanga();
+                    }
+                    break;
+                  case 3:
+                    if (updatedHindiContents.isEmpty == false) {
+                      print("Hindi updated file  empty");
+                      jsonPanchangaUpdate = {};
+                    } else {
+                      print("Hindi updated file not empty");
+                      panchangalistmodel.clear();
+                      panchangalistmodelUpdate.clear();
+                      getHindiPanchanga();
+                    }
+                    break;
+                  case 4:
+                    if (updatedTamilContents.isEmpty == false) {
+                      print("Tamil updated file  empty");
+                      jsonPanchangaUpdate = {};
+                    } else {
+                      print("Tamil updated file not empty");
+                      panchangalistmodel.clear();
+                      panchangalistmodelUpdate.clear();
+                      getTamilPanchanga();
+                    }
+                    break;
+                  case 5:
+                    if (updatedTeluguContents.isEmpty == false) {
+                      print("Telugu updated file  empty");
+                      jsonPanchangaUpdate = {};
+                    } else {
+                      print("Telugu updated file not empty");
+                      panchangalistmodel.clear();
+                      panchangalistmodelUpdate.clear();
+                      getTeluguPanchanga();
+                    }
+                    break;
+                  case 6:
+                    if (updatedSanskritContents.isEmpty == false) {
+                      print("Sanskrit updated file  empty");
+                      jsonPanchangaUpdate = {};
+                    } else {
+                      print("Sanskrit updated file not empty");
+                      panchangalistmodel.clear();
+                      panchangalistmodelUpdate.clear();
+                      getSanskritPanchanga();
+                    }
+                    break;
+                }
+
+                // getEnglishPanchanga();
+                // getKannadaPanchanga();
+                // getHindiPanchanga();
+                // getTamilPanchanga();
+                // getTeluguPanchanga();
+                // getSanskritPanchanga();
               },
             )),
         PopupMenuItem<int>(
-            value: 2,
+            value: 3,
             child: TextButton(
               child: const Text('Exit'),
               onPressed: () {

@@ -3,6 +3,7 @@ import 'package:panchanga/views/home.dart';
 
 void main() {
   // WidgetsFlutterBinding.ensureInitialized();
+
   runApp(MyApp());
 }
 
