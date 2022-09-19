@@ -38,6 +38,7 @@ dependencies:
   cell_calendar:
   suntime:
   shared_preferences:
+  scrollable_positioned_list:
 
 dev_dependencies:
   flutter_test:

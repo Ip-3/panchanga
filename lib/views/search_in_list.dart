@@ -134,7 +134,7 @@ class SearchInList extends StatefulWidget {
 
 class _SearchInListState extends State<SearchInList> {
   List<Day> panchangaSearchList = <Day>[];
-  List<String> abcd = <String>[];
+  // List<String> abcd = <String>[];
   TextEditingController editingController = TextEditingController();
   // final duplicateItems = List<String>.generate(10000, (i) => "Item $i");
 
@@ -149,7 +149,7 @@ class _SearchInListState extends State<SearchInList> {
   Future<File> get localEnglishFile async {
     path = await localPathEnglish;
     // print(path);
-    return new File('$path/EnglishLanguage.json').create(recursive: true);
+    return File('$path/EnglishLanguage.json');
   }
 
   getList() async {
@@ -201,13 +201,6 @@ class _SearchInListState extends State<SearchInList> {
       day.vishesha = element['vishesha'].toString();
       panchangaSearchList.add(day);
     });
-    // print(panchangaSearchList.length);
-    // var i;
-    // for (i = 0; i < panchangaSearchList.length; i++) {
-    //   abcd = panchangaSearchList
-    //       .map((panchanagaSearch) => panchanagaSearch.vishesha)
-    //       .toList();
-    // }
   }
 
   // final duplicateItems = panchangaSearchList

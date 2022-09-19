@@ -1,18 +1,21 @@
 import 'package:cell_calendar/cell_calendar.dart';
+import 'package:panchanga/panchanga_model.dart';
 import 'package:panchanga/views/sample_event.dart';
 import 'package:flutter/material.dart';
-import 'package:panchanga/views/home.dart';
+import 'home.dart';
 
+// ignore: must_be_immutable
 class CalendarDisplay extends StatelessWidget {
   CalendarDisplay({Key? key, required this.title}) : super(key: key);
   final String title;
+  List<Day> panchangaCalendarDataList = <Day>[];
+
   @override
   Widget build(BuildContext context) {
     // final _calendarPanchanagaDAtes = Panchanga();
     // _calendarPanchanagaDAtes;
     final _sampleEvents = sampleEvents();
     final cellCalendarPageController = CellCalendarPageController();
-
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -26,12 +29,12 @@ class CalendarDisplay extends StatelessWidget {
         // todayMarkColor: Color.fromARGB(255, 255, 192, 2),
         cellCalendarPageController: cellCalendarPageController,
         events: _sampleEvents,
-        daysOfTheWeekBuilder: (dayIndex) {
+        daysOfTheWeekBuilder: (example) {
           final labels = ["S", "M", "T", "W", "T", "F", "S"];
           return Padding(
             padding: const EdgeInsets.only(bottom: 4.0),
             child: Text(
-              labels[dayIndex],
+              labels[example],
               style: TextStyle(
                 fontWeight: FontWeight.bold,
               ),
@@ -71,35 +74,11 @@ class CalendarDisplay extends StatelessWidget {
           );
         },
         onCellTapped: (date) {
-          final eventsOnTheDate = _sampleEvents.where((event) {
-            final eventDate = event.eventDate;
-            return eventDate.year == date.year &&
-                eventDate.month == date.month &&
-                eventDate.day == date.day;
-          }).toList();
-          showDialog(
-              context: context,
-              builder: (_) => AlertDialog(
-                    title:
-                        Text(date.month.monthName + " " + date.day.toString()),
-                    content: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: eventsOnTheDate
-                          .map(
-                            (event) => Container(
-                              width: double.infinity,
-                              padding: EdgeInsets.all(4),
-                              margin: EdgeInsets.only(bottom: 12),
-                              color: event.eventBackgroundColor,
-                              child: Text(
-                                event.eventName,
-                                style: TextStyle(color: event.eventTextColor),
-                              ),
-                            ),
-                          )
-                          .toList(),
-                    ),
-                  ));
+          // Scrollable.ensureVisible(ContextAction());
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Panchanga()),
+          );
         },
         onPageChanged: (firstDate, lastDate) {
           /// Called when the page was changed
