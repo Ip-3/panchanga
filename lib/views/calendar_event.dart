@@ -5,9 +5,16 @@ import 'package:flutter/material.dart';
 import 'home.dart';
 
 // ignore: must_be_immutable
-class CalendarDisplay extends StatelessWidget {
-  CalendarDisplay({Key? key, required this.title}) : super(key: key);
+class CalendarDisplay extends StatefulWidget {
+  CalendarDisplay({required this.title});
+
   final String title;
+
+  @override
+  State<CalendarDisplay> createState() => _CalendarDisplayState();
+}
+
+class _CalendarDisplayState extends State<CalendarDisplay> {
   List<Day> panchangaCalendarDataList = <Day>[];
 
   @override
@@ -19,7 +26,7 @@ class CalendarDisplay extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          title,
+          widget.title,
           style: TextStyle(color: Colors.black),
         ),
         iconTheme: IconThemeData(color: Colors.black),
@@ -75,9 +82,16 @@ class CalendarDisplay extends StatelessWidget {
         },
         onCellTapped: (date) {
           // Scrollable.ensureVisible(ContextAction());
+          final newYear = DateTime(2022, 01, 01);
+          final difference = date.difference(newYear).inDays;
+          print('Its the date from calendar event $difference');
+
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Panchanga()),
+            MaterialPageRoute(
+                builder: (context) => Panchanga(
+                    // differenceDate: difference,
+                    )),
           );
         },
         onPageChanged: (firstDate, lastDate) {

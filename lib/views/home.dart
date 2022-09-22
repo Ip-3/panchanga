@@ -1,4 +1,5 @@
 import 'dart:core';
+import 'dart:ffi';
 // import 'package:cell_calendar/cell_calendar.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
@@ -12,19 +13,31 @@ import 'package:panchanga/views/calendar_event.dart';
 import 'package:path_provider/path_provider.dart';
 // import 'package:panchanga/views/calendar_event.dart';
 
+// ignore: must_be_immutable
 class Panchanga extends StatefulWidget {
+  var differenceDate;
+
+  Panchanga({Key? key}) : super(key: key);
+  // Panchanga.getPanchangaDataFromSheet();
   @override
   _PanchangaState createState() => _PanchangaState();
 }
 
 class _PanchangaState extends State<Panchanga> {
-  var output;
+  late int dateDataIndex;
+  late int dateIndex;
   var langValue;
   var updatelanguage;
+  var difference;
+  late Day updatedDay;
+
+  var jsonPanchanga;
+  var jsonPanchangaUpdate;
+  var comparejson2;
+
   DateTime specificDate = DateTime.now();
-  late int dateDataIndex;
-  final newYear = DateTime(2022, 01, 01);
-  final hinduNewYear = DateTime.now();
+  // final newYear = DateTime(2022, 04, 01);
+  // final currentDate = DateTime.now();
 
   List<Day> panchangalistmodel = <Day>[];
   List<Day> panchangalistmodelUpdate = <Day>[];
@@ -35,11 +48,13 @@ class _PanchangaState extends State<Panchanga> {
   List<Day> updatedTeluguPanchanaga = <Day>[];
   List<Day> updatedSanskritPanchanaga = <Day>[];
 
-  late Day updatedDay;
-  var dateData, calendarDate, monthData, yearData;
-  var jsonPanchanga;
-  var jsonPanchangaUpdate;
-  var comparejson2;
+  // pageController = pageController ??
+  //         PageController(
+  //             viewportFraction: viewportFraction,
+  //             initialPage: items.length < 2 ? 0 : virtualCount,
+  //             keepPage: false),
+
+  //     super(key: key);
 
   final CalendarDisplay calendarDisplay = new CalendarDisplay(
     title: 'Calendar',
@@ -77,7 +92,7 @@ class _PanchangaState extends State<Panchanga> {
   Future<File> get localSettingsFile async {
     path = await localSettingsPath;
     // print("Settings");
-    // print(path);
+    print(path);
     return new File('$path/settings.txt').create(recursive: true);
   }
 
@@ -226,9 +241,10 @@ class _PanchangaState extends State<Panchanga> {
         jsonPanchanga = convert.jsonDecode(contents);
         jsonPanchangaUpdate = convert.jsonDecode(updatedContents);
         setState(() {
-          panchangalistmodel.clear();
+          // panchangalistmodel.clear();
           panchangalistmodelUpdate.clear();
           getUpdatedEnglishLanguageData();
+          panchangalistmodel.clear();
           getUpdateLanguageCompareData();
         });
       }
@@ -308,14 +324,19 @@ class _PanchangaState extends State<Panchanga> {
         panchangalistmodelUpdate.add(day);
       });
       setState(() {
-        panchangalistmodel.clear();
+        // panchangalistmodel.clear();
+        panchangalistmodelUpdate.clear();
         getUpdatedEnglishLanguageData();
+        panchangalistmodel.clear();
+
         getUpdateLanguageCompareData();
       });
-    } else {
+    }
+    if (contents.isEmpty == false && updatedContents.isEmpty == true) {
       print("Just show Original English File from local database");
       jsonPanchanga = convert.jsonDecode(contents);
       setState(() {
+        panchangalistmodel.clear();
         getPanchangaDataFromSheet();
       });
     }
@@ -338,9 +359,11 @@ class _PanchangaState extends State<Panchanga> {
         jsonPanchanga = convert.jsonDecode(contents);
         jsonPanchangaUpdate = convert.jsonDecode(updatedContents);
         setState(() {
-          panchangalistmodel.clear();
+          // panchangalistmodel.clear();
           panchangalistmodelUpdate.clear();
           getUpdatedKannadaLanguageData();
+          panchangalistmodel.clear();
+
           getUpdateLanguageCompareData();
         });
       }
@@ -419,11 +442,16 @@ class _PanchangaState extends State<Panchanga> {
         panchangalistmodelUpdate.add(day);
       });
       setState(() {
-        panchangalistmodel.clear();
+        // panchangalistmodel.clear();
+        panchangalistmodelUpdate.clear();
+
         getUpdatedKannadaLanguageData();
+        panchangalistmodel.clear();
+
         getUpdateLanguageCompareData();
       });
-    } else {
+    }
+    if (contents.isEmpty == false && updatedContents.isEmpty == true) {
       print("Just show Original Kannada File from local database");
       jsonPanchanga = convert.jsonDecode(contents);
       setState(() {
@@ -448,9 +476,11 @@ class _PanchangaState extends State<Panchanga> {
         jsonPanchanga = convert.jsonDecode(contents);
         jsonPanchangaUpdate = convert.jsonDecode(updatedContents);
         setState(() {
-          panchangalistmodel.clear();
+          // panchangalistmodel.clear();
           panchangalistmodelUpdate.clear();
           getUpdatedHindiLanguageData();
+          panchangalistmodel.clear();
+
           getUpdateLanguageCompareData();
         });
       }
@@ -528,11 +558,13 @@ class _PanchangaState extends State<Panchanga> {
         panchangalistmodelUpdate.add(day);
       });
       setState(() {
-        panchangalistmodel.clear();
+        panchangalistmodelUpdate.clear();
         getUpdatedHindiLanguageData();
+        panchangalistmodel.clear();
         getUpdateLanguageCompareData();
       });
-    } else {
+    }
+    if (contents.isEmpty == false && updatedContents.isEmpty == true) {
       print("Just show Original Hindi File from local database");
       jsonPanchanga = convert.jsonDecode(contents);
       setState(() {
@@ -637,11 +669,16 @@ class _PanchangaState extends State<Panchanga> {
         panchangalistmodelUpdate.add(day);
       });
       setState(() {
-        panchangalistmodel.clear();
+        // panchangalistmodel.clear();
+        panchangalistmodelUpdate.clear();
+
         getUpdatedTamilLanguageData();
+        panchangalistmodel.clear();
+
         getUpdateLanguageCompareData();
       });
-    } else {
+    }
+    if (contents.isEmpty == false && updatedContents.isEmpty == true) {
       print("Just show Original Tamil File from local database");
       jsonPanchanga = convert.jsonDecode(contents);
       setState(() {
@@ -748,11 +785,16 @@ class _PanchangaState extends State<Panchanga> {
         panchangalistmodelUpdate.add(day);
       });
       setState(() {
-        panchangalistmodel.clear();
+        // panchangalistmodel.clear();
+        panchangalistmodelUpdate.clear();
+
         getUpdatedTeluguLanguageData();
+        panchangalistmodel.clear();
+
         getUpdateLanguageCompareData();
       });
-    } else {
+    }
+    if (contents.isEmpty == false && updatedContents.isEmpty == true) {
       print("Just show Original Telugu File from local database");
       jsonPanchanga = convert.jsonDecode(contents);
       setState(() {
@@ -778,9 +820,11 @@ class _PanchangaState extends State<Panchanga> {
         jsonPanchanga = convert.jsonDecode(contents);
         jsonPanchangaUpdate = convert.jsonDecode(updatedContents);
         setState(() {
-          panchangalistmodel.clear();
+          // panchangalistmodel.clear();
           panchangalistmodelUpdate.clear();
           getUpdatedSanskritLanguageData();
+          panchangalistmodel.clear();
+
           getUpdateLanguageCompareData();
         });
       }
@@ -860,12 +904,15 @@ class _PanchangaState extends State<Panchanga> {
         panchangalistmodelUpdate.add(day);
       });
       setState(() {
-        panchangalistmodel.clear();
+        // panchangalistmodel.clear();
         panchangalistmodelUpdate.clear();
         getUpdatedSanskritLanguageData();
+        panchangalistmodel.clear();
+
         getUpdateLanguageCompareData();
       });
-    } else {
+    }
+    if (contents.isEmpty == false && updatedContents.isEmpty == true) {
       print("Just show Original Sanskrit File from local database");
       jsonPanchanga = convert.jsonDecode(contents);
       setState(() {
@@ -874,7 +921,7 @@ class _PanchangaState extends State<Panchanga> {
     }
   }
 
-  getUpdatedEnglishLanguageData() async {
+  getUpdatedEnglishLanguageData() {
     jsonPanchangaUpdate.forEach((element) {
       updatedDay = new Day(
           ayana: '',
@@ -919,7 +966,7 @@ class _PanchangaState extends State<Panchanga> {
     });
   }
 
-  getUpdatedKannadaLanguageData() async {
+  getUpdatedKannadaLanguageData() {
     jsonPanchangaUpdate.forEach((element) {
       updatedDay = new Day(
           ayana: '',
@@ -964,7 +1011,7 @@ class _PanchangaState extends State<Panchanga> {
     });
   }
 
-  getUpdatedHindiLanguageData() async {
+  getUpdatedHindiLanguageData() {
     jsonPanchangaUpdate.forEach((element) {
       updatedDay = new Day(
           ayana: '',
@@ -1009,7 +1056,7 @@ class _PanchangaState extends State<Panchanga> {
     });
   }
 
-  getUpdatedTamilLanguageData() async {
+  getUpdatedTamilLanguageData() {
     jsonPanchangaUpdate.forEach((element) {
       updatedDay = new Day(
           ayana: '',
@@ -1054,7 +1101,7 @@ class _PanchangaState extends State<Panchanga> {
     });
   }
 
-  getUpdatedTeluguLanguageData() async {
+  getUpdatedTeluguLanguageData() {
     jsonPanchangaUpdate.forEach((element) {
       updatedDay = new Day(
           ayana: '',
@@ -1099,7 +1146,7 @@ class _PanchangaState extends State<Panchanga> {
     });
   }
 
-  getUpdatedSanskritLanguageData() async {
+  getUpdatedSanskritLanguageData() {
     jsonPanchangaUpdate.forEach((element) {
       updatedDay = new Day(
           ayana: '',
@@ -1144,7 +1191,7 @@ class _PanchangaState extends State<Panchanga> {
     });
   }
 
-  getUpdateLanguageCompareData() async {
+  getUpdateLanguageCompareData() {
     jsonPanchanga.forEach((element) {
       Day day = new Day(
           ayana: '',
@@ -1195,9 +1242,23 @@ class _PanchangaState extends State<Panchanga> {
         panchangalistmodel.add(day);
       }
     });
+    for (dateDataIndex = 0;
+        dateDataIndex < panchangalistmodel.length;
+        dateDataIndex++) {
+      if (specificDate.day.toString() ==
+              panchangalistmodel[dateDataIndex].date &&
+          specificDate.month.toString() ==
+              panchangalistmodel[dateDataIndex].month &&
+          specificDate.year.toString() ==
+              panchangalistmodel[dateDataIndex].year) {
+        print('Index of the this date is $dateDataIndex');
+        dateIndex = dateDataIndex;
+      }
+    }
+    print('Testing Update Data sheets ,$dateDataIndex');
   }
 
-  getPanchangaDataFromSheet() async {
+  getPanchangaDataFromSheet() {
     jsonPanchanga.forEach((element) {
       Day day = new Day(
           ayana: '',
@@ -1251,8 +1312,10 @@ class _PanchangaState extends State<Panchanga> {
           specificDate.year.toString() ==
               panchangalistmodel[dateDataIndex].year) {
         print('Index of the this date is $dateDataIndex');
+        dateIndex = dateDataIndex;
       }
     }
+    print('Testing,$dateDataIndex');
   }
 
   @override
@@ -1264,13 +1327,13 @@ class _PanchangaState extends State<Panchanga> {
   void initialState() async {
     // getPanchangaDataFromSheet();
     // rm -rf ./*.tmp
-    // late int dateDataIndex;
     mySettingsFile = await localSettingsFile;
     String? contents = (await mySettingsFile?.readAsString());
     if (contents!.isNotEmpty) {
       print("Its here");
       langValue = int.parse(contents);
     }
+    //  pageController=PageController(initialPage:widget.index)
 
     // print(contents);
 
@@ -1312,43 +1375,16 @@ class _PanchangaState extends State<Panchanga> {
     // SearchInList().;
   }
 
-  // Stream<Widget> aaa = (() async* {
-  //   await Future<Void>.delayed(const Duration(seconds: 5));
-  //   yield DisplayDesign(
-  //       ayana: '',
-  //       karana: '',
-  //       date: '',
-  //       calendarmark: '',
-  //       masa: '',
-  //       masaniyamaka: '',
-  //       month: '',
-  //       rutu: '',
-  //       nakshatra: '',
-  //       paksha: '',
-  //       sunrise: '',
-  //       samvatsara: '',
-  //       shradhatithi: '',
-  //       tithi: '',
-  //       vasara: '',
-  //       year: '',
-  //       vishesha: '',
-  //       yoga: '',
-  //       sunset: '');
-  // })();
+  Stream<Widget> streamLoad = (() async* {
+    await Future<Widget>.delayed(const Duration(seconds: 5));
+    yield Panchanga();
+  })();
 
   @override
   Widget build(BuildContext context) {
-    // var totalDays = 365;
-    // DateTime specificDate = DateTime.now();
-    // var dateee = specificDate.day;
-
-    final difference = hinduNewYear.difference(newYear).inDays;
-    print(difference);
-
+    print('Index in Widget $dateIndex');
     PageController _controller = PageController(
-      initialPage: difference,
-      keepPage: true,
-      viewportFraction: 1.0,
+      initialPage: dateIndex,
     );
     return Scaffold(
       appBar: AppBar(
@@ -1436,13 +1472,13 @@ class _PanchangaState extends State<Panchanga> {
         ),
       ),
       body:
-          //  StreamBuilder(
-          //     stream: aaa,
-          //     builder: (context, snapshot) {
-          //       if (snapshot.connectionState == ConnectionState.waiting) {
+          // StreamBuilder(
+          //     stream: streamLoad,
+          //     builder: (context, a) {
+          //       if (a.connectionState == ConnectionState.waiting) {
           //         return const Center(child: CircularProgressIndicator.adaptive());
           //       }
-          //       if (!snapshot.hasData) {
+          //       if (!a.hasData) {
           //         return const Text('snfuajskdfijhaskdfijadsfaijodfjaodis');
           //       } else {
           //         return
@@ -1450,7 +1486,9 @@ class _PanchangaState extends State<Panchanga> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: PageView.builder(
+            // controller: _controller.animateTo(1, duration: Duration(microseconds: 300), curve: Curves.easeInSine),
             controller: _controller,
+            allowImplicitScrolling: true,
             itemCount: panchangalistmodel.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
@@ -1477,7 +1515,7 @@ class _PanchangaState extends State<Panchanga> {
               );
             }),
       ),
-      // }
+      //   }
       // }),
     );
   }
@@ -1734,8 +1772,10 @@ class PanchangaTitle extends StatefulWidget {
 class _PanchangaTitleState extends State<PanchangaTitle> {
   @override
   Widget build(BuildContext context) {
+    // final newYear = DateTime(2022, 04, 01);
+    // final currentDate = DateTime(2022, 09, 21);
+    // var difference = currentDate.difference(newYear).inDays;
     return PageView(
-      // controller: _controller,
       scrollDirection: Axis.horizontal,
       children: [
         DisplayDesign(
