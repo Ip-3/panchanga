@@ -1,5 +1,4 @@
 import 'dart:core';
-import 'dart:ffi';
 // import 'package:cell_calendar/cell_calendar.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
@@ -15,22 +14,20 @@ import 'package:path_provider/path_provider.dart';
 
 // ignore: must_be_immutable
 class Panchanga extends StatefulWidget {
-  var differenceDate;
-
-  Panchanga({Key? key}) : super(key: key);
-  // Panchanga.getPanchangaDataFromSheet();
+  DateTime differenceDate;
+  // Panchanga data;
+  Panchanga({Key? key, required this.differenceDate}) : super(key: key);
   @override
   _PanchangaState createState() => _PanchangaState();
 }
 
 class _PanchangaState extends State<Panchanga> {
-  late int dateDataIndex;
-  late int dateIndex;
+  dynamic dateDataIndex;
+  dynamic dateIndex;
   var langValue;
   var updatelanguage;
   var difference;
   late Day updatedDay;
-
   var jsonPanchanga;
   var jsonPanchangaUpdate;
   var comparejson2;
@@ -38,7 +35,6 @@ class _PanchangaState extends State<Panchanga> {
   DateTime specificDate = DateTime.now();
   // final newYear = DateTime(2022, 04, 01);
   // final currentDate = DateTime.now();
-
   List<Day> panchangalistmodel = <Day>[];
   List<Day> panchangalistmodelUpdate = <Day>[];
   List<Day> updatedEnglishPanchanaga = <Day>[];
@@ -53,11 +49,11 @@ class _PanchangaState extends State<Panchanga> {
   //             viewportFraction: viewportFraction,
   //             initialPage: items.length < 2 ? 0 : virtualCount,
   //             keepPage: false),
-
   //     super(key: key);
 
   final CalendarDisplay calendarDisplay = new CalendarDisplay(
     title: 'Calendar',
+    // calendarmappingList: ,
   );
 
   final Future<Widget> displayDesignWidget = Future<Widget>.delayed(
@@ -84,6 +80,7 @@ class _PanchangaState extends State<Panchanga> {
         sunset: ''),
   );
   var path;
+  File? mySettingsFile;
   Future<Object> get localSettingsPath async {
     final directory = await getApplicationDocumentsDirectory();
     return directory.path;
@@ -95,8 +92,6 @@ class _PanchangaState extends State<Panchanga> {
     print(path);
     return new File('$path/settings.txt').create(recursive: true);
   }
-
-  File? mySettingsFile;
 
   Future<Object> get localPathEnglish async {
     final directory = await getApplicationDocumentsDirectory();
@@ -1245,11 +1240,11 @@ class _PanchangaState extends State<Panchanga> {
     for (dateDataIndex = 0;
         dateDataIndex < panchangalistmodel.length;
         dateDataIndex++) {
-      if (specificDate.day.toString() ==
+      if (widget.differenceDate.day.toString() ==
               panchangalistmodel[dateDataIndex].date &&
-          specificDate.month.toString() ==
+          widget.differenceDate.month.toString() ==
               panchangalistmodel[dateDataIndex].month &&
-          specificDate.year.toString() ==
+          widget.differenceDate.year.toString() ==
               panchangalistmodel[dateDataIndex].year) {
         print('Index of the this date is $dateDataIndex');
         dateIndex = dateDataIndex;
@@ -1305,11 +1300,11 @@ class _PanchangaState extends State<Panchanga> {
     for (dateDataIndex = 0;
         dateDataIndex < panchangalistmodel.length;
         dateDataIndex++) {
-      if (specificDate.day.toString() ==
+      if (widget.differenceDate.day.toString() ==
               panchangalistmodel[dateDataIndex].date &&
-          specificDate.month.toString() ==
+          widget.differenceDate.month.toString() ==
               panchangalistmodel[dateDataIndex].month &&
-          specificDate.year.toString() ==
+          widget.differenceDate.year.toString() ==
               panchangalistmodel[dateDataIndex].year) {
         print('Index of the this date is $dateDataIndex');
         dateIndex = dateDataIndex;
@@ -1320,8 +1315,8 @@ class _PanchangaState extends State<Panchanga> {
 
   @override
   void initState() {
-    super.initState();
     initialState();
+    super.initState();
   }
 
   void initialState() async {
@@ -1375,17 +1370,19 @@ class _PanchangaState extends State<Panchanga> {
     // SearchInList().;
   }
 
-  Stream<Widget> streamLoad = (() async* {
-    await Future<Widget>.delayed(const Duration(seconds: 5));
-    yield Panchanga();
-  })();
+  // final Future<Widget> _delayInWidgetDisplay = Future<Widget>.delayed(
+  //   const Duration(seconds: 2),
+  //   () => Panchanga(widget.differenceDate),
+  // );
 
   @override
   Widget build(BuildContext context) {
+    print('Data from the CalendarDisplay Class${widget.differenceDate}');
     print('Index in Widget $dateIndex');
-    PageController _controller = PageController(
+    PageController controller = new PageController(
       initialPage: dateIndex,
     );
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -1408,15 +1405,15 @@ class _PanchangaState extends State<Panchanga> {
                     onPressed: () {
                       // print("OnPressed Butten of Search");
                       // print(panchangalistmodel.toString());
-                      // showSearch(
-                      // context: context,
-                      // delegate: SearchInList(panchangalistmodel)
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SearchInList()),
-                      );
+                      showSearch(
+                          context: context,
+                          delegate: SearchInList(panchangalistmodel)
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(builder: (context) => SearchInList()),
+                          // );
 
-                      // );
+                          );
                     },
                   ))
 
@@ -1472,23 +1469,26 @@ class _PanchangaState extends State<Panchanga> {
         ),
       ),
       body:
-          // StreamBuilder(
-          //     stream: streamLoad,
-          //     builder: (context, a) {
-          //       if (a.connectionState == ConnectionState.waiting) {
-          //         return const Center(child: CircularProgressIndicator.adaptive());
-          //       }
-          //       if (!a.hasData) {
-          //         return const Text('snfuajskdfijhaskdfijadsfaijodfjaodis');
-          //       } else {
-          //         return
+          // FutureBuilder<Widget>(
+          //     // future: _delayInWidgetDisplay,
+          //     builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) {
+          //   switch (snapshot.connectionState) {
+          //     case ConnectionState.waiting:
+          //       return Center(
+          //         child: CircularProgressIndicator(),
+          //       );
+          //     default:
+          //       if (snapshot.hasError)
+          //         return Text('Error: ${snapshot.error}');
+          //       else
+          // return
           Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: PageView.builder(
-            // controller: _controller.animateTo(1, duration: Duration(microseconds: 300), curve: Curves.easeInSine),
-            controller: _controller,
-            allowImplicitScrolling: true,
+            // controller: controller.animateTo(1, duration: Duration(microseconds: 300), curve: Curves.easeInSine),
+            controller: controller,
+            // allowImplicitScrolling: true,
             itemCount: panchangalistmodel.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
@@ -1515,9 +1515,11 @@ class _PanchangaState extends State<Panchanga> {
               );
             }),
       ),
-      //   }
+      // }
       // }),
     );
+    // }
+    // return Scaffold();
   }
 
   Widget nomalPopMenu() {
@@ -1909,6 +1911,7 @@ class _DisplayDesignState extends State<DisplayDesign> {
                                     builder: (context) => CalendarDisplay(
                                           title: 'Calendar',
                                         )));
+                            // var a = widget.differenceDate;
                           },
                         ),
                         Text(

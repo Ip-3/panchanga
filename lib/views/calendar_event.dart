@@ -6,7 +6,10 @@ import 'home.dart';
 
 // ignore: must_be_immutable
 class CalendarDisplay extends StatefulWidget {
-  CalendarDisplay({required this.title});
+  List<Day> calendarmappingList = <Day>[];
+  CalendarDisplay({
+    required this.title,
+  });
 
   final String title;
 
@@ -36,12 +39,12 @@ class _CalendarDisplayState extends State<CalendarDisplay> {
         // todayMarkColor: Color.fromARGB(255, 255, 192, 2),
         cellCalendarPageController: cellCalendarPageController,
         events: _sampleEvents,
-        daysOfTheWeekBuilder: (example) {
+        daysOfTheWeekBuilder: (date) {
           final labels = ["S", "M", "T", "W", "T", "F", "S"];
           return Padding(
             padding: const EdgeInsets.only(bottom: 4.0),
             child: Text(
-              labels[example],
+              labels[date],
               style: TextStyle(
                 fontWeight: FontWeight.bold,
               ),
@@ -49,9 +52,9 @@ class _CalendarDisplayState extends State<CalendarDisplay> {
             ),
           );
         },
-        monthYearLabelBuilder: (datetime) {
-          final year = datetime!.year.toString();
-          final month = datetime.month.monthName;
+        monthYearLabelBuilder: (date) {
+          final year = date!.year.toString();
+          final month = date.month.monthName;
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 4),
             child: Row(
@@ -82,22 +85,19 @@ class _CalendarDisplayState extends State<CalendarDisplay> {
         },
         onCellTapped: (date) {
           // Scrollable.ensureVisible(ContextAction());
-          final newYear = DateTime(2022, 01, 01);
-          final difference = date.difference(newYear).inDays;
-          print('Its the date from calendar event $difference');
+          // final newYear = DateTime(2022, 01, 01);
+          // final difference = date.difference(newYear).inDays;
+          print('Its the date from calendar event $date');
 
           Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) => Panchanga(
-                    // differenceDate: difference,
+                      differenceDate: date,
                     )),
           );
         },
-        onPageChanged: (firstDate, lastDate) {
-          /// Called when the page was changed
-          /// Fetch additional events by using the range between [firstDate] and [lastDate] if you want
-        },
+        onPageChanged: (firstDate, lastDate) {},
       ),
     );
   }
