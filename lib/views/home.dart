@@ -1379,145 +1379,162 @@ class _PanchangaState extends State<Panchanga> {
   Widget build(BuildContext context) {
     print('Data from the CalendarDisplay Class${widget.differenceDate}');
     print('Index in Widget $dateIndex');
-    PageController controller = new PageController(
-      initialPage: dateIndex,
-    );
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Panchanga",
-          style: TextStyle(color: Colors.black),
+    if (dateIndex == null) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "Panchanga",
+            style: TextStyle(color: Colors.black),
+          ),
+          iconTheme: IconThemeData(color: Colors.black),
+          backgroundColor: Color.fromARGB(255, 247, 206, 73),
         ),
-        iconTheme: IconThemeData(color: Colors.black),
-        backgroundColor: Color.fromARGB(255, 247, 206, 73),
-        actions: <Widget>[
-          Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Padding(
-                  padding: EdgeInsets.all(8),
-                  child: IconButton(
-                    iconSize: 28,
-                    icon: const Icon(
-                      Icons.search,
-                      color: Colors.black,
-                    ),
-                    onPressed: () {
-                      // print("OnPressed Butten of Search");
-                      // print(panchangalistmodel.toString());
-                      showSearch(
-                          context: context,
-                          delegate: SearchInList(panchangalistmodel)
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(builder: (context) => SearchInList()),
-                          // );
+        body: Center(
+            child: CircularProgressIndicator(
+          color: Color.fromARGB(255, 247, 206, 73),
+        )),
+      );
+    } else {
+      PageController controller = new PageController(
+        initialPage: dateIndex,
+      );
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "Panchanga",
+            style: TextStyle(color: Colors.black),
+          ),
+          iconTheme: IconThemeData(color: Colors.black),
+          backgroundColor: Color.fromARGB(255, 247, 206, 73),
+          actions: <Widget>[
+            Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: IconButton(
+                      iconSize: 28,
+                      icon: const Icon(
+                        Icons.search,
+                        color: Colors.black,
+                      ),
+                      onPressed: () {
+                        // print("OnPressed Butten of Search");
+                        // print(panchangalistmodel.toString());
+                        showSearch(
+                            context: context,
+                            delegate: SearchInList(panchangalistmodel)
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(builder: (context) => SearchInList()),
+                            // );
 
-                          );
-                    },
-                  ))
+                            );
+                      },
+                    ))
 
-              //     showSearch(
-              //   context: context,
-              //   delegate: CustomSearchDelegate(),
-              // );
-              ),
-          nomalPopMenu(),
-        ],
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 247, 206, 73),
-              ),
-              child: Text('Drawer'),
-            ),
-            ListTile(
-              title: const Text('Aradhane'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Ekadashi'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Festivals / Special days'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Tarapana'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Shubha / Ashuba'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
+                //     showSearch(
+                //   context: context,
+                //   delegate: CustomSearchDelegate(),
+                // );
+                ),
+            nomalPopMenu(),
           ],
         ),
-      ),
-      body:
-          // FutureBuilder<Widget>(
-          //     // future: _delayInWidgetDisplay,
-          //     builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) {
-          //   switch (snapshot.connectionState) {
-          //     case ConnectionState.waiting:
-          //       return Center(
-          //         child: CircularProgressIndicator(),
-          //       );
-          //     default:
-          //       if (snapshot.hasError)
-          //         return Text('Error: ${snapshot.error}');
-          //       else
-          // return
-          Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: PageView.builder(
-            // controller: controller.animateTo(1, duration: Duration(microseconds: 300), curve: Curves.easeInSine),
-            controller: controller,
-            // allowImplicitScrolling: true,
-            itemCount: panchangalistmodel.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return DisplayDesign(
-                date: panchangalistmodel[index].date,
-                month: panchangalistmodel[index].month,
-                year: panchangalistmodel[index].year,
-                samvatsara: panchangalistmodel[index].samvatsara,
-                ayana: panchangalistmodel[index].ayana,
-                rutu: panchangalistmodel[index].rutu,
-                masa: panchangalistmodel[index].masa,
-                masaniyamaka: panchangalistmodel[index].masaniyamaka,
-                calendarmark: panchangalistmodel[index].calendarmark,
-                vasara: panchangalistmodel[index].vasara,
-                nakshatra: panchangalistmodel[index].nakshatra,
-                yoga: panchangalistmodel[index].yoga,
-                karana: panchangalistmodel[index].karana,
-                sunrise: panchangalistmodel[index].sunrise,
-                sunset: panchangalistmodel[index].sunset,
-                tithi: panchangalistmodel[index].tithi,
-                paksha: panchangalistmodel[index].paksha,
-                shradhatithi: panchangalistmodel[index].shradhatithi,
-                vishesha: panchangalistmodel[index].vishesha,
-              );
-            }),
-      ),
-      // }
-      // }),
-    );
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 247, 206, 73),
+                ),
+                child: Text('Drawer'),
+              ),
+              ListTile(
+                title: const Text('Aradhane'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Ekadashi'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Festivals / Special days'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Tarapana'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Shubha / Ashuba'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        ),
+        body:
+            // FutureBuilder<Widget>(
+            //     // future: _delayInWidgetDisplay,
+            //     builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) {
+            //   switch (snapshot.connectionState) {
+            //     case ConnectionState.waiting:
+            //       return Center(
+            //         child: CircularProgressIndicator(),
+            //       );
+            //     default:
+            //       if (snapshot.hasError)
+            //         return Text('Error: ${snapshot.error}');
+            //       else
+            // return
+            Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: PageView.builder(
+              // controller: controller.animateTo(1, duration: Duration(microseconds: 300), curve: Curves.easeInSine),
+              controller: controller,
+              // allowImplicitScrolling: true,
+              itemCount: panchangalistmodel.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return DisplayDesign(
+                  date: panchangalistmodel[index].date,
+                  month: panchangalistmodel[index].month,
+                  year: panchangalistmodel[index].year,
+                  samvatsara: panchangalistmodel[index].samvatsara,
+                  ayana: panchangalistmodel[index].ayana,
+                  rutu: panchangalistmodel[index].rutu,
+                  masa: panchangalistmodel[index].masa,
+                  masaniyamaka: panchangalistmodel[index].masaniyamaka,
+                  calendarmark: panchangalistmodel[index].calendarmark,
+                  vasara: panchangalistmodel[index].vasara,
+                  nakshatra: panchangalistmodel[index].nakshatra,
+                  yoga: panchangalistmodel[index].yoga,
+                  karana: panchangalistmodel[index].karana,
+                  sunrise: panchangalistmodel[index].sunrise,
+                  sunset: panchangalistmodel[index].sunset,
+                  tithi: panchangalistmodel[index].tithi,
+                  paksha: panchangalistmodel[index].paksha,
+                  shradhatithi: panchangalistmodel[index].shradhatithi,
+                  vishesha: panchangalistmodel[index].vishesha,
+                );
+              }),
+        ),
+        // }
+        // }),
+      );
+    }
     // }
     // return Scaffold();
   }
