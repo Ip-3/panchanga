@@ -25,12 +25,12 @@ class _PanchangaState extends State<Panchanga> {
   dynamic dateDataIndex;
   dynamic dateIndex;
   var langValue;
+  var settingsLanguage;
   var updatelanguage;
   var difference;
   late Day updatedDay;
   var jsonPanchanga;
   var jsonPanchangaUpdate;
-  var comparejson2;
 
   DateTime specificDate = DateTime.now();
   // final newYear = DateTime(2022, 04, 01);
@@ -207,17 +207,17 @@ class _PanchangaState extends State<Panchanga> {
   }
 
   var appScriptURLEnglish =
-      'https://script.google.com/macros/s/AKfycbxIQNJzrGKgbhuu7fJ0pv6UpRbIQEG8Qz21Zgv0rJkxEUzft0ktmhB9f0Ql4zCqTrbZMA/exec';
+      'https://script.google.com/macros/s/AKfycbyXsDv68rkWVVnVBlz9JwrYXJbHOImUibFJ1OL0XpS4XczPIqDS2C2HCLgXA1CzRJ1F/exec';
   var appScriptURLKannada =
-      "https://script.google.com/macros/s/AKfycbzawpXN_Um-dns-ffHWNyXdYf7x4W7jxafpzQdeOkJradsK6wWlwR3lIykk-GHr9_bA/exec";
+      "https://script.google.com/macros/s/AKfycby8KekqN9Zmi8W0RZqRKcfGGAOfSwiiDEslf-7nyg99mj_zn9ImDxpR4IVqeLt12jJR/exec";
   var appScriptURLTelugu =
-      "https://script.google.com/macros/s/AKfycby6oDkxpT-dqMqteMHMbNkIpB4KNda06bDEJsejZks-FN-jmnwSDQ9ZJOF2nhVEroAY/exec";
+      "https://script.google.com/macros/s/AKfycbxqhFNyXrPe7y6uqOD_miG4TgASoVvnr0SFJZdz748xRH-5hDlBkhkThttnUpQMEnMf/exec";
   var appScriptURLTamil =
-      "https://script.google.com/macros/s/AKfycbzcjH5hPG5FR-mP5BiPIFxcSg_1-G2YTJz9rQlYxrxhqFOptVkMvj-dJPS_PUeJiwqZdA/exec";
+      "https://script.google.com/macros/s/AKfycbyY_-xuTNcKsEE669TVFePlSW-tqFxrWPBtgx-XmM84outXcedKIiTsELr6YO8V2JrzyA/exec";
   var appScriptURLSanskrit =
-      "https://script.google.com/macros/s/AKfycbzqBvKyCknqlItNuVzzNxF6h6cRUiJnNBByqFEbdHyLpv1NmfccDDIyru2mBRP0EhYbyQ/exec";
+      "https://script.google.com/macros/s/AKfycbyrnvgdG5Sw52dc7InQolaFoqVre0ZWsm8_AvsxbukfRva1YrdxjviU-72thmfyLsAg9g/exec";
   var appScriptURLHindi =
-      "https://script.google.com/macros/s/AKfycbyebmCB2xv6KWRnQHUZAS3JeJxoe8jWkvePx2o601T18RovlwJnlV69M6D-0w5mn8J-/exec";
+      "https://script.google.com/macros/s/AKfycbxZtGrRR38cg2ocqy2i1iLdgsYMsXbj9XyXg_PNLxy_zoh4E4hlaWZMuHxY7Vj8DG96/exec";
 
   getEnglishPanchanga() async {
     langValue = 1;
@@ -323,7 +323,6 @@ class _PanchangaState extends State<Panchanga> {
         panchangalistmodelUpdate.clear();
         getUpdatedEnglishLanguageData();
         panchangalistmodel.clear();
-
         getUpdateLanguageCompareData();
       });
     }
@@ -1326,13 +1325,13 @@ class _PanchangaState extends State<Panchanga> {
     String? contents = (await mySettingsFile?.readAsString());
     if (contents!.isNotEmpty) {
       print("Its here");
-      langValue = int.parse(contents);
+      settingsLanguage = int.parse(contents);
     }
     //  pageController=PageController(initialPage:widget.index)
 
     // print(contents);
 
-    switch (langValue) {
+    switch (settingsLanguage) {
       case 1:
         getEnglishPanchanga();
         // super.initState();
@@ -1359,6 +1358,12 @@ class _PanchangaState extends State<Panchanga> {
         break;
       default:
         getEnglishPanchanga();
+        getSanskritPanchanga();
+        getHindiPanchanga();
+        getTamilPanchanga();
+        getKannadaPanchanga();
+        getTeluguPanchanga();
+
         // getKannadaPanchanga();
         // getHindiPanchanga();
         // getTamilPanchanga();
@@ -1442,14 +1447,27 @@ class _PanchangaState extends State<Panchanga> {
           ],
         ),
         drawer: Drawer(
+          // width: 280,
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
               const DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 247, 206, 73),
+                    color: Color.fromARGB(255, 247, 206, 73),
+                    image: DecorationImage(
+                        image: NetworkImage(
+                          "https://lh5.googleusercontent.com/p/AF1QipPpOk5SBoE7ney7zLqajq77mjYBqueiEFeM5-7T=w1080-k-no",
+                        ),
+                        fit: BoxFit.cover)),
+                child: Text(
+                  "Uttaradi Math",
+                  style: TextStyle(fontSize: 15),
+                  textAlign: TextAlign.justify,
                 ),
-                child: Text('Drawer'),
+              ),
+              Divider(
+                color: Color.fromARGB(255, 255, 192, 2),
+                thickness: 03.0,
               ),
               ListTile(
                 title: const Text('Aradhane'),
@@ -1457,11 +1475,19 @@ class _PanchangaState extends State<Panchanga> {
                   Navigator.pop(context);
                 },
               ),
+              Divider(
+                color: Color.fromARGB(255, 255, 192, 2),
+                thickness: 03.0,
+              ),
               ListTile(
                 title: const Text('Ekadashi'),
                 onTap: () {
                   Navigator.pop(context);
                 },
+              ),
+              Divider(
+                color: Color.fromARGB(255, 255, 192, 2),
+                thickness: 03.0,
               ),
               ListTile(
                 title: const Text('Festivals / Special days'),
@@ -1469,17 +1495,29 @@ class _PanchangaState extends State<Panchanga> {
                   Navigator.pop(context);
                 },
               ),
+              Divider(
+                color: Color.fromARGB(255, 255, 192, 2),
+                thickness: 03.0,
+              ),
               ListTile(
                 title: const Text('Tarapana'),
                 onTap: () {
                   Navigator.pop(context);
                 },
               ),
+              Divider(
+                color: Color.fromARGB(255, 255, 192, 2),
+                thickness: 03.0,
+              ),
               ListTile(
                 title: const Text('Shubha / Ashuba'),
                 onTap: () {
                   Navigator.pop(context);
                 },
+              ),
+              Divider(
+                color: Color.fromARGB(255, 255, 192, 2),
+                thickness: 03.0,
               ),
             ],
           ),
@@ -1499,8 +1537,9 @@ class _PanchangaState extends State<Panchanga> {
             //       else
             // return
             Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
+          // height: MediaQuery.of(context).size.height,
+          // width: MediaQuery.of(context).size.width,
+          // children: [
           child: PageView.builder(
               // controller: controller.animateTo(1, duration: Duration(microseconds: 300), curve: Curves.easeInSine),
               controller: controller,
@@ -1530,6 +1569,7 @@ class _PanchangaState extends State<Panchanga> {
                   vishesha: panchangalistmodel[index].vishesha,
                 );
               }),
+          // ]
         ),
         // }
         // }),
@@ -1872,304 +1912,369 @@ class DisplayDesign extends StatefulWidget {
 class _DisplayDesignState extends State<DisplayDesign> {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    //For height
+//     var padding = MediaQuery.of(context).padding;
+// double newheight = height - padding.top - padding.bottom;
     return Container(
       // height: 50,
       child: SizedBox(
         child: Container(
           color: Color.fromARGB(255, 245, 240, 225),
           alignment: Alignment.center,
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          child: Column(children: <Widget>[
+            Divider(
+              color: Color.fromARGB(255, 255, 192, 2),
+              thickness: 03.0,
+            ),
+            // Padding(
+            // padding: const EdgeInsets.all(2.0),
+            // child:
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // SizedBox(width: 0),
+                Row(
                   children: [
-                    // SizedBox(width: 0),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.sunny,
-                          size: 18,
-                        ),
-                        Text(
-                          'Sunrise',
-                          style: TextStyle(
-                            fontSize: 15,
-                          ),
-                        ),
-                        SizedBox(width: 2),
-                        // Text(
-                        //   widget.sunrise,
-                        //   style: TextStyle(fontSize: 15),
-                        // ),
-                        SizedBox(width: 2),
-                        Icon(
-                          Icons.sunny,
-                          size: 18,
-                        ),
-                        Text(
-                          'SunSet',
-                          style: TextStyle(fontSize: 15),
-                        ),
-                        SizedBox(width: 2),
-                        // Text(
-                        //   widget.sunset,
-                        //   style: TextStyle(fontSize: 15),
-                        // ),
-                        IconButton(
-                          iconSize: 20,
-                          icon: const Icon(Icons.calendar_month),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CalendarDisplay(
-                                          title: 'Calendar',
-                                        )));
-                            // var a = widget.differenceDate;
-                          },
-                        ),
-                        Text(
-                          widget.date,
-                          style: TextStyle(fontSize: 15),
-                        ),
-                        Text(
-                          '/',
-                          style: TextStyle(fontSize: 15),
-                        ),
-                        Text(
-                          widget.month,
-                          style: TextStyle(fontSize: 15),
-                        ),
-                        Text(
-                          '/',
-                          style: TextStyle(fontSize: 15),
-                        ),
-                        Text(
-                          widget.year,
-                          style: TextStyle(fontSize: 15),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(height: 10),
-              Divider(
-                color: Color.fromARGB(255, 255, 192, 2),
-                thickness: 03.0,
-              ),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      widget.samvatsara,
-                      textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    SizedBox(width: 5),
+                    Icon(
+                      Icons.sunny,
+                      size: 18,
                     ),
-                  ] //Samvasthara goes here
-                  ),
-              Divider(
-                color: Color.fromARGB(255, 255, 192, 2),
-                thickness: 03.0,
-              ),
-              SizedBox(height: 10),
-              SizedBox(
-                // padding: const EdgeInsets.only(left: 15.0),
-                child: Row(
-                  children: [
-                    //The first row of Ayana, Masa, Paksha, Vasara and yoga goes here
+                    SizedBox(width: 3),
+                    Text(
+                      'Sunrise',
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
+                    ),
+                    SizedBox(width: 2),
+                    Text(
+                      widget.sunrise,
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    SizedBox(width: 3),
                     Container(
-                      padding: EdgeInsets.all(15),
-                      color: Color.fromARGB(255, 245, 240, 225),
-                      width: MediaQuery.of(context).size.width,
-                      child: Column(
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Ayana :',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(),
-                              ),
-                              Text(
-                                widget.ayana,
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
-                              ),
-                            ],
+                        height: 25,
+                        width: 1,
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 2, 2, 2),
+                        )),
+                    SizedBox(width: 5),
+                    Icon(
+                      Icons.sunny,
+                      size: 18,
+                    ),
+                    SizedBox(width: 3),
+                    Text(
+                      'SunSet',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    SizedBox(width: 2),
+                    Text(
+                      widget.sunset,
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    SizedBox(width: 3),
+                    Container(
+                        height: 25,
+                        width: 1,
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 2, 2, 2),
+                        )),
+                    IconButton(
+                      iconSize: 20,
+                      icon: const Icon(Icons.calendar_month),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CalendarDisplay(
+                                      title: 'Calendar',
+                                    )));
+                        // var a = widget.differenceDate;
+                      },
+                    ),
+                    Text(
+                      widget.date,
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    Text(
+                      '/',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    Text(
+                      widget.month,
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    Text(
+                      '/',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    Text(
+                      widget.year,
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ],
+                )
+              ],
+            ),
+            // ),
+            // SizedBox(height: 10),
+            Divider(
+              color: Color.fromARGB(255, 255, 192, 2),
+              thickness: 03.0,
+            ),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    widget.samvatsara,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ] //Samvasthara goes here
+                ),
+            Divider(
+              color: Color.fromARGB(255, 255, 192, 2),
+              thickness: 03.0,
+            ),
+            SizedBox(height: 10),
+            Row(
+              children: [
+                Container(
+                  width: screenWidth / 2.2,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Ayana :',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(),
                           ),
-                          SizedBox(height: 20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text('Masa :', textAlign: TextAlign.center),
-                              Text(widget.masa,
-                                  textAlign: TextAlign.justify,
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold)),
-                            ],
+                          Text(
+                            widget.ayana,
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(height: 20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text('Paksha :', textAlign: TextAlign.center),
-                              Text(widget.paksha,
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold)),
-                            ],
-                          ),
-                          SizedBox(height: 15),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text('Vasara :', textAlign: TextAlign.center),
-                              Text(widget.vasara,
-                                  textAlign: TextAlign.justify,
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold)),
-                            ],
-                          ),
-                          SizedBox(height: 15),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text('Yoga :', textAlign: TextAlign.center),
-                              Text(widget.yoga,
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold)),
-                            ],
-                          ),
-                          SizedBox(height: 15),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text('Rutu :', textAlign: TextAlign.center),
-                              Text(widget.rutu,
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold)),
-                            ],
-                          ),
-                          SizedBox(height: 15),
-                          Row(
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text('Masa :', textAlign: TextAlign.center),
+                          Text(widget.masa,
+                              textAlign: TextAlign.justify,
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text('Paksha :', textAlign: TextAlign.center),
+                          Text(widget.paksha,
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text('Vasara :', textAlign: TextAlign.left),
+                          Text(widget.vasara,
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text('Yoga :', textAlign: TextAlign.left),
+                          Text(widget.yoga,
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                // Column(
+                //   children: [
+                // SizedBox(
+                //   width: screenWidth / 2,
+                // ),
+                //     Container(
+                //         height: 300,
+                //         width: 2,
+                //         decoration: const BoxDecoration(
+                //           color: Color.fromARGB(255, 255, 192, 2),
+                //         )),
+                //     //   const SizedBox(
+                //     //     width: 20,
+                //     //   ),
+                //   ],
+                // ),
+                // SizedBox(
+                //   width: screenWidth / 12,
+                // ),
+                Container(
+                    height: 300,
+                    width: 2,
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 255, 192, 2),
+                    )),
+                Container(
+                  width: screenWidth / 2,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.start,
+                        // crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Rutu :', textAlign: TextAlign.left),
+                          Text(widget.rutu,
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Expanded(
+                          //   child:
+                          Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Masa Niyamaka :',
+                                'Masa ',
+                                textAlign: TextAlign.start,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
                               ),
-                              Expanded(
-                                flex: 1,
-                                child: Text(widget.masaniyamaka,
-                                    textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold)),
-                              ),
+                              Text(
+                                'Niyamaka :',
+                                textAlign: TextAlign.start,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                              )
                             ],
                           ),
-                          SizedBox(height: 15),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text('Tithi :', textAlign: TextAlign.center),
-                              Text(widget.tithi,
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold)),
-                            ],
-                          ),
-                          SizedBox(height: 15),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text('Nakshatra :', textAlign: TextAlign.left),
-                              Text(widget.nakshatra,
-                                  textAlign: TextAlign.justify,
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold)),
-                            ],
-                          ),
-                          SizedBox(height: 15),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text('Karana :', textAlign: TextAlign.left),
-                              Text(widget.karana,
-                                  textAlign: TextAlign.justify,
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold)),
-                            ],
+
+                          Expanded(
+                            child: Text(widget.masaniyamaka,
+                                textAlign: TextAlign.justify,
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold)),
                           ),
                         ],
                       ),
-                    ),
-                  ],
+                      SizedBox(height: 15),
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.start,
+                        // crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text('Tithi :', textAlign: TextAlign.center),
+                          Text(widget.tithi,
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text('Nakshatra :', textAlign: TextAlign.start),
+                          Expanded(
+                            child: Text(widget.nakshatra,
+                                textAlign: TextAlign.justify,
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold)),
+                          ),
+                          // Text(widget.nakshatra,
+                          //     // textAlign: TextAlign.justify,
+                          //     style: TextStyle(
+                          //         fontSize: 15, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.start,
+                        // crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text('Karana :', textAlign: TextAlign.left),
+                          Text(widget.karana,
+                              textAlign: TextAlign.justify,
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              //Today's Special goes here
-              // SizedBox(height: 10),
-              Divider(
-                color: Color.fromARGB(255, 255, 192, 2),
-                thickness: 03.0,
-              ),
-              SizedBox(
+              ],
+            ),
+            // ),
+            // SizedBox(height: 10),
+            Divider(
+              color: Color.fromARGB(255, 255, 192, 2),
+              thickness: 03.0,
+            ),
+            SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                        padding: EdgeInsets.all(15),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Today's Special",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(height: 2),
-                            Text(
-                              widget.vishesha,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                          padding: EdgeInsets.all(15),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Today's Special",
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(height: 5),
+                              Text(
+                                widget.vishesha,
 
-                              // sunriseSunset.sunrise.toString()
-                            ),
-                          ],
-                        )),
-                  ],
-                ),
-              ),
-            ],
-          ),
+                                // sunriseSunset.sunrise.toString()
+                              ),
+                            ],
+                          )),
+                    ])),
+          ]),
         ),
       ),
     );

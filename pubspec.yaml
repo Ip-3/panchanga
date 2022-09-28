@@ -39,6 +39,8 @@ dependencies:
   suntime:
   shared_preferences:
   scrollable_positioned_list:
+  splashscreen: ^1.3.5
+  liquid_swipe:
 
 dev_dependencies:
   flutter_test:
