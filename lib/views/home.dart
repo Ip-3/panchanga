@@ -209,7 +209,7 @@ class _PanchangaState extends State<Panchanga> {
   var appScriptURLEnglish =
       'https://script.google.com/macros/s/AKfycbyXsDv68rkWVVnVBlz9JwrYXJbHOImUibFJ1OL0XpS4XczPIqDS2C2HCLgXA1CzRJ1F/exec';
   var appScriptURLKannada =
-      "https://script.google.com/macros/s/AKfycby8KekqN9Zmi8W0RZqRKcfGGAOfSwiiDEslf-7nyg99mj_zn9ImDxpR4IVqeLt12jJR/exec";
+      "https://script.google.com/macros/s/AKfycbxVZqerGm6bzpJs8p_97aPIdNOEgjCvyqf4FP9o0pO4OAZ0EnVrcFACPDbVQTPfsosP/exec";
   var appScriptURLTelugu =
       "https://script.google.com/macros/s/AKfycbxqhFNyXrPe7y6uqOD_miG4TgASoVvnr0SFJZdz748xRH-5hDlBkhkThttnUpQMEnMf/exec";
   var appScriptURLTamil =
@@ -1389,7 +1389,7 @@ class _PanchangaState extends State<Panchanga> {
       return Scaffold(
         appBar: AppBar(
           title: Text(
-            "Panchanga",
+            "UM Panchanga",
             style: TextStyle(color: Colors.black),
           ),
           iconTheme: IconThemeData(color: Colors.black),
@@ -1404,11 +1404,16 @@ class _PanchangaState extends State<Panchanga> {
       PageController controller = new PageController(
         initialPage: dateIndex,
       );
+      // BorderRadiusGeometry _borderRadius = BorderRadius.circular(8);
       return Scaffold(
         appBar: AppBar(
           title: Text(
-            "Panchanga",
-            style: TextStyle(color: Colors.black),
+            "U M Panchanga",
+            style: TextStyle(
+              color: Color.fromARGB(255, 162, 56, 7),
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           iconTheme: IconThemeData(color: Colors.black),
           backgroundColor: Color.fromARGB(255, 247, 206, 73),
@@ -1537,15 +1542,29 @@ class _PanchangaState extends State<Panchanga> {
             //       else
             // return
             Container(
-          // height: MediaQuery.of(context).size.height,
+          // Use the properties stored in the State class.
           // width: MediaQuery.of(context).size.width,
-          // children: [
+          // height: MediaQuery.of(context).size.height,
+          // decoration: BoxDecoration(
+          //   color: Colors.amber,
+          //   borderRadius: _borderRadius,
+          // ),
+          // Define how long the animation should take.
+          // duration: const Duration(seconds: 10),
+          // Provide an optional curve to make the animation feel smoother.
+          // curve: Curves.fastOutSlowIn,
+
           child: PageView.builder(
+              clipBehavior: Clip.hardEdge,
+
+              // dragStartBehavior: DragStartBehavior.down,
+              // physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics())
+
               // controller: controller.animateTo(1, duration: Duration(microseconds: 300), curve: Curves.easeInSine),
               controller: controller,
               // allowImplicitScrolling: true,
               itemCount: panchangalistmodel.length,
-              scrollDirection: Axis.horizontal,
+              // scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return DisplayDesign(
                   date: panchangalistmodel[index].date,
@@ -1936,6 +1955,7 @@ class _DisplayDesignState extends State<DisplayDesign> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // SizedBox(width: 0),
+
                 Row(
                   children: [
                     SizedBox(width: 5),
@@ -1964,7 +1984,7 @@ class _DisplayDesignState extends State<DisplayDesign> {
                         )),
                     SizedBox(width: 5),
                     Icon(
-                      Icons.sunny,
+                      Icons.wb_sunny_outlined,
                       size: 18,
                     ),
                     SizedBox(width: 3),
@@ -2046,6 +2066,7 @@ class _DisplayDesignState extends State<DisplayDesign> {
             Row(
               children: [
                 Container(
+                  padding: EdgeInsets.all(8),
                   width: screenWidth / 2.2,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -2055,65 +2076,106 @@ class _DisplayDesignState extends State<DisplayDesign> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
-                            'Ayana :',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(),
+                          Text('Ayana  ',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 162, 56, 7),
+                              )),
+                          Expanded(
+                            child: Text(
+                              widget.ayana,
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 162, 56, 7),
+                              ),
+                            ),
                           ),
-                          Text(
-                            widget.ayana,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
+                        ],
+                      ),
+                      SizedBox(height: 25),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text('Masa  ',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 162, 56, 7),
+                              )),
+                          Expanded(
+                            child: Text(widget.masa,
+                                textAlign: TextAlign.justify,
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 162, 56, 7),
+                                )),
                           ),
                         ],
                       ),
-                      SizedBox(height: 15),
+                      SizedBox(height: 25),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text('Masa :', textAlign: TextAlign.center),
-                          Text(widget.masa,
-                              textAlign: TextAlign.justify,
+                          Text('Paksha  ',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold)),
+                                color: Color.fromARGB(255, 162, 56, 7),
+                              )),
+                          Expanded(
+                            child: Text(widget.paksha,
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 162, 56, 7),
+                                )),
+                          ),
                         ],
                       ),
-                      SizedBox(height: 15),
+                      SizedBox(height: 25),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text('Paksha :', textAlign: TextAlign.center),
-                          Text(widget.paksha,
+                          Text('Vasara  ',
                               textAlign: TextAlign.left,
                               style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold)),
+                                color: Color.fromARGB(255, 162, 56, 7),
+                              )),
+                          Expanded(
+                            child: Text(widget.vasara,
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 162, 56, 7),
+                                )),
+                          ),
                         ],
                       ),
-                      SizedBox(height: 15),
+                      SizedBox(height: 25),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text('Vasara :', textAlign: TextAlign.left),
-                          Text(widget.vasara,
+                          Text('Yoga  ',
                               textAlign: TextAlign.left,
                               style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold)),
-                        ],
-                      ),
-                      SizedBox(height: 15),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text('Yoga :', textAlign: TextAlign.left),
-                          Text(widget.yoga,
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold)),
+                                color: Color.fromARGB(255, 162, 56, 7),
+                              )),
+                          Expanded(
+                            child: Text(widget.yoga,
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 162, 56, 7),
+                                )),
+                          ),
                         ],
                       ),
                     ],
@@ -2146,6 +2208,7 @@ class _DisplayDesignState extends State<DisplayDesign> {
                     )),
                 Container(
                   width: screenWidth / 2,
+                  padding: EdgeInsets.all(8),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -2154,44 +2217,44 @@ class _DisplayDesignState extends State<DisplayDesign> {
                         // mainAxisAlignment: MainAxisAlignment.start,
                         // crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Rutu :', textAlign: TextAlign.left),
-                          Text(widget.rutu,
+                          Text('Rutu  ',
                               textAlign: TextAlign.left,
                               style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold)),
+                                color: Color.fromARGB(255, 162, 56, 7),
+                              )),
+                          Expanded(
+                            child: Text(widget.rutu,
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 162, 56, 7),
+                                )),
+                          ),
                         ],
                       ),
-                      SizedBox(height: 15),
+                      SizedBox(height: 25),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Expanded(
-                          //   child:
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Masa ',
+                          Expanded(
+                            child: Text('Masa Niyamaka  ',
                                 textAlign: TextAlign.start,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 2,
-                              ),
-                              Text(
-                                'Niyamaka :',
-                                textAlign: TextAlign.start,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 2,
-                              )
-                            ],
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 162, 56, 7),
+                                )),
                           ),
-
                           Expanded(
                             child: Text(widget.masaniyamaka,
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold)),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 162, 56, 7),
+                                )),
                           ),
                         ],
                       ),
@@ -2200,24 +2263,40 @@ class _DisplayDesignState extends State<DisplayDesign> {
                         // mainAxisAlignment: MainAxisAlignment.start,
                         // crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text('Tithi :', textAlign: TextAlign.center),
-                          Text(widget.tithi,
-                              textAlign: TextAlign.left,
+                          Text('Tithi  ',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold)),
+                                color: Color.fromARGB(255, 162, 56, 7),
+                              )),
+                          Expanded(
+                            child: Text(widget.tithi,
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 162, 56, 7),
+                                )),
+                          ),
                         ],
                       ),
-                      SizedBox(height: 15),
+                      SizedBox(height: 25),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text('Nakshatra :', textAlign: TextAlign.start),
+                          Text('Nakshatra  ',
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 162, 56, 7),
+                              )),
                           Expanded(
                             child: Text(widget.nakshatra,
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold)),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 162, 56, 7),
+                                )),
                           ),
                           // Text(widget.nakshatra,
                           //     // textAlign: TextAlign.justify,
@@ -2225,16 +2304,24 @@ class _DisplayDesignState extends State<DisplayDesign> {
                           //         fontSize: 15, fontWeight: FontWeight.bold)),
                         ],
                       ),
-                      SizedBox(height: 15),
+                      SizedBox(height: 25),
                       Row(
                         // mainAxisAlignment: MainAxisAlignment.start,
                         // crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text('Karana :', textAlign: TextAlign.left),
-                          Text(widget.karana,
-                              textAlign: TextAlign.justify,
+                          Text('Karana  ',
+                              textAlign: TextAlign.left,
                               style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold)),
+                                color: Color.fromARGB(255, 162, 56, 7),
+                              )),
+                          Expanded(
+                            child: Text(widget.karana,
+                                textAlign: TextAlign.justify,
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 162, 56, 7))),
+                          ),
                         ],
                       ),
                     ],
@@ -2246,6 +2333,7 @@ class _DisplayDesignState extends State<DisplayDesign> {
             // SizedBox(height: 10),
             Divider(
               color: Color.fromARGB(255, 255, 192, 2),
+              // color: Color.fromARGB(255, 207, 93, 40),
               thickness: 03.0,
             ),
             SizedBox(

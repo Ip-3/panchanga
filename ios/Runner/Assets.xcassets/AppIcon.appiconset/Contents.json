@@ -1,5 +1,10 @@
 {
   "images" : [
+
+    {
+      "filename" : "App_icon_png.png",
+      "idiom" : "iphone"
+    },
     {
       "filename" : "Icon-App-20x20@2x.png",
       "idiom" : "iphone",

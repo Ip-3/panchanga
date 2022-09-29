@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:panchanga/views/home.dart';
+// import 'package:panchanga/views/home.dart';
+import 'package:panchanga/views/splash_screen.dart';
 
 void main() {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -14,9 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       color: Color.fromARGB(255, 247, 206, 73),
-      home: Panchanga(
-        differenceDate: date,
-      ),
+      home: SplashScreen(),
       // home: SplashScreen(
       //     seconds: 8,
       //     navigateAfterSeconds: Panchanga(
