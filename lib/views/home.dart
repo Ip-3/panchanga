@@ -1,6 +1,7 @@
 import 'dart:core';
 // import 'package:cell_calendar/cell_calendar.dart';
 import 'package:flutter/material.dart';
+import 'package:panchanga/views/sample_event.dart';
 // import 'package:flutter/services.dart';
 // import 'dart:async';
 import 'dart:io';
@@ -50,35 +51,8 @@ class _PanchangaState extends State<Panchanga> {
   //             initialPage: items.length < 2 ? 0 : virtualCount,
   //             keepPage: false),
   //     super(key: key);
+// ili paaa
 
-  final CalendarDisplay calendarDisplay = new CalendarDisplay(
-    title: 'Calendar',
-    // calendarmappingList: ,
-  );
-
-  final Future<Widget> displayDesignWidget = Future<Widget>.delayed(
-    const Duration(seconds: 5),
-    () => DisplayDesign(
-        ayana: '',
-        karana: '',
-        date: '',
-        calendarmark: '',
-        masa: '',
-        masaniyamaka: '',
-        month: '',
-        rutu: '',
-        nakshatra: '',
-        paksha: '',
-        sunrise: '',
-        samvatsara: '',
-        shradhatithi: '',
-        tithi: '',
-        vasara: '',
-        year: '',
-        vishesha: '',
-        yoga: '',
-        sunset: ''),
-  );
   var path;
   File? mySettingsFile;
   Future<Object> get localSettingsPath async {
@@ -218,7 +192,6 @@ class _PanchangaState extends State<Panchanga> {
       "https://script.google.com/macros/s/AKfycbyrnvgdG5Sw52dc7InQolaFoqVre0ZWsm8_AvsxbukfRva1YrdxjviU-72thmfyLsAg9g/exec";
   var appScriptURLHindi =
       "https://script.google.com/macros/s/AKfycbxZtGrRR38cg2ocqy2i1iLdgsYMsXbj9XyXg_PNLxy_zoh4E4hlaWZMuHxY7Vj8DG96/exec";
-
   getEnglishPanchanga() async {
     langValue = 1;
     File? myfile;
@@ -1842,12 +1815,12 @@ class _PanchangaState extends State<Panchanga> {
   }
 }
 
-class PanchangaTitle extends StatefulWidget {
+class PanchangaDay extends StatefulWidget {
   @override
-  State<PanchangaTitle> createState() => _PanchangaTitleState();
+  State<PanchangaDay> createState() => _PanchangaDayState();
 }
 
-class _PanchangaTitleState extends State<PanchangaTitle> {
+class _PanchangaDayState extends State<PanchangaDay> {
   @override
   Widget build(BuildContext context) {
     // final newYear = DateTime(2022, 04, 01);
@@ -1923,14 +1896,78 @@ class DisplayDesign extends StatefulWidget {
       required this.sunset,
       required this.shradhatithi,
       required this.vishesha});
-
   @override
   State<DisplayDesign> createState() => _DisplayDesignState();
 }
 
 class _DisplayDesignState extends State<DisplayDesign> {
+  var jsonCalendar;
+  List<Day> calendarViewListModel = <Day>[];
+  var path;
+  Future<Object> get localPathEnglish async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
+
+  Future<File> get localEnglishFile async {
+    path = await localPathEnglish;
+    // print("English");
+    // print(path);
+    return new File('$path/EnglishLanguage.json').create(recursive: true);
+  }
+
+  getFile() async {
+    File? myfile;
+    myfile = await localEnglishFile;
+    String? contents = await myfile.readAsString();
+    jsonCalendar = convert.jsonDecode(contents);
+    jsonCalendar.forEach((element) {
+      Day day = new Day(
+          ayana: '',
+          karana: '',
+          date: '',
+          calendarmark: '',
+          masa: '',
+          masaniyamaka: '',
+          month: '',
+          rutu: '',
+          nakshatra: '',
+          paksha: '',
+          sunrise: '',
+          samvatsara: '',
+          shradhatithi: '',
+          tithi: '',
+          vasara: '',
+          year: '',
+          vishesha: '',
+          yoga: '',
+          sunset: '');
+      day.date = element['date'].toString();
+      day.month = element['month'].toString();
+      day.year = element['year'].toString();
+      day.samvatsara = element['samvatsara'].toString();
+      day.ayana = element["ayana"].toString();
+      day.paksha = element["paksha"].toString();
+      day.rutu = element['rutu'].toString();
+      day.masa = element['masa'].toString();
+      day.masaniyamaka = element['masaniyamaka'].toString();
+      day.calendarmark = element['calendarmark'].toString();
+      day.vasara = element["vasara"].toString();
+      day.nakshatra = element['nakshatra'].toString();
+      day.tithi = element['tithi'].toString();
+      day.yoga = element['yoga'].toString();
+      day.karana = element['karana'].toString();
+      day.sunrise = element['sunrise'].toString();
+      day.sunset = element["sunset"].toString();
+      day.shradhatithi = element['shradhatithi'].toString();
+      day.vishesha = element['vishesha'].toString();
+      calendarViewListModel.add(day);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    getFile();
     double screenWidth = MediaQuery.of(context).size.width;
 
     //For height
@@ -2008,12 +2045,18 @@ class _DisplayDesignState extends State<DisplayDesign> {
                       iconSize: 20,
                       icon: const Icon(Icons.calendar_month),
                       onPressed: () {
+                        var currentDate = DateTime.now();
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) => PanchangaDay(),
+                        //     ));
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => CalendarDisplay(
-                                      title: 'Calendar',
-                                    )));
+                                builder: (context) => (CalendarData(
+                                    data: calendarViewListModel))));
+
                         // var a = widget.differenceDate;
                       },
                     ),

@@ -15,6 +15,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  calendar_view:
+    dependency: "direct main"
+    description:
+      name: calendar_view
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   carousel_slider:
     dependency: "direct main"
     description:
@@ -90,6 +97,20 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_calendar_carousel:
+    dependency: "direct main"
+    description:
+      name: flutter_calendar_carousel
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.4.0"
+  flutter_clean_calendar:
+    dependency: "direct main"
+    description:
+      name: flutter_clean_calendar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -115,7 +136,7 @@ packages:
     source: hosted
     version: "4.0.1"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       url: "https://pub.dartlang.org"
@@ -163,6 +184,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0"
+  moon_phase:
+    dependency: "direct main"
+    description:
+      name: moon_phase
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1+8"
   nested:
     dependency: transitive
     description:
@@ -317,6 +345,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  simple_gesture_detector:
+    dependency: transitive
+    description:
+      name: simple_gesture_detector
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -364,6 +399,34 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.0"
+  syncfusion_flutter_calendar:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_calendar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "19.4.56"
+  syncfusion_flutter_core:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_core
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "19.4.56"
+  syncfusion_flutter_datepicker:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_datepicker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "19.4.56"
+  table_calendar:
+    dependency: "direct main"
+    description:
+      name: table_calendar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.7"
   term_glyph:
     dependency: transitive
     description:
