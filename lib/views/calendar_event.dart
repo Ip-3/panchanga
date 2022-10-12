@@ -53,7 +53,6 @@ class _CalendarDataState extends State<CalendarData> {
           final year = date!.year.toString();
           final month = date.month.monthName;
           return Padding(
-            // padding: const EdgeInsets.symmetric(vertical: 4),
             padding: const EdgeInsets.all(0),
             child: Row(
               children: [
@@ -81,16 +80,6 @@ class _CalendarDataState extends State<CalendarData> {
             ),
           );
         },
-        // onCellTapped: (date) {
-        // print('Its the date from calendar event $date');
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //       builder: (context) => Panchanga(
-        //             differenceDate: date,
-        //           )),
-        //   );
-        // },
         onCellTapped: (date) {
           Navigator.push(
               context,

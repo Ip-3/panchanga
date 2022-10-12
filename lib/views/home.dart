@@ -1,8 +1,5 @@
 import 'dart:core';
-// import 'package:cell_calendar/cell_calendar.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
-// import 'dart:async';
 import 'dart:io';
 import 'package:panchanga/views/search_in_list.dart';
 import 'package:panchanga/panchanga_model.dart';
@@ -10,12 +7,10 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:panchanga/views/calendar_event.dart';
 import 'package:path_provider/path_provider.dart';
-// import 'package:panchanga/views/calendar_event.dart';
 
 // ignore: must_be_immutable
 class Panchanga extends StatefulWidget {
   DateTime differenceDate;
-  // Panchanga data;
   Panchanga({Key? key, required this.differenceDate}) : super(key: key);
   @override
   _PanchangaState createState() => _PanchangaState();
@@ -36,8 +31,6 @@ class _PanchangaState extends State<Panchanga> {
   var jsonPanchangaUpdate;
 
   DateTime specificDate = DateTime.now();
-  // final newYear = DateTime(2022, 04, 01);
-  // final currentDate = DateTime.now();
   List<Day> panchangalistmodel = <Day>[];
   List<Day> panchangalistmodelUpdate = <Day>[];
   List<Day> updatedEnglishPanchanaga = <Day>[];
@@ -46,14 +39,6 @@ class _PanchangaState extends State<Panchanga> {
   List<Day> updatedTamilPanchanaga = <Day>[];
   List<Day> updatedTeluguPanchanaga = <Day>[];
   List<Day> updatedSanskritPanchanaga = <Day>[];
-
-  // pageController = pageController ??
-  //         PageController(
-  //             viewportFraction: viewportFraction,
-  //             initialPage: items.length < 2 ? 0 : virtualCount,
-  //             keepPage: false),
-  //     super(key: key);
-// ili paaa
 
   var path;
   File? mySettingsFile;
@@ -64,7 +49,6 @@ class _PanchangaState extends State<Panchanga> {
 
   Future<File> get localSettingsFile async {
     path = await localSettingsPath;
-    // print("Settings");
     print(path);
     return new File('$path/settings.txt').create(recursive: true);
   }
@@ -76,15 +60,11 @@ class _PanchangaState extends State<Panchanga> {
 
   Future<File> get localEnglishFile async {
     path = await localPathEnglish;
-    // print("English");
-    // print(path);
     return new File('$path/EnglishLanguage.json').create(recursive: true);
   }
 
   Future<File> get localUpdateEnglishFile async {
     path = await localPathEnglish;
-    // print("Updated English");
-    // print(path);
     return new File('$path/updatedDataEnglish.json').create(recursive: true);
   }
 
@@ -95,15 +75,11 @@ class _PanchangaState extends State<Panchanga> {
 
   Future<File> get localKannadaFile async {
     path = await localPathKannada;
-    // print("Kannada");
-    // print(path);
     return new File('$path/KannadaLanguage.json').create(recursive: true);
   }
 
   Future<File> get localUpdateKannadaFile async {
     path = await localPathKannada;
-    // print("Updated kannada");
-    // print(path);
     return new File('$path/updatedDataKannada.json').create(recursive: true);
   }
 
@@ -114,14 +90,11 @@ class _PanchangaState extends State<Panchanga> {
 
   Future<File> get localHindiFile async {
     path = await localPathHindi;
-    // print(" Hindi");
-    // print(path);
     return new File('$path/HindiLanguage.json').create(recursive: true);
   }
 
   Future<File> get localUpdateHindiFile async {
     path = await localPathHindi;
-    // print(path);
     return new File('$path/updatedDataHindi.json').create(recursive: true);
   }
 
@@ -132,15 +105,11 @@ class _PanchangaState extends State<Panchanga> {
 
   Future<File> get localTamilFile async {
     path = await localPathTamil;
-    // print("Tamil");
-    // print(path);
     return new File('$path/TamilLanguage.json').create(recursive: true);
   }
 
   Future<File> get localUpdateTamilFile async {
     path = await localPathTamil;
-    // print("Updated Tamil");
-    // print(path);
     return new File('$path/updatedDataTamil.json').create(recursive: true);
   }
 
@@ -151,15 +120,11 @@ class _PanchangaState extends State<Panchanga> {
 
   Future<File> get localTeluguFile async {
     path = await localPathTelugu;
-    // print("Telugu");
-    // print(path);
     return new File('$path/TeluguLanguage.json').create(recursive: true);
   }
 
   Future<File> get localUpdateTeluguFile async {
     path = await localPathTelugu;
-    // print("Updated Telugu");
-    // print(path);
     return new File('$path/updatedDataTelugu.json').create(recursive: true);
   }
 
@@ -170,15 +135,11 @@ class _PanchangaState extends State<Panchanga> {
 
   Future<File> get localSanskritFile async {
     path = await localPathSanskrit;
-    // print(" Sanskrit");
-    // print(path);
     return new File('$path/SanskritLanguage.json').create(recursive: true);
   }
 
   Future<File> get localUpdateSanskritFile async {
     path = await localPathSanskrit;
-    // print("Updated Sanskrit");
-    // print(path);
     return new File('$path/updatedDataSanskrit.json').create(recursive: true);
   }
 
@@ -211,7 +172,6 @@ class _PanchangaState extends State<Panchanga> {
         jsonPanchanga = convert.jsonDecode(contents);
         jsonPanchangaUpdate = convert.jsonDecode(updatedContents);
         setState(() {
-          // panchangalistmodel.clear();
           panchangalistmodelUpdate.clear();
           getUpdatedEnglishLanguageData();
           panchangalistmodel.clear();
@@ -228,7 +188,6 @@ class _PanchangaState extends State<Panchanga> {
       setState(() {
         getPanchangaDataFromSheet();
       });
-      // final file = await _localFile;
       String jsondata = raw.body
           .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
         return "'${match.group(0)}'";
@@ -294,7 +253,6 @@ class _PanchangaState extends State<Panchanga> {
         panchangalistmodelUpdate.add(day);
       });
       setState(() {
-        // panchangalistmodel.clear();
         panchangalistmodelUpdate.clear();
         getUpdatedEnglishLanguageData();
         panchangalistmodel.clear();
@@ -328,7 +286,6 @@ class _PanchangaState extends State<Panchanga> {
         jsonPanchanga = convert.jsonDecode(contents);
         jsonPanchangaUpdate = convert.jsonDecode(updatedContents);
         setState(() {
-          // panchangalistmodel.clear();
           panchangalistmodelUpdate.clear();
           getUpdatedKannadaLanguageData();
           panchangalistmodel.clear();
@@ -357,7 +314,6 @@ class _PanchangaState extends State<Panchanga> {
       var request = appScriptURLKannada + "?aaa=hit";
       await http.post(Uri.parse(request));
       var raw = await http.get(Uri.parse(request));
-      // print(raw);
       setState(() {
         getPanchangaDataFromSheet();
       });
@@ -411,12 +367,9 @@ class _PanchangaState extends State<Panchanga> {
         panchangalistmodelUpdate.add(day);
       });
       setState(() {
-        // panchangalistmodel.clear();
         panchangalistmodelUpdate.clear();
-
         getUpdatedKannadaLanguageData();
         panchangalistmodel.clear();
-
         getUpdateLanguageCompareData();
       });
     }
@@ -445,7 +398,6 @@ class _PanchangaState extends State<Panchanga> {
         jsonPanchanga = convert.jsonDecode(contents);
         jsonPanchangaUpdate = convert.jsonDecode(updatedContents);
         setState(() {
-          // panchangalistmodel.clear();
           panchangalistmodelUpdate.clear();
           getUpdatedHindiLanguageData();
           panchangalistmodel.clear();
@@ -638,7 +590,6 @@ class _PanchangaState extends State<Panchanga> {
         panchangalistmodelUpdate.add(day);
       });
       setState(() {
-        // panchangalistmodel.clear();
         panchangalistmodelUpdate.clear();
 
         getUpdatedTamilLanguageData();
@@ -754,12 +705,9 @@ class _PanchangaState extends State<Panchanga> {
         panchangalistmodelUpdate.add(day);
       });
       setState(() {
-        // panchangalistmodel.clear();
         panchangalistmodelUpdate.clear();
-
         getUpdatedTeluguLanguageData();
         panchangalistmodel.clear();
-
         getUpdateLanguageCompareData();
       });
     }
@@ -789,7 +737,6 @@ class _PanchangaState extends State<Panchanga> {
         jsonPanchanga = convert.jsonDecode(contents);
         jsonPanchangaUpdate = convert.jsonDecode(updatedContents);
         setState(() {
-          // panchangalistmodel.clear();
           panchangalistmodelUpdate.clear();
           getUpdatedSanskritLanguageData();
           panchangalistmodel.clear();
@@ -807,7 +754,6 @@ class _PanchangaState extends State<Panchanga> {
       setState(() {
         getPanchangaDataFromSheet();
       });
-      // final file = await _localFile;
       String jsondata = raw.body
           .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
         return "'${match.group(0)}'";
@@ -819,7 +765,6 @@ class _PanchangaState extends State<Panchanga> {
       var request = appScriptURLSanskrit + "?aaa=hit";
       await http.post(Uri.parse(request));
       var raw = await http.get(Uri.parse(request));
-      // print(raw);
       setState(() {
         getPanchangaDataFromSheet();
       });
@@ -873,7 +818,6 @@ class _PanchangaState extends State<Panchanga> {
         panchangalistmodelUpdate.add(day);
       });
       setState(() {
-        // panchangalistmodel.clear();
         panchangalistmodelUpdate.clear();
         getUpdatedSanskritLanguageData();
         panchangalistmodel.clear();
@@ -1270,7 +1214,6 @@ class _PanchangaState extends State<Panchanga> {
       day.vishesha = element['vishesha'].toString();
       panchangalistmodel.add(day);
     });
-    // print(panchangalistmodel);
     for (dateDataIndex = 0;
         dateDataIndex < panchangalistmodel.length;
         dateDataIndex++) {
@@ -1294,7 +1237,6 @@ class _PanchangaState extends State<Panchanga> {
   }
 
   void initialState() async {
-    // getPanchangaDataFromSheet();
     // rm -rf ./*.tmp
     mySettingsFile = await localSettingsFile;
     String? contents = (await mySettingsFile?.readAsString());
@@ -1302,34 +1244,24 @@ class _PanchangaState extends State<Panchanga> {
       print("Its here");
       settingsLanguage = int.parse(contents);
     }
-    //  pageController=PageController(initialPage:widget.index)
-
-    // print(contents);
-
     switch (settingsLanguage) {
       case 1:
         getEnglishPanchanga();
-        // super.initState();
         break;
       case 2:
         getKannadaPanchanga();
-        // super.initState();
         break;
       case 3:
         getHindiPanchanga();
-        // super.initState();
         break;
       case 4:
         getTamilPanchanga();
-        // super.initState();
         break;
       case 5:
         getTeluguPanchanga();
-        // super.initState();
         break;
       case 6:
         getSanskritPanchanga();
-        // super.initState();
         break;
       default:
         getEnglishPanchanga();
@@ -1338,22 +1270,9 @@ class _PanchangaState extends State<Panchanga> {
         getTamilPanchanga();
         getKannadaPanchanga();
         getTeluguPanchanga();
-
-        // getKannadaPanchanga();
-        // getHindiPanchanga();
-        // getTamilPanchanga();
-        // getTeluguPanchanga();
-        // getSanskritPanchanga();
-        // super.initState();
         break;
     }
-    // SearchInList().;
   }
-
-  // final Future<Widget> _delayInWidgetDisplay = Future<Widget>.delayed(
-  //   const Duration(seconds: 2),
-  //   () => Panchanga(widget.differenceDate),
-  // );
 
   @override
   Widget build(BuildContext context) {
@@ -1379,7 +1298,6 @@ class _PanchangaState extends State<Panchanga> {
       PageController controller = new PageController(
         initialPage: dateIndex,
       );
-      // BorderRadiusGeometry _borderRadius = BorderRadius.circular(8);
       return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -1404,30 +1322,15 @@ class _PanchangaState extends State<Panchanga> {
                         color: Colors.black,
                       ),
                       onPressed: () {
-                        // print("OnPressed Butten of Search");
-                        // print(panchangalistmodel.toString());
                         showSearch(
                             context: context,
-                            delegate: SearchInList(panchangalistmodel)
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(builder: (context) => SearchInList()),
-                            // );
-
-                            );
+                            delegate: SearchInList(panchangalistmodel));
                       },
-                    ))
-
-                //     showSearch(
-                //   context: context,
-                //   delegate: CustomSearchDelegate(),
-                // );
-                ),
+                    ))),
             nomalPopMenu(),
           ],
         ),
         drawer: Drawer(
-          // width: 280,
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
@@ -1502,44 +1405,11 @@ class _PanchangaState extends State<Panchanga> {
             ],
           ),
         ),
-        body:
-            // FutureBuilder<Widget>(
-            //     // future: _delayInWidgetDisplay,
-            //     builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) {
-            //   switch (snapshot.connectionState) {
-            //     case ConnectionState.waiting:
-            //       return Center(
-            //         child: CircularProgressIndicator(),
-            //       );
-            //     default:
-            //       if (snapshot.hasError)
-            //         return Text('Error: ${snapshot.error}');
-            //       else
-            // return
-            Container(
-          // Use the properties stored in the State class.
-          // width: MediaQuery.of(context).size.width,
-          // height: MediaQuery.of(context).size.height,
-          // decoration: BoxDecoration(
-          //   color: Colors.amber,
-          //   borderRadius: _borderRadius,
-          // ),
-          // Define how long the animation should take.
-          // duration: const Duration(seconds: 10),
-          // Provide an optional curve to make the animation feel smoother.
-          // curve: Curves.fastOutSlowIn,
-
+        body: Container(
           child: PageView.builder(
               clipBehavior: Clip.hardEdge,
-
-              // dragStartBehavior: DragStartBehavior.down,
-              // physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics())
-
-              // controller: controller.animateTo(1, duration: Duration(microseconds: 300), curve: Curves.easeInSine),
               controller: controller,
-              // allowImplicitScrolling: true,
               itemCount: panchangalistmodel.length,
-              // scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return DisplayDesign(
                   date: panchangalistmodel[index].date,
@@ -1563,14 +1433,9 @@ class _PanchangaState extends State<Panchanga> {
                   vishesha: panchangalistmodel[index].vishesha,
                 );
               }),
-          // ]
         ),
-        // }
-        // }),
       );
     }
-    // }
-    // return Scaffold();
   }
 
   Widget nomalPopMenu() {
@@ -1836,9 +1701,6 @@ class PanchangaDay extends StatefulWidget {
 class _PanchangaDayState extends State<PanchangaDay> {
   @override
   Widget build(BuildContext context) {
-    // final newYear = DateTime(2022, 04, 01);
-    // final currentDate = DateTime(2022, 09, 21);
-    // var difference = currentDate.difference(newYear).inDays;
     return PageView(
       scrollDirection: Axis.horizontal,
       children: [
@@ -1924,8 +1786,6 @@ class _DisplayDesignState extends State<DisplayDesign> {
 
   Future<File> get localEnglishFile async {
     path = await localPathEnglish;
-    // print("English");
-    // print(path);
     return new File('$path/EnglishLanguage.json').create(recursive: true);
   }
 
@@ -1983,11 +1843,7 @@ class _DisplayDesignState extends State<DisplayDesign> {
     getFile();
     double screenWidth = MediaQuery.of(context).size.width;
 
-    //For height
-//     var padding = MediaQuery.of(context).padding;
-// double newheight = height - padding.top - padding.bottom;
     return Container(
-      // height: 50,
       child: SizedBox(
         child: Container(
           color: Color.fromARGB(255, 245, 240, 225),
@@ -1998,20 +1854,11 @@ class _DisplayDesignState extends State<DisplayDesign> {
               thickness: 03.0,
             ),
             Row(
-              // mainAxisAlignment: MainAxisAlignment.start,
-              // crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
               children: [
-                // Padding(
-                //   padding: EdgeInsets.all(8),
-                //   child:
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // Row(
-                    //   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children: [
                     SizedBox(width: 5),
                     Icon(
                       Icons.sunny,
@@ -2037,12 +1884,6 @@ class _DisplayDesignState extends State<DisplayDesign> {
                           color: Color.fromARGB(255, 2, 2, 2),
                         )),
                     SizedBox(width: 5),
-                    //   ],
-                    // ),
-
-                    // Row(
-                    //   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children: [
                     Icon(
                       Icons.wb_sunny_outlined,
                       size: 18,
@@ -2069,7 +1910,6 @@ class _DisplayDesignState extends State<DisplayDesign> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    // Spacer(),
                     IconButton(
                       iconSize: 20,
                       icon: const Icon(Icons.calendar_month),
@@ -2104,14 +1944,8 @@ class _DisplayDesignState extends State<DisplayDesign> {
                     SizedBox(width: 8),
                   ],
                 ),
-                // ),
-                //   ],
-                // ),
-                // )
               ],
             ),
-            // ),
-            // SizedBox(height: 10),
             Divider(
               color: Color.fromARGB(255, 255, 192, 2),
               thickness: 03.0,
@@ -2138,7 +1972,6 @@ class _DisplayDesignState extends State<DisplayDesign> {
                   padding: EdgeInsets.all(15),
                   width: screenWidth / 2.1,
                   child: Column(
-                    // mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Column(
@@ -2150,7 +1983,6 @@ class _DisplayDesignState extends State<DisplayDesign> {
                             thickness: 1.0,
                           ),
                           Text('Ayana',
-                              // textAlign: TextAlign.left,
                               style: TextStyle(
                                 color: Color.fromARGB(255, 162, 56, 7),
                               )),
