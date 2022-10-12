@@ -4,7 +4,6 @@ import 'package:panchanga/panchanga_model.dart';
 class SearchInList extends SearchDelegate {
   List<Day> panchangaSearchList = <Day>[];
   SearchInList(this.panchangaSearchList);
-  // List<String> abcd = <String>[];
   List<String> searchResult = [];
 
   @override
@@ -60,25 +59,12 @@ class SearchInList extends SearchDelegate {
         .map((panchanagaSearch) => panchanagaSearch.year)
         .toList();
 
-    // var suggestion = panchangaSearchList
-    //     .map((panchanagaSearch) => panchanagaSearch.vishesha)
-    //     .toList();
-
     print('$allDate\ $allMonth\ $allYear');
 
     searchResult.clear();
     searchResult = allNames
         .where((element) => element.toLowerCase().startsWith(query))
         .toList();
-    // allDate
-    //     .where((element) => element.toLowerCase().startsWith(query))
-    //     .toList() +
-    // allMonth
-    //     .where((element) => element.toLowerCase().startsWith(query))
-    //     .toList() +
-    // allYear
-    //     .where((element) => element.toLowerCase().startsWith(query))
-    //     .toList();
     return Container(
       margin: EdgeInsets.all(20),
       child: ListView(

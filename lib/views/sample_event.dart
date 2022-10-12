@@ -43,17 +43,11 @@ List<CalendarEvent> sampleEvents(List<Day> calendarmappingList) {
 
   final startDay = DateTime(initialYear, initialMonth, initialDate);
   print(startDay);
-  // final startDay = DateTime(2022, 03, 03);
-  // final startDay = DateTime.now();
-  // final endDay = DateTime(2099, 12, 30);
+
   var i = 0;
-  // var count = 0;
-  // List<String> aaa = ['a', 'b', 'c', 'd'];
-  // print('The length is ,,,,,,,,${calendarData.length}');
 
   final sampleEvents = [
     for (i = 0; i < calendarThithi.length; i++)
-      // if (aaa[i] == 'a')
       CalendarEvent(
           eventName: calendarThithi[i],
           eventDate: startDay.add(Duration(days: i)),

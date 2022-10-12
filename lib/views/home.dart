@@ -1885,7 +1885,7 @@ class _DisplayDesignState extends State<DisplayDesign> {
                         )),
                     SizedBox(width: 5),
                     Icon(
-                      Icons.wb_sunny_outlined,
+                      Icons.nightlight_round_outlined,
                       size: 18,
                     ),
                     SizedBox(width: 3),
@@ -2105,9 +2105,6 @@ class _DisplayDesignState extends State<DisplayDesign> {
                                 color: Color.fromARGB(255, 162, 56, 7),
                               )),
                           SizedBox(height: 5),
-
-                          // Expanded(
-                          //   child:
                           Text(widget.yoga,
                               // textAlign: TextAlign.left,
                               style: TextStyle(
@@ -2119,7 +2116,6 @@ class _DisplayDesignState extends State<DisplayDesign> {
                             color: Color.fromARGB(255, 255, 192, 2),
                             thickness: 1.0,
                           ),
-                          // ),
                         ],
                       ),
                     ],
@@ -2151,10 +2147,7 @@ class _DisplayDesignState extends State<DisplayDesign> {
                               style: TextStyle(
                                 color: Color.fromARGB(255, 162, 56, 7),
                               )),
-                          // Expanded(
-                          //   child:
                           SizedBox(height: 5),
-
                           Text(widget.rutu,
                               textAlign: TextAlign.left,
                               style: TextStyle(
@@ -2162,7 +2155,6 @@ class _DisplayDesignState extends State<DisplayDesign> {
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 162, 56, 7),
                               )),
-                          // ),
                           Divider(
                             color: Color.fromARGB(255, 255, 192, 2),
                             thickness: 1.0,
@@ -2174,8 +2166,6 @@ class _DisplayDesignState extends State<DisplayDesign> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Expanded(
-                          //   child:
                           Divider(
                             color: Color.fromARGB(255, 255, 192, 2),
                             thickness: 1.0,
@@ -2185,11 +2175,7 @@ class _DisplayDesignState extends State<DisplayDesign> {
                               style: TextStyle(
                                 color: Color.fromARGB(255, 162, 56, 7),
                               )),
-                          // ),
-                          // Expanded(
-                          //   child:
                           SizedBox(height: 5),
-
                           Text(widget.masaniyamaka,
                               // textAlign: TextAlign.justify,
                               // overflow: TextOverflow.ellipsis,
@@ -2199,7 +2185,6 @@ class _DisplayDesignState extends State<DisplayDesign> {
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 162, 56, 7),
                               )),
-                          // ),
                           Divider(
                             color: Color.fromARGB(255, 255, 192, 2),
                             thickness: 1.0,
@@ -2220,10 +2205,7 @@ class _DisplayDesignState extends State<DisplayDesign> {
                               style: TextStyle(
                                 color: Color.fromARGB(255, 162, 56, 7),
                               )),
-                          // Expanded(
-                          //   child:
                           SizedBox(height: 5),
-
                           Text(widget.tithi,
                               textAlign: TextAlign.left,
                               style: TextStyle(
@@ -2231,7 +2213,6 @@ class _DisplayDesignState extends State<DisplayDesign> {
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 162, 56, 7),
                               )),
-                          // ),
                           Divider(
                             color: Color.fromARGB(255, 255, 192, 2),
                             thickness: 1.0,
@@ -2252,10 +2233,7 @@ class _DisplayDesignState extends State<DisplayDesign> {
                               style: TextStyle(
                                 color: Color.fromARGB(255, 162, 56, 7),
                               )),
-                          // Expanded(
-                          //   child:
                           SizedBox(height: 5),
-
                           Text(widget.nakshatra,
                               textAlign: TextAlign.justify,
                               style: TextStyle(
@@ -2267,11 +2245,6 @@ class _DisplayDesignState extends State<DisplayDesign> {
                             color: Color.fromARGB(255, 255, 192, 2),
                             thickness: 1.0,
                           ),
-                          // ),
-                          // Text(widget.nakshatra,
-                          //     // textAlign: TextAlign.justify,
-                          //     style: TextStyle(
-                          //         fontSize: 15, fontWeight: FontWeight.bold)),
                         ],
                       ),
                       SizedBox(height: 5),
@@ -2306,11 +2279,8 @@ class _DisplayDesignState extends State<DisplayDesign> {
                 ),
               ],
             ),
-            // ),
-            // SizedBox(height: 10),
             Divider(
               color: Color.fromARGB(255, 255, 192, 2),
-              // color: Color.fromARGB(255, 207, 93, 40),
               thickness: 03.0,
             ),
             SizedBox(
@@ -2331,16 +2301,11 @@ class _DisplayDesignState extends State<DisplayDesign> {
                                     fontSize: 18, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(height: 5),
-                              // Divider(
-                              //   color: Color.fromARGB(255, 255, 192, 2),
-                              //   thickness: 1.0,
-                              // ),
                               Text(
                                 widget.vishesha,
                                 style: TextStyle(
                                   fontSize: 16,
                                 ),
-                                // sunriseSunset.sunrise.toString()
                               ),
                             ],
                           )),
