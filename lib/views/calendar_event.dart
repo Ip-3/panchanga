@@ -1,15 +1,8 @@
-import 'dart:async';
-import 'dart:ffi';
-
 import 'package:cell_calendar/cell_calendar.dart';
 import 'package:panchanga/panchanga_model.dart';
 import 'package:panchanga/views/home.dart';
 import 'package:panchanga/views/sample_event.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
-import 'package:path_provider/path_provider.dart';
-import 'dart:convert' as convert;
-import 'package:path_provider/path_provider.dart';
 
 class CalendarData extends StatefulWidget {
   final List<Day> data;
@@ -38,14 +31,15 @@ class _CalendarDataState extends State<CalendarData> {
       ),
       body: CellCalendar(
         todayMarkColor: Color.fromARGB(255, 255, 192, 2),
+        // todayTextColor: Color.fromARGB(255, 30, 188, 59),
         cellCalendarPageController: cellCalendarPageController,
         events: _sampleEvents,
         daysOfTheWeekBuilder: (date) {
           final labels = ["S", "M", "T", "W", "T", "F", "S"];
           return Padding(
-            // padding: const EdgeInsets.only(bottom: 4.0),
-            padding: const EdgeInsets.all(2),
-
+            // padding: const EdgeInsets.only(bottom: 1.0),
+            // padding: const EdgeInsets.all(2),
+            padding: const EdgeInsets.all(0),
             child: Text(
               labels[date],
               style: TextStyle(
@@ -59,10 +53,10 @@ class _CalendarDataState extends State<CalendarData> {
           final year = date!.year.toString();
           final month = date.month.monthName;
           return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
+            // padding: const EdgeInsets.symmetric(vertical: 4),
+            padding: const EdgeInsets.all(0),
             child: Row(
               children: [
-                // _moonPhases()
                 const SizedBox(width: 16),
                 Text(
                   "$month  $year",
