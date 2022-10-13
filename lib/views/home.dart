@@ -8,7 +8,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:panchanga/views/calendar_event.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:translator/translator.dart';
 
 // ignore: must_be_immutable
 class Panchanga extends StatefulWidget {
@@ -2262,7 +2261,7 @@ class _DisplayDesignState extends State<DisplayDesign> {
   @override
   Widget build(BuildContext context) {
     getFile();
-    double screenWidth = MediaQuery.of(context).size.width;
+    // double screenWidth = MediaQuery.of(context).size.width;
 
     // GoogleTranslator translator = GoogleTranslator();
     // translator.translate("Ayana", from: 'en', to: 'hi').then((s) {
