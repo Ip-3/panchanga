@@ -156,13 +156,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.1+3"
-  liquid_swipe:
-    dependency: "direct main"
-    description:
-      name: liquid_swipe
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.0"
   matcher:
     dependency: transitive
     description:
@@ -184,13 +177,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0"
-  moon_phase:
-    dependency: "direct main"
-    description:
-      name: moon_phase
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1+8"
   nested:
     dependency: transitive
     description:

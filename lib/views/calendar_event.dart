@@ -21,105 +21,118 @@ class _CalendarDataState extends State<CalendarData> {
     final cellCalendarPageController = CellCalendarPageController();
     var _sampleEvents = sampleEvents(widget.data);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Calendar',
-          style: TextStyle(color: Colors.black),
+        appBar: AppBar(
+          title: Text(
+            'Calendar',
+            style: TextStyle(color: Colors.black),
+          ),
+          iconTheme: IconThemeData(color: Colors.black),
+          backgroundColor: Color.fromARGB(255, 247, 206, 73),
         ),
-        iconTheme: IconThemeData(color: Colors.black),
-        backgroundColor: Color.fromARGB(255, 247, 206, 73),
-      ),
-      body: CellCalendar(
-        todayMarkColor: Color.fromARGB(255, 255, 192, 2),
-        // todayTextColor: Color.fromARGB(255, 30, 188, 59),
-        cellCalendarPageController: cellCalendarPageController,
-        events: _sampleEvents,
-        daysOfTheWeekBuilder: (date) {
-          final labels = ["S", "M", "T", "W", "T", "F", "S"];
-          return Padding(
-            // padding: const EdgeInsets.only(bottom: 1.0),
-            // padding: const EdgeInsets.all(2),
-            padding: const EdgeInsets.all(0),
-            child: Text(
-              labels[date],
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
+        body: CellCalendar(
+          todayMarkColor: Color.fromARGB(255, 255, 192, 2),
+          // todayTextColor: Color.fromARGB(255, 30, 188, 59),
+          cellCalendarPageController: cellCalendarPageController,
+          events: _sampleEvents,
+          daysOfTheWeekBuilder: (date) {
+            final labels = ["S", "M", "T", "W", "T", "F", "S"];
+            return Padding(
+              // padding: const EdgeInsets.only(bottom: 1.0),
+              padding: const EdgeInsets.all(2),
+              // padding: const EdgeInsets.all(0),
+              child: Text(
+                labels[date],
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
-            ),
-          );
-        },
-        monthYearLabelBuilder: (date) {
-          final year = date!.year.toString();
-          final month = date.month.monthName;
-          return Padding(
-            padding: const EdgeInsets.all(0),
-            child: Row(
-              children: [
-                const SizedBox(width: 16),
-                Text(
-                  "$month  $year",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const Spacer(),
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  icon: Icon(Icons.calendar_today),
-                  onPressed: () {
-                    cellCalendarPageController.animateToDate(
-                      DateTime.now(),
-                      curve: Curves.linear,
-                      duration: Duration(milliseconds: 300),
-                    );
-                  },
-                ),
-              ],
-            ),
-          );
-        },
-        onCellTapped: (date) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => Panchanga(
-                        differenceDate: date,
-                      )));
-
-          final eventsOnTheDate = _sampleEvents.where((event) {
-            final eventDate = event.eventDate;
-            return eventDate.year == date.year &&
-                eventDate.month == date.month &&
-                eventDate.day == date.day;
-          }).toList();
-          showDialog(
-              context: context,
-              builder: (_) => AlertDialog(
-                    title:
-                        Text(date.month.monthName + " " + date.day.toString()),
-                    content: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: eventsOnTheDate
-                          .map(
-                            (event) => Container(
-                              width: double.infinity,
-                              padding: EdgeInsets.all(4),
-                              margin: EdgeInsets.only(bottom: 12),
-                              color: event.eventBackgroundColor,
-                              child: Text(
-                                event.eventName,
-                                style: TextStyle(color: event.eventTextColor),
-                              ),
-                            ),
-                          )
-                          .toList(),
+            );
+          },
+          monthYearLabelBuilder: (date) {
+            final year = date!.year.toString();
+            final month = date.month.monthName;
+            return Padding(
+              padding: const EdgeInsets.all(0),
+              child: Row(
+                children: [
+                  const SizedBox(width: 16),
+                  Text(
+                    "$month  $year",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ));
-        },
-        onPageChanged: (firstDate, lastDate) {},
-      ),
-    );
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    padding: EdgeInsets.zero,
+                    icon: Icon(Icons.calendar_today),
+                    onPressed: () {
+                      cellCalendarPageController.animateToDate(
+                        DateTime.now(),
+                        curve: Curves.linear,
+                        duration: Duration(milliseconds: 300),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            );
+          },
+
+          dateTextStyle: TextStyle(
+            // fontFamily: 'SyneTactile',
+            color: Colors.black,
+            // backgroundColor: Colors.amber,
+            // height: 5,
+            fontSize: 17,
+            fontWeight: FontWeight.bold,
+            // fontWeight: FontWeight.lerp(FontWeight.w300, FontWeight.w400, 0.5),
+            // fontStyle: FontStyle.italic,
+            // letterSpacing: 10,
+            wordSpacing: 10,
+          ),
+
+          onCellTapped: (date) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Panchanga(
+                          differenceDate: date,
+                        )));
+
+            final eventsOnTheDate = _sampleEvents.where((event) {
+              final eventDate = event.eventDate;
+              return eventDate.year == date.year &&
+                  eventDate.month == date.month &&
+                  eventDate.day == date.day;
+            }).toList();
+            showDialog(
+                context: context,
+                builder: (_) => AlertDialog(
+                      title: Text(
+                          date.month.monthName + " " + date.day.toString()),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: eventsOnTheDate
+                            .map(
+                              (event) => Container(
+                                width: double.infinity,
+                                padding: EdgeInsets.all(4),
+                                margin: EdgeInsets.only(bottom: 12),
+                                color: event.eventBackgroundColor,
+                                child: Text(
+                                  event.eventName,
+                                  style: TextStyle(color: event.eventTextColor),
+                                ),
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    ));
+          },
+          onPageChanged: (firstDate, lastDate) {},
+        ));
   }
 }

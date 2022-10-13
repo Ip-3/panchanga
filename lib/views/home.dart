@@ -1,5 +1,6 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
+import 'package:panchanga/views/panchanaga_language_list.dart';
 import 'dart:io';
 import 'package:panchanga/views/search_in_list.dart';
 import 'package:panchanga/panchanga_model.dart';
@@ -7,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:panchanga/views/calendar_event.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:translator/translator.dart';
 
 // ignore: must_be_immutable
 class Panchanga extends StatefulWidget {
@@ -31,6 +33,7 @@ class _PanchangaState extends State<Panchanga> {
   var jsonPanchangaUpdate;
 
   DateTime specificDate = DateTime.now();
+
   List<Day> panchangalistmodel = <Day>[];
   List<Day> panchangalistmodelUpdate = <Day>[];
   List<Day> updatedEnglishPanchanaga = <Day>[];
@@ -155,6 +158,299 @@ class _PanchangaState extends State<Panchanga> {
       "https://script.google.com/macros/s/AKfycbyrnvgdG5Sw52dc7InQolaFoqVre0ZWsm8_AvsxbukfRva1YrdxjviU-72thmfyLsAg9g/exec";
   var appScriptURLHindi =
       "https://script.google.com/macros/s/AKfycbxZtGrRR38cg2ocqy2i1iLdgsYMsXbj9XyXg_PNLxy_zoh4E4hlaWZMuHxY7Vj8DG96/exec";
+
+  List<String> kannadaList = [
+    'ಆಯನ',
+    'ಋತು',
+    'ಮಾಸ',
+    'ಮಾಸ ನಿಯಮಕ',
+    'ಪಕ್ಷ',
+    'ತಿಥಿ',
+    'ವಾಸರ',
+    'ನಕ್ಷತ್ರ',
+    'ಯೋಗ',
+    'ಕರಣ',
+    'ಇಂದಿನ ವಿಶೇಷ'
+  ];
+
+  List<String> englishList = [
+    'Ayana',
+    'Rutu',
+    'Masa',
+    'Masa Niyamaka',
+    'Paksha',
+    'Tithi',
+    'Vasara',
+    'Nakshatra',
+    'Yoga',
+    'Karana',
+    "Today's special"
+  ];
+
+  List<String> hindiList = [
+    'अयाना',
+    'रुतु',
+    'मसा',
+    'मासा नियमक',
+    'पक्ष',
+    'तिथि',
+    'वासरां',
+    'नक्षत्र',
+    'योग',
+    'करण',
+    "आज के लिए ख़ास"
+  ];
+
+  List<String> tamilList = [
+    'அயனா',
+    'ருது',
+    'மாசா',
+    'மாச நியமகா',
+    'பக்ஷா',
+    'திதி',
+    'வாசரா',
+    'நக்ஷத்ரா',
+    'யோகா',
+    'கரண',
+    "இன்றைய சிறப்பு"
+  ];
+
+  List<String> teluguList = [
+    'అయన',
+    'రుతు',
+    'మాస',
+    'మాస నియమక',
+    'పక్ష',
+    'తిథి',
+    'వాసర',
+    'నక్షత్రం',
+    'యోగా',
+    'కరణ',
+    "నేటి ప్రత్యేకత"
+  ];
+
+  List<PanchanagaLanguageList> allLanguageList = <PanchanagaLanguageList>[];
+
+  getKannadaList() async {
+    PanchanagaLanguageList panchanagaLanguageList = new PanchanagaLanguageList(
+      languageListayana: '',
+      languageListkarana: '',
+      languageListmasaniyamaka: '',
+      languageListnakshatra: '',
+      languageListrutu: '',
+      languageListmasa: '',
+      languageListvasara: '',
+      languageListtithi: '',
+      languageListvishesha: '',
+      languageListyoga: '',
+      languageListpaksha: '',
+    );
+    for (int i = 0; i < kannadaList.length; i++) {
+      panchanagaLanguageList.languageListayana = kannadaList[0];
+      panchanagaLanguageList.languageListpaksha = kannadaList[1];
+      panchanagaLanguageList.languageListrutu = kannadaList[2];
+      panchanagaLanguageList.languageListmasa = kannadaList[3];
+      panchanagaLanguageList.languageListmasaniyamaka = kannadaList[4];
+      panchanagaLanguageList.languageListvasara = kannadaList[5];
+      panchanagaLanguageList.languageListnakshatra = kannadaList[6];
+      panchanagaLanguageList.languageListtithi = kannadaList[7];
+      panchanagaLanguageList.languageListyoga = kannadaList[8];
+      panchanagaLanguageList.languageListkarana = kannadaList[9];
+      panchanagaLanguageList.languageListvishesha = kannadaList[10];
+      allLanguageList.add(panchanagaLanguageList);
+    }
+
+    print(allLanguageList[1]);
+  }
+
+  getEnglishList() async {
+    print("maga ili English list");
+    // kannadaList.forEach((element) {
+    //   print('Macha bari erlemet');
+    //   print(element);
+    // });
+    PanchanagaLanguageList panchanagaLanguageList = new PanchanagaLanguageList(
+      languageListayana: '',
+      languageListkarana: '',
+      languageListmasaniyamaka: '',
+      languageListnakshatra: '',
+      languageListrutu: '',
+      languageListmasa: '',
+      languageListvasara: '',
+      languageListtithi: '',
+      languageListvishesha: '',
+      languageListyoga: '',
+      languageListpaksha: '',
+    );
+    // print("maga element $element");
+    for (int i = 0; i < englishList.length; i++) {
+      panchanagaLanguageList.languageListayana = englishList[0];
+      panchanagaLanguageList.languageListpaksha = englishList[1];
+      panchanagaLanguageList.languageListrutu = englishList[2];
+      panchanagaLanguageList.languageListmasa = englishList[3];
+      panchanagaLanguageList.languageListmasaniyamaka = englishList[4];
+      panchanagaLanguageList.languageListvasara = englishList[5];
+      panchanagaLanguageList.languageListnakshatra = englishList[6];
+      panchanagaLanguageList.languageListtithi = englishList[7];
+      panchanagaLanguageList.languageListyoga = englishList[8];
+      panchanagaLanguageList.languageListkarana = englishList[9];
+      panchanagaLanguageList.languageListvishesha = englishList[10];
+      allLanguageList.add(panchanagaLanguageList);
+    }
+
+    print(allLanguageList[1]);
+  }
+
+  getHindiList() async {
+    print("maga ili Hindi list");
+    // kannadaList.forEach((element) {
+    //   print('Macha bari erlemet');
+    //   print(element);
+    // });
+    PanchanagaLanguageList panchanagaLanguageList = new PanchanagaLanguageList(
+      languageListayana: '',
+      languageListkarana: '',
+      languageListmasaniyamaka: '',
+      languageListnakshatra: '',
+      languageListrutu: '',
+      languageListmasa: '',
+      languageListvasara: '',
+      languageListtithi: '',
+      languageListvishesha: '',
+      languageListyoga: '',
+      languageListpaksha: '',
+    );
+    // print("maga element $element");
+    for (int i = 0; i < hindiList.length; i++) {
+      panchanagaLanguageList.languageListayana = hindiList[0];
+      panchanagaLanguageList.languageListpaksha = hindiList[1];
+      panchanagaLanguageList.languageListrutu = hindiList[2];
+      panchanagaLanguageList.languageListmasa = hindiList[3];
+      panchanagaLanguageList.languageListmasaniyamaka = hindiList[4];
+      panchanagaLanguageList.languageListvasara = hindiList[5];
+      panchanagaLanguageList.languageListnakshatra = hindiList[6];
+      panchanagaLanguageList.languageListtithi = hindiList[7];
+      panchanagaLanguageList.languageListyoga = hindiList[8];
+      panchanagaLanguageList.languageListkarana = hindiList[9];
+      panchanagaLanguageList.languageListvishesha = hindiList[10];
+      allLanguageList.add(panchanagaLanguageList);
+    }
+    print(allLanguageList[1]);
+  }
+
+  getSanskritList() async {
+    print("maga ili Sanskrit list");
+    // kannadaList.forEach((element) {
+    //   print('Macha bari erlemet');
+    //   print(element);
+    // });
+    PanchanagaLanguageList panchanagaLanguageList = new PanchanagaLanguageList(
+      languageListayana: '',
+      languageListkarana: '',
+      languageListmasaniyamaka: '',
+      languageListnakshatra: '',
+      languageListrutu: '',
+      languageListmasa: '',
+      languageListvasara: '',
+      languageListtithi: '',
+      languageListvishesha: '',
+      languageListyoga: '',
+      languageListpaksha: '',
+    );
+    // print("maga element $element");
+    for (int i = 0; i < hindiList.length; i++) {
+      panchanagaLanguageList.languageListayana = hindiList[0];
+      panchanagaLanguageList.languageListpaksha = hindiList[1];
+      panchanagaLanguageList.languageListrutu = hindiList[2];
+      panchanagaLanguageList.languageListmasa = hindiList[3];
+      panchanagaLanguageList.languageListmasaniyamaka = hindiList[4];
+      panchanagaLanguageList.languageListvasara = hindiList[5];
+      panchanagaLanguageList.languageListnakshatra = hindiList[6];
+      panchanagaLanguageList.languageListtithi = hindiList[7];
+      panchanagaLanguageList.languageListyoga = hindiList[8];
+      panchanagaLanguageList.languageListkarana = hindiList[9];
+      panchanagaLanguageList.languageListvishesha = hindiList[10];
+      allLanguageList.add(panchanagaLanguageList);
+    }
+    print(allLanguageList[1]);
+  }
+
+  getTeluguList() async {
+    print("maga ili Telugu list");
+    // kannadaList.forEach((element) {
+    //   print('Macha bari erlemet');
+    //   print(element);
+    // });
+    PanchanagaLanguageList panchanagaLanguageList = new PanchanagaLanguageList(
+      languageListayana: '',
+      languageListkarana: '',
+      languageListmasaniyamaka: '',
+      languageListnakshatra: '',
+      languageListrutu: '',
+      languageListmasa: '',
+      languageListvasara: '',
+      languageListtithi: '',
+      languageListvishesha: '',
+      languageListyoga: '',
+      languageListpaksha: '',
+    );
+    // print("maga element $element");
+    for (int i = 0; i < teluguList.length; i++) {
+      panchanagaLanguageList.languageListayana = teluguList[0];
+      panchanagaLanguageList.languageListpaksha = teluguList[1];
+      panchanagaLanguageList.languageListrutu = teluguList[2];
+      panchanagaLanguageList.languageListmasa = teluguList[3];
+      panchanagaLanguageList.languageListmasaniyamaka = teluguList[4];
+      panchanagaLanguageList.languageListvasara = teluguList[5];
+      panchanagaLanguageList.languageListnakshatra = teluguList[6];
+      panchanagaLanguageList.languageListtithi = teluguList[7];
+      panchanagaLanguageList.languageListyoga = teluguList[8];
+      panchanagaLanguageList.languageListkarana = teluguList[9];
+      panchanagaLanguageList.languageListvishesha = teluguList[10];
+      allLanguageList.add(panchanagaLanguageList);
+    }
+
+    print(allLanguageList[1]);
+  }
+
+  getTamilList() async {
+    print("maga ili Tamil list");
+    // kannadaList.forEach((element) {
+    //   print('Macha bari erlemet');
+    //   print(element);
+    // });
+    PanchanagaLanguageList panchanagaLanguageList = new PanchanagaLanguageList(
+      languageListayana: '',
+      languageListkarana: '',
+      languageListmasaniyamaka: '',
+      languageListnakshatra: '',
+      languageListrutu: '',
+      languageListmasa: '',
+      languageListvasara: '',
+      languageListtithi: '',
+      languageListvishesha: '',
+      languageListyoga: '',
+      languageListpaksha: '',
+    );
+    // print("maga element $element");
+    for (int i = 0; i < tamilList.length; i++) {
+      panchanagaLanguageList.languageListayana = tamilList[0];
+      panchanagaLanguageList.languageListpaksha = tamilList[1];
+      panchanagaLanguageList.languageListrutu = tamilList[2];
+      panchanagaLanguageList.languageListmasa = tamilList[3];
+      panchanagaLanguageList.languageListmasaniyamaka = tamilList[4];
+      panchanagaLanguageList.languageListvasara = tamilList[5];
+      panchanagaLanguageList.languageListnakshatra = tamilList[6];
+      panchanagaLanguageList.languageListtithi = tamilList[7];
+      panchanagaLanguageList.languageListyoga = tamilList[8];
+      panchanagaLanguageList.languageListkarana = tamilList[9];
+      panchanagaLanguageList.languageListvishesha = tamilList[10];
+      allLanguageList.add(panchanagaLanguageList);
+    }
+
+    print(allLanguageList[1]);
+  }
+
   getEnglishPanchanga() async {
     langSettingsValue = 1;
     File? myfile;
@@ -1247,21 +1543,27 @@ class _PanchangaState extends State<Panchanga> {
     switch (settingsLanguage) {
       case 1:
         getEnglishPanchanga();
+        getEnglishList();
         break;
       case 2:
         getKannadaPanchanga();
+        getKannadaList();
         break;
       case 3:
         getHindiPanchanga();
+        getHindiList();
         break;
       case 4:
         getTamilPanchanga();
+        getTamilList();
         break;
       case 5:
         getTeluguPanchanga();
+        getTeluguList();
         break;
       case 6:
         getSanskritPanchanga();
+        getSanskritList();
         break;
       default:
         getEnglishPanchanga();
@@ -1270,6 +1572,14 @@ class _PanchangaState extends State<Panchanga> {
         getTamilPanchanga();
         getKannadaPanchanga();
         getTeluguPanchanga();
+        getTeluguList();
+        getTamilPanchanga();
+        getHindiList();
+        getKannadaList();
+        getEnglishList();
+        getSanskritList();
+
+        // getKannadaList();
         break;
     }
   }
@@ -1431,6 +1741,32 @@ class _PanchangaState extends State<Panchanga> {
                   paksha: panchangalistmodel[index].paksha,
                   shradhatithi: panchangalistmodel[index].shradhatithi,
                   vishesha: panchangalistmodel[index].vishesha,
+                  // languageListkarana: kannadaList[9],
+                  // languageListmasa: kannadaList[2],
+                  // languageListmasaniyamaka: kannadaList[3],
+                  // languageListpaksha: kannadaList[4],
+                  // languageListrutu: kannadaList[1],
+                  // languageListnakshatra: kannadaList[7],
+                  // languageListvasara: kannadaList[6],
+                  // languageListvishesha: kannadaList[10],
+                  // languageListtithi: kannadaList[5],
+                  // languageListyoga: kannadaList[8],
+                  // languageListayana: kannadaList[0],
+
+                  languageListkarana: allLanguageList[9].languageListkarana,
+                  languageListmasa: allLanguageList[2].languageListmasa,
+                  languageListmasaniyamaka:
+                      allLanguageList[3].languageListmasaniyamaka,
+                  languageListpaksha: allLanguageList[4].languageListpaksha,
+                  languageListrutu: allLanguageList[1].languageListrutu,
+                  languageListnakshatra:
+                      allLanguageList[7].languageListnakshatra,
+                  languageListvasara: allLanguageList[6].languageListvasara,
+                  languageListvishesha:
+                      allLanguageList[10].languageListvishesha,
+                  languageListtithi: allLanguageList[5].languageListtithi,
+                  languageListyoga: allLanguageList[8].languageListyoga,
+                  languageListayana: allLanguageList[0].languageListayana,
                 );
               }),
         ),
@@ -1447,6 +1783,7 @@ class _PanchangaState extends State<Panchanga> {
           child: TextButton(
             child: const Text('Language'),
             onPressed: () {
+              Navigator.pop(context);
               showModalBottomSheet<void>(
                 context: context,
                 builder: (BuildContext context) {
@@ -1462,16 +1799,22 @@ class _PanchangaState extends State<Panchanga> {
                           RadioListTile(
                             title: Text("English"),
                             value: "1",
+                            // toggleable: true,
                             groupValue: langValue,
                             onChanged: (value) async {
                               mySettingsFile = await localSettingsFile;
                               mySettingsFile?.writeAsString(value.toString());
                               setState(() async {
+                                // setState(() {
                                 langValue = value;
                                 langSettingsValue = value;
                                 panchangalistmodel.clear();
                                 panchangalistmodelUpdate.clear();
+                                allLanguageList.clear();
+
                                 getEnglishPanchanga();
+                                getEnglishList();
+                                Navigator.pop(context);
                               });
                             },
                           ),
@@ -1483,12 +1826,16 @@ class _PanchangaState extends State<Panchanga> {
                               mySettingsFile = await localSettingsFile;
                               mySettingsFile?.writeAsString(value.toString());
                               setState(() async {
+                                // setState(() {
                                 langValue = value;
                                 langSettingsValue = value;
-
                                 panchangalistmodel.clear();
                                 panchangalistmodelUpdate.clear();
+                                allLanguageList.clear();
+
                                 getKannadaPanchanga();
+                                getKannadaList();
+                                Navigator.pop(context);
                               });
                             },
                           ),
@@ -1500,12 +1847,17 @@ class _PanchangaState extends State<Panchanga> {
                               mySettingsFile = await localSettingsFile;
                               mySettingsFile?.writeAsString(value.toString());
                               setState(() async {
+                                // setState(() {
                                 langValue = value;
                                 langSettingsValue = value;
 
                                 panchangalistmodel.clear();
                                 panchangalistmodelUpdate.clear();
+                                allLanguageList.clear();
+
                                 getHindiPanchanga();
+                                getHindiList();
+                                Navigator.pop(context);
                               });
                             },
                           ),
@@ -1517,12 +1869,17 @@ class _PanchangaState extends State<Panchanga> {
                               mySettingsFile = await localSettingsFile;
                               mySettingsFile?.writeAsString(value.toString());
                               setState(() async {
+                                // setState(() {
                                 langValue = value;
                                 langSettingsValue = value;
 
                                 panchangalistmodel.clear();
                                 panchangalistmodelUpdate.clear();
+                                allLanguageList.clear();
+
                                 getTamilPanchanga();
+                                getTamilList();
+                                Navigator.pop(context);
                               });
                             },
                           ),
@@ -1534,12 +1891,17 @@ class _PanchangaState extends State<Panchanga> {
                               mySettingsFile = await localSettingsFile;
                               mySettingsFile?.writeAsString(value.toString());
                               setState(() async {
+                                // setState(() {
                                 langValue = value;
                                 langSettingsValue = value;
 
                                 panchangalistmodel.clear();
                                 panchangalistmodelUpdate.clear();
+                                allLanguageList.clear();
+
                                 getTeluguPanchanga();
+                                getTeluguList();
+                                Navigator.pop(context);
                               });
                             },
                           ),
@@ -1551,12 +1913,17 @@ class _PanchangaState extends State<Panchanga> {
                               mySettingsFile = await localSettingsFile;
                               mySettingsFile?.writeAsString(value.toString());
                               setState(() async {
+                                // setState(() {
                                 langValue = value;
                                 langSettingsValue = value;
 
                                 panchangalistmodel.clear();
                                 panchangalistmodelUpdate.clear();
+                                allLanguageList.clear();
+
                                 getSanskritPanchanga();
+                                getSanskritList();
+                                Navigator.pop(context);
                               });
                             },
                           ),
@@ -1578,6 +1945,7 @@ class _PanchangaState extends State<Panchanga> {
             child: TextButton(
               child: const Text('Update'),
               onPressed: () async {
+                Navigator.pop(context);
                 updatelanguage = true;
                 File? myUpdatedEnglishFile;
                 myUpdatedEnglishFile = await localUpdateEnglishFile;
@@ -1685,6 +2053,8 @@ class _PanchangaState extends State<Panchanga> {
             child: TextButton(
               child: const Text('Exit'),
               onPressed: () {
+                Navigator.pop(context);
+
                 exit(0);
               },
             )),
@@ -1703,6 +2073,9 @@ class _PanchangaDayState extends State<PanchangaDay> {
   Widget build(BuildContext context) {
     return PageView(
       scrollDirection: Axis.horizontal,
+      reverse: true,
+      // padEnds: true,
+      // dragStartBehavior: DragStartBehavior.down,
       children: [
         DisplayDesign(
           ayana: '',
@@ -1724,7 +2097,30 @@ class _PanchangaDayState extends State<PanchangaDay> {
           vishesha: '',
           yoga: '',
           sunset: '',
+          languageListayana: '',
+          languageListkarana: '',
+          languageListmasaniyamaka: '',
+          languageListnakshatra: '',
+          languageListrutu: '',
+          languageListmasa: '',
+          languageListvasara: '',
+          languageListtithi: '',
+          languageListvishesha: '',
+          languageListyoga: '',
+          languageListpaksha: '',
         ),
+        // PanchanagaLanguageList(
+        //     languageListayana: '',
+        //     languageListrutu: '',
+        //     languageListmasa: '',
+        //     languageListmasaniyamaka: '',
+        //     languageListpaksha: '',
+        //     languageListtithi: '',
+        //     languageListvasara: '',
+        //     languageListnakshatra: '',
+        //     languageListyoga: '',
+        //     languageListkarana: '',
+        //     languageListvishesha: '')
       ],
     );
   }
@@ -1749,7 +2145,18 @@ class DisplayDesign extends StatefulWidget {
       sunrise,
       sunset,
       shradhatithi,
-      vishesha;
+      vishesha,
+      languageListayana,
+      languageListrutu,
+      languageListmasa,
+      languageListmasaniyamaka,
+      languageListpaksha,
+      languageListtithi,
+      languageListvasara,
+      languageListnakshatra,
+      languageListyoga,
+      languageListkarana,
+      languageListvishesha;
 
   DisplayDesign(
       {required this.date,
@@ -1770,13 +2177,26 @@ class DisplayDesign extends StatefulWidget {
       required this.sunrise,
       required this.sunset,
       required this.shradhatithi,
-      required this.vishesha});
+      required this.vishesha,
+      required this.languageListayana,
+      required this.languageListrutu,
+      required this.languageListmasa,
+      required this.languageListmasaniyamaka,
+      required this.languageListpaksha,
+      required this.languageListtithi,
+      required this.languageListvasara,
+      required this.languageListnakshatra,
+      required this.languageListyoga,
+      required this.languageListkarana,
+      required this.languageListvishesha});
+
   @override
   State<DisplayDesign> createState() => _DisplayDesignState();
 }
 
 class _DisplayDesignState extends State<DisplayDesign> {
   var jsonCalendar;
+
   List<Day> calendarViewListModel = <Day>[];
   var path;
   Future<Object> get localPathEnglish async {
@@ -1834,6 +2254,7 @@ class _DisplayDesignState extends State<DisplayDesign> {
       day.sunset = element["sunset"].toString();
       day.shradhatithi = element['shradhatithi'].toString();
       day.vishesha = element['vishesha'].toString();
+
       calendarViewListModel.add(day);
     });
   }
@@ -1842,6 +2263,20 @@ class _DisplayDesignState extends State<DisplayDesign> {
   Widget build(BuildContext context) {
     getFile();
     double screenWidth = MediaQuery.of(context).size.width;
+
+    // GoogleTranslator translator = GoogleTranslator();
+    // translator.translate("Ayana", from: 'en', to: 'hi').then((s) {
+    //   print(s);
+    // });
+    // translator.translate("Ayana", from: 'en', to: 'kn').then((s) {
+    //   print(s);
+    // });
+    // translator.translate("Ayana", from: 'en', to: 'te').then((s) {
+    //   print(s);
+    // });
+    // translator.translate("Ayana", from: 'en', to: 'ta').then((s) {
+    //   print(s);
+    // });
 
     return Container(
       child: SizedBox(
@@ -1890,7 +2325,7 @@ class _DisplayDesignState extends State<DisplayDesign> {
                     ),
                     SizedBox(width: 3),
                     Text(
-                      'SunSet',
+                      'Sunset',
                       style: TextStyle(fontSize: 15),
                     ),
                     SizedBox(width: 3),
@@ -1941,7 +2376,7 @@ class _DisplayDesignState extends State<DisplayDesign> {
                       widget.year,
                       style: TextStyle(fontSize: 15),
                     ),
-                    SizedBox(width: 8),
+                    SizedBox(width: 5),
                   ],
                 ),
               ],
@@ -1950,7 +2385,7 @@ class _DisplayDesignState extends State<DisplayDesign> {
               color: Color.fromARGB(255, 255, 192, 2),
               thickness: 03.0,
             ),
-            Row(
+            Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -1965,320 +2400,346 @@ class _DisplayDesignState extends State<DisplayDesign> {
               color: Color.fromARGB(255, 255, 192, 2),
               thickness: 03.0,
             ),
-            SizedBox(height: 10),
-            Row(
+            // SizedBox(height: 15),
+            Table(
+              border: TableBorder.all(
+                color: Color.fromARGB(255, 255, 192, 2),
+                width: 1.0,
+                style: BorderStyle.solid,
+                // borderRadius: BorderRadius.circular(50)
+              ),
+              columnWidths: const <int, TableColumnWidth>{
+                // 0: IntrinsicColumnWidth(),
+                1: FlexColumnWidth(),
+                // 2: FixedColumnWidth(64),
+              },
+              // defaultVerticalAlignment: TableCellVerticalAlignment.middle,
               children: [
-                Container(
-                  padding: EdgeInsets.all(15),
-                  width: screenWidth / 2.1,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Divider(
-                            color: Color.fromARGB(255, 255, 192, 2),
-                            thickness: 1.0,
-                          ),
-                          Text('Ayana',
+                TableRow(children: [
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // SizedBox(height: 5),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(
+                              // 'Ayana',
+                              widget.languageListayana,
                               style: TextStyle(
                                 color: Color.fromARGB(255, 162, 56, 7),
                               )),
-                          SizedBox(height: 5),
-
-                          Text(
+                        ),
+                        // SizedBox(height: 5),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(
                             widget.ayana,
-                            // textAlign: TextAlign.left,
+                            textAlign: TextAlign.left,
                             style: TextStyle(
-                              // fontSize: 15,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: Color.fromARGB(255, 162, 56, 7),
                             ),
                           ),
-                          Divider(
-                            color: Color.fromARGB(255, 255, 192, 2),
-                            thickness: 1.0,
-                          ),
-                          // ),
-                        ],
-                      ),
-                      SizedBox(height: 5),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Divider(
-                            color: Color.fromARGB(255, 255, 192, 2),
-                            thickness: 1.0,
-                          ),
-                          Text('Masa',
+                        ),
+                        // SizedBox(height: 5),
+                      ]),
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Column(children: [
+                        // SizedBox(height: 5),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(
+                              // 'Rutu',
+                              widget.languageListrutu,
+                              // textAlign: TextAlign.left,
+
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 162, 56, 7),
+                              )),
+                        ),
+                        // SizedBox(height: 5),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(widget.rutu,
+                              // textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 162, 56, 7),
+                              )),
+                        ),
+                        // SizedBox(height: 5),
+                        // ]),
+                      ]),
+                ]),
+                TableRow(children: [
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // SizedBox(height: 5),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(widget.languageListmasa,
+                              // 'Masa',
                               // textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Color.fromARGB(255, 162, 56, 7),
                               )),
-                          SizedBox(height: 5),
-                          Text(widget.masa,
+                        ),
+                        // SizedBox(height: 5),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(widget.masa,
                               // textAlign: TextAlign.justify,
                               style: TextStyle(
-                                // fontSize: 15,
+                                fontSize: 18,
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 162, 56, 7),
                               )),
-                          Divider(
-                            color: Color.fromARGB(255, 255, 192, 2),
-                            thickness: 1.0,
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 5),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Divider(
-                            color: Color.fromARGB(255, 255, 192, 2),
-                            thickness: 1.0,
-                          ),
-                          Text('Paksha',
-                              // textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                          SizedBox(height: 5),
-                          Text(widget.paksha,
-                              // textAlign: TextAlign.left,
-                              style: TextStyle(
-                                // fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                          Divider(
-                            color: Color.fromARGB(255, 255, 192, 2),
-                            thickness: 1.0,
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 5),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Divider(
-                            color: Color.fromARGB(255, 255, 192, 2),
-                            thickness: 1.0,
-                          ),
-                          Text('Vasara',
-                              // textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                          SizedBox(height: 5),
-
-                          Text(widget.vasara,
-                              // textAlign: TextAlign.left,
-                              style: TextStyle(
-                                // fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                          // ),
-                          Divider(
-                            color: Color.fromARGB(255, 255, 192, 2),
-                            thickness: 1.0,
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 5),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Divider(
-                            color: Color.fromARGB(255, 255, 192, 2),
-                            thickness: 1.0,
-                          ),
-                          Text('Yoga',
-                              // textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                          SizedBox(height: 5),
-                          Text(widget.yoga,
-                              // textAlign: TextAlign.left,
-                              style: TextStyle(
-                                // fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                          Divider(
-                            color: Color.fromARGB(255, 255, 192, 2),
-                            thickness: 1.0,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                    height: 300,
-                    width: 2,
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 255, 192, 2),
-                    )),
-                Container(
-                  width: screenWidth / 2,
-                  padding: EdgeInsets.all(15),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Divider(
-                            color: Color.fromARGB(255, 255, 192, 2),
-                            thickness: 1.0,
-                          ),
-                          Text('Rutu',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                          SizedBox(height: 5),
-                          Text(widget.rutu,
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                // fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                          Divider(
-                            color: Color.fromARGB(255, 255, 192, 2),
-                            thickness: 1.0,
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 5),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Divider(
-                            color: Color.fromARGB(255, 255, 192, 2),
-                            thickness: 1.0,
-                          ),
-                          Text('Masa Niyamaka',
+                        ),
+                        // SizedBox(height: 5),
+                      ]),
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Column(children: [
+                        // SizedBox(height: 5),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(widget.languageListmasaniyamaka,
+                              // 'Masa Niyamika',
                               // textAlign: TextAlign.start,
                               style: TextStyle(
                                 color: Color.fromARGB(255, 162, 56, 7),
                               )),
-                          SizedBox(height: 5),
-                          Text(widget.masaniyamaka,
+                        ),
+                        // SizedBox(height: 5),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(widget.masaniyamaka,
                               // textAlign: TextAlign.justify,
                               // overflow: TextOverflow.ellipsis,
                               // maxLines: 2,
                               style: TextStyle(
-                                // fontSize: 15,
+                                fontSize: 18,
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 162, 56, 7),
                               )),
-                          Divider(
-                            color: Color.fromARGB(255, 255, 192, 2),
-                            thickness: 1.0,
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 5),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Divider(
-                            color: Color.fromARGB(255, 255, 192, 2),
-                            thickness: 1.0,
-                          ),
-                          Text('Tithi',
-                              textAlign: TextAlign.center,
+                        ),
+                        // SizedBox(height: 5),
+                        // ]),
+                      ]),
+                ]),
+                TableRow(children: [
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // SizedBox(height: 5),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(widget.languageListpaksha,
+                              // 'Paksha',
+                              // textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Color.fromARGB(255, 162, 56, 7),
                               )),
-                          SizedBox(height: 5),
-                          Text(widget.tithi,
+                        ),
+                        // SizedBox(height: 5),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(widget.paksha,
+                              // textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 162, 56, 7),
+                              )),
+                        ),
+                        // SizedBox(height: 5),
+                      ]),
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Column(children: [
+                        // SizedBox(height: 5),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(widget.languageListtithi,
+                              // 'Tithi',
                               textAlign: TextAlign.left,
                               style: TextStyle(
-                                // fontSize: 15,
+                                color: Color.fromARGB(255, 162, 56, 7),
+                              )),
+                        ),
+                        // SizedBox(height: 5),
+                        Padding(
+                            padding: EdgeInsets.all(8),
+                            child: Row(
+                              children: [
+                                Text((widget.tithi),
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 162, 56, 7),
+                                    )),
+                                Text('(',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      letterSpacing: 3,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 162, 56, 7),
+                                    )),
+                                Text(widget.shradhatithi,
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      letterSpacing: 3,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 162, 56, 7),
+                                    )),
+                                Text(')',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      letterSpacing: 3,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 162, 56, 7),
+                                    )),
+                              ],
+                            )),
+                        // SizedBox(height: 5),
+                        // ]),
+                      ]),
+                ]),
+                TableRow(children: [
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // SizedBox(height: 5),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(widget.languageListvasara,
+                              // 'Vasara',
+                              // textAlign: TextAlign.left,
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 162, 56, 7),
+                              )),
+                        ),
+                        // SizedBox(height: 5),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(widget.vasara,
+                              // textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontSize: 18,
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 162, 56, 7),
                               )),
-                          Divider(
-                            color: Color.fromARGB(255, 255, 192, 2),
-                            thickness: 1.0,
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 5),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Divider(
-                            color: Color.fromARGB(255, 255, 192, 2),
-                            thickness: 1.0,
-                          ),
-                          Text('Nakshatra',
+                        ),
+                        // SizedBox(height: 5),
+                      ]),
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Column(children: [
+                        // SizedBox(height: 5),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(widget.languageListnakshatra,
+                              // 'Nakshatra',
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 color: Color.fromARGB(255, 162, 56, 7),
                               )),
-                          SizedBox(height: 5),
-                          Text(widget.nakshatra,
+                        ),
+                        // SizedBox(height: 5),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(widget.nakshatra,
                               textAlign: TextAlign.justify,
                               style: TextStyle(
-                                // fontSize: 15,
+                                fontSize: 18,
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 162, 56, 7),
                               )),
-                          Divider(
-                            color: Color.fromARGB(255, 255, 192, 2),
-                            thickness: 1.0,
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 5),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Divider(
-                            color: Color.fromARGB(255, 255, 192, 2),
-                            thickness: 1.0,
-                          ),
-                          Text('Karana',
+                        ),
+                        // SizedBox(height: 5),
+                        // ]),
+                      ]),
+                ]),
+                TableRow(children: [
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // SizedBox(height: 5),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(widget.languageListyoga,
+                              // 'Yoga',
+                              // textAlign: TextAlign.left,
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 162, 56, 7),
+                              )),
+                          // SizedBox(height: 5),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(widget.yoga,
+                              // textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 162, 56, 7),
+                              )),
+                        ),
+                        // SizedBox(height: 5),
+                      ]),
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Column(children: [
+                        // SizedBox(height: 5),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(widget.languageListkarana,
+                              // 'Karana',
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 color: Color.fromARGB(255, 162, 56, 7),
                               )),
-                          SizedBox(height: 5),
-                          Text(widget.karana,
+                        ),
+                        // SizedBox(height: 5),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(widget.karana,
                               // textAlign: TextAlign.justify,
                               style: TextStyle(
-                                  // fontSize: 15,
+                                  fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                   color: Color.fromARGB(255, 162, 56, 7))),
-                          Divider(
-                            color: Color.fromARGB(255, 255, 192, 2),
-                            thickness: 1.0,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                          // ]),
+                        ),
+                        // SizedBox(height: 5),
+                      ]),
+                ]),
               ],
             ),
+            // SizedBox(height: 15),
             Divider(
               color: Color.fromARGB(255, 255, 192, 2),
               thickness: 03.0,
@@ -2296,7 +2757,8 @@ class _DisplayDesignState extends State<DisplayDesign> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Today's Special",
+                                widget.languageListvishesha,
+                                // "Today's Special",
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.bold),
                               ),

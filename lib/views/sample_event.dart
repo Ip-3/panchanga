@@ -48,31 +48,32 @@ List<CalendarEvent> sampleEvents(List<Day> calendarmappingList) {
 
   final sampleEvents = [
     for (i = 0; i < calendarThithi.length; i++)
+      // if (aaa[i] == 'a')
       CalendarEvent(
           eventName: calendarThithi[i],
           eventDate: startDay.add(Duration(days: i)),
-          eventBackgroundColor: Colors.white,
+          eventBackgroundColor: Colors.transparent,
           eventTextColor: Color.fromARGB(255, 254, 48, 20)),
     for (i = 0; i < calendarThithi.length; i++)
       if (calendarThithi[i] == 'Amavasya')
         CalendarEvent(
             eventName: calendarThithi[i],
             eventDate: startDay.add(Duration(days: i)),
-            eventBackgroundColor: Colors.white,
+            eventBackgroundColor: Colors.transparent,
             eventTextColor: Color.fromARGB(255, 0, 0, 0)),
     for (i = 0; i < calendarMark.length; i++)
       if (calendarThithi[i] == 'Pournima')
         CalendarEvent(
             eventName: calendarThithi[i],
             eventDate: startDay.add(Duration(days: i)),
-            eventBackgroundColor: Colors.white,
+            eventBackgroundColor: Colors.transparent,
             eventTextColor: Color.fromARGB(255, 8, 112, 232)),
     for (i = 0; i < calendarPaksha.length; i++)
       // if (aaa[i] == 'a')
       CalendarEvent(
           eventName: calendarMark[i],
           eventDate: startDay.add(Duration(days: i)),
-          eventBackgroundColor: Colors.white,
+          eventBackgroundColor: Colors.transparent,
           eventTextColor: Color.fromARGB(255, 198, 159, 4)),
   ];
   return sampleEvents;
