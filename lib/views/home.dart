@@ -21,9 +21,7 @@ class _PanchangaState extends State<Panchanga> {
   dynamic dateDataIndex;
   dynamic dateIndex;
   var langValue;
-
   var langSettingsValue;
-
   var settingsLanguage;
   var updatelanguage;
   var difference;
@@ -258,7 +256,6 @@ class _PanchangaState extends State<Panchanga> {
       panchanagaLanguageList.languageListvishesha = kannadaList[10];
       allLanguageList.add(panchanagaLanguageList);
     }
-
     print(allLanguageList[1]);
   }
 
@@ -1539,6 +1536,7 @@ class _PanchangaState extends State<Panchanga> {
       print("Its here");
       settingsLanguage = int.parse(contents);
     }
+    allLanguageList.clear();
     switch (settingsLanguage) {
       case 1:
         getEnglishPanchanga();
@@ -1571,14 +1569,13 @@ class _PanchangaState extends State<Panchanga> {
         getTamilPanchanga();
         getKannadaPanchanga();
         getTeluguPanchanga();
+        getEnglishList();
         getTeluguList();
         getTamilPanchanga();
         getHindiList();
         getKannadaList();
-        getEnglishList();
         getSanskritList();
-
-        // getKannadaList();
+        getKannadaList();
         break;
     }
   }
@@ -1592,7 +1589,7 @@ class _PanchangaState extends State<Panchanga> {
       return Scaffold(
         appBar: AppBar(
           title: Text(
-            "UM Panchanga",
+            "U M Panchanga",
             style: TextStyle(color: Colors.black),
           ),
           iconTheme: IconThemeData(color: Colors.black),
@@ -1775,11 +1772,16 @@ class _PanchangaState extends State<Panchanga> {
 
   Widget nomalPopMenu() {
     return PopupMenuButton<int>(
+      iconSize: 20,
       icon: const Icon(Icons.more_vert, color: Colors.black),
       itemBuilder: (BuildContext context) => <PopupMenuItem<int>>[
         PopupMenuItem<int>(
           value: 1,
           child: TextButton(
+            style: ElevatedButton.styleFrom(
+              minimumSize: Size.fromHeight(40),
+              // fromHeight use double.infinity as width and 40 is the height
+            ),
             child: const Text('Language'),
             onPressed: () {
               Navigator.pop(context);
@@ -1798,132 +1800,177 @@ class _PanchangaState extends State<Panchanga> {
                           RadioListTile(
                             title: Text("English"),
                             value: "1",
-                            // toggleable: true,
+                            toggleable: true,
+                            // selected: true,
+                            // Color? activeColor,
+                            // Widget? title,
+                            // Widget? subtitle,
+                            // isThreeLine: false,
+                            // bool? dense,
+                            // Widget? secondary,
+
+                            //  ListTileControlAffinity controlAffinity = ListTileControlAffinity.platform,
+                            autofocus: true,
+                            // EdgeInsetsGeometry? contentPadding,
+                            // ShapeBorder? shape,
+                            // Color? tileColor,
+                            // Color? selectedTileColor,
+                            // VisualDensity? visualDensity,
+                            // FocusNode? focusNode,
+                            enableFeedback: false,
                             groupValue: langValue,
                             onChanged: (value) async {
                               mySettingsFile = await localSettingsFile;
                               mySettingsFile?.writeAsString(value.toString());
-                              setState(() async {
-                                // setState(() {
-                                langValue = value;
-                                langSettingsValue = value;
-                                panchangalistmodel.clear();
-                                panchangalistmodelUpdate.clear();
-                                allLanguageList.clear();
-
-                                getEnglishPanchanga();
-                                getEnglishList();
-                                Navigator.pop(context);
-                              });
+                              // setState(() async {
+                              // await new Future.delayed(
+                              //     const Duration(seconds: 2));
+                              // setState(() async {
+                              //   await new Future.delayed(
+                              //       const Duration(milliseconds: 100));
+                              langValue = value;
+                              langSettingsValue = value;
+                              panchangalistmodel.clear();
+                              panchangalistmodelUpdate.clear();
+                              allLanguageList.clear();
+                              getEnglishPanchanga();
+                              getEnglishList();
+                              Navigator.pop(context);
+                              // });
                             },
                           ),
                           RadioListTile(
                             title: Text("Kannada"),
                             value: "2",
                             groupValue: langValue,
+                            toggleable: true,
+                            autofocus: true,
                             onChanged: (value) async {
                               mySettingsFile = await localSettingsFile;
                               mySettingsFile?.writeAsString(value.toString());
-                              setState(() async {
-                                // setState(() {
-                                langValue = value;
-                                langSettingsValue = value;
-                                panchangalistmodel.clear();
-                                panchangalistmodelUpdate.clear();
-                                allLanguageList.clear();
+                              // setState(() async {
+                              // await new Future.delayed(
+                              //     const Duration(seconds: 2));
 
-                                getKannadaPanchanga();
-                                getKannadaList();
-                                Navigator.pop(context);
-                              });
+                              // setState(() async {
+                              //   await new Future.delayed(
+                              //       const Duration(milliseconds: 100));
+                              langValue = value;
+                              langSettingsValue = value;
+                              panchangalistmodel.clear();
+                              panchangalistmodelUpdate.clear();
+                              allLanguageList.clear();
+                              getKannadaPanchanga();
+                              getKannadaList();
+                              Navigator.pop(context);
+                              // });
                             },
                           ),
                           RadioListTile(
                             title: Text("Hindi"),
                             value: "3",
                             groupValue: langValue,
+                            toggleable: true,
+                            autofocus: true,
                             onChanged: (value) async {
                               mySettingsFile = await localSettingsFile;
                               mySettingsFile?.writeAsString(value.toString());
-                              setState(() async {
-                                // setState(() {
-                                langValue = value;
-                                langSettingsValue = value;
+                              // setState(() async {
+                              // await new Future.delayed(
+                              //     const Duration(seconds: 2));
 
-                                panchangalistmodel.clear();
-                                panchangalistmodelUpdate.clear();
-                                allLanguageList.clear();
-
-                                getHindiPanchanga();
-                                getHindiList();
-                                Navigator.pop(context);
-                              });
+                              // setState(() async {
+                              // await new Future.delayed(
+                              //     const Duration(milliseconds: 100));
+                              langValue = value;
+                              langSettingsValue = value;
+                              panchangalistmodel.clear();
+                              panchangalistmodelUpdate.clear();
+                              allLanguageList.clear();
+                              getHindiPanchanga();
+                              getHindiList();
+                              Navigator.pop(context);
+                              // });
                             },
                           ),
                           RadioListTile(
                             title: Text("Tamil"),
                             value: "4",
                             groupValue: langValue,
+                            toggleable: true,
+                            autofocus: true,
                             onChanged: (value) async {
                               mySettingsFile = await localSettingsFile;
                               mySettingsFile?.writeAsString(value.toString());
-                              setState(() async {
-                                // setState(() {
-                                langValue = value;
-                                langSettingsValue = value;
+                              // setState(() async {
+                              // await new Future.delayed(
+                              //     const Duration(seconds: 2));
 
-                                panchangalistmodel.clear();
-                                panchangalistmodelUpdate.clear();
-                                allLanguageList.clear();
+                              // setState(() async {
+                              await new Future.delayed(
+                                  const Duration(milliseconds: 100));
+                              langValue = value;
+                              langSettingsValue = value;
 
-                                getTamilPanchanga();
-                                getTamilList();
-                                Navigator.pop(context);
-                              });
+                              panchangalistmodel.clear();
+                              panchangalistmodelUpdate.clear();
+                              allLanguageList.clear();
+                              getTamilPanchanga();
+                              getTamilList();
+                              Navigator.pop(context);
+                              // });
                             },
                           ),
                           RadioListTile(
                             title: Text("Telugu"),
                             value: "5",
                             groupValue: langValue,
+                            toggleable: true,
+                            autofocus: true,
                             onChanged: (value) async {
                               mySettingsFile = await localSettingsFile;
                               mySettingsFile?.writeAsString(value.toString());
-                              setState(() async {
-                                // setState(() {
-                                langValue = value;
-                                langSettingsValue = value;
+                              // setState(() async {
+                              // await new Future.delayed(
+                              //     const Duration(seconds: 2));
 
-                                panchangalistmodel.clear();
-                                panchangalistmodelUpdate.clear();
-                                allLanguageList.clear();
-
-                                getTeluguPanchanga();
-                                getTeluguList();
-                                Navigator.pop(context);
-                              });
+                              // setState(() async {
+                              //   await new Future.delayed(
+                              //       const Duration(milliseconds: 100));
+                              langValue = value;
+                              langSettingsValue = value;
+                              panchangalistmodel.clear();
+                              panchangalistmodelUpdate.clear();
+                              allLanguageList.clear();
+                              getTeluguPanchanga();
+                              getTeluguList();
+                              Navigator.pop(context);
+                              // });
                             },
                           ),
                           RadioListTile(
                             title: Text("Sanskrit"),
                             value: "6",
                             groupValue: langValue,
+                            toggleable: true,
+                            autofocus: true,
                             onChanged: (value) async {
                               mySettingsFile = await localSettingsFile;
                               mySettingsFile?.writeAsString(value.toString());
-                              setState(() async {
-                                // setState(() {
-                                langValue = value;
-                                langSettingsValue = value;
+                              // setState(() async {
 
-                                panchangalistmodel.clear();
-                                panchangalistmodelUpdate.clear();
-                                allLanguageList.clear();
-
-                                getSanskritPanchanga();
-                                getSanskritList();
-                                Navigator.pop(context);
-                              });
+                              // setState(() async {
+                              //   await new Future.delayed(
+                              //       const Duration(milliseconds: 100));
+                              langValue = value;
+                              langSettingsValue = value;
+                              panchangalistmodel.clear();
+                              panchangalistmodelUpdate.clear();
+                              allLanguageList.clear();
+                              getSanskritPanchanga();
+                              getSanskritList();
+                              Navigator.pop(context);
+                              // });
                             },
                           ),
                           ElevatedButton(
@@ -1942,9 +1989,14 @@ class _PanchangaState extends State<Panchanga> {
         PopupMenuItem<int>(
             value: 2,
             child: TextButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size.fromHeight(40),
+                // fromHeight use double.infinity as width and 40 is the height
+              ),
               child: const Text('Update'),
               onPressed: () async {
                 Navigator.pop(context);
+
                 updatelanguage = true;
                 File? myUpdatedEnglishFile;
                 myUpdatedEnglishFile = await localUpdateEnglishFile;
@@ -2050,6 +2102,10 @@ class _PanchangaState extends State<Panchanga> {
         PopupMenuItem<int>(
             value: 3,
             child: TextButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size.fromHeight(40),
+                // fromHeight use double.infinity as width and 40 is the height
+              ),
               child: const Text('Exit'),
               onPressed: () {
                 Navigator.pop(context);
@@ -2283,10 +2339,10 @@ class _DisplayDesignState extends State<DisplayDesign> {
           color: Color.fromARGB(255, 245, 240, 225),
           alignment: Alignment.center,
           child: Column(children: <Widget>[
-            Divider(
-              color: Color.fromARGB(255, 255, 192, 2),
-              thickness: 03.0,
-            ),
+            // Divider(
+            //   color: Color.fromARGB(255, 255, 192, 2),
+            //   thickness: 03.0,
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
