@@ -1,5 +1,5 @@
 import 'package:cell_calendar/cell_calendar.dart';
-import 'package:panchanga/panchanga_model.dart';
+import 'package:panchanga/models/panchanga_model.dart';
 import 'package:panchanga/views/home.dart';
 import 'package:panchanga/views/sample_event.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,6 @@
 import 'package:cell_calendar/cell_calendar.dart';
 import 'package:flutter/material.dart';
-import 'package:panchanga/panchanga_model.dart';
+import 'package:panchanga/models/panchanga_model.dart';
 import 'dart:core';
 
 List<CalendarEvent> sampleEvents(List<Day> calendarmappingList) {

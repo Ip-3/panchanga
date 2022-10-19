@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:panchanga/panchanga_model.dart';
+import 'package:panchanga/models/panchanga_model.dart';
 
 class SearchInList extends SearchDelegate {
   List<Day> panchangaSearchList = <Day>[];

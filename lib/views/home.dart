@@ -1,12 +1,22 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
-import 'package:panchanga/views/panchanaga_language_list.dart';
+import 'package:panchanga/models/aradne_model.dart';
+import 'package:panchanga/models/ekadashi_model.dart';
+import 'package:panchanga/models/festival_model.dart';
+import 'package:panchanga/models/panchanaga_language_list.dart';
+import 'package:panchanga/views/search_aradhane.dart';
+import 'package:panchanga/views/search_ekadashi.dart';
+import 'package:panchanga/views/search_festivals.dart';
+import 'package:panchanga/views/search_shuba_ashuba.dart';
+import 'package:panchanga/views/search_tarpana.dart';
 import 'dart:io';
 import 'package:panchanga/views/search_in_list.dart';
-import 'package:panchanga/panchanga_model.dart';
+import 'package:panchanga/models/panchanga_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:panchanga/views/calendar_event.dart';
+import 'package:panchanga/models/shuba_ashuba_model.dart';
+import 'package:panchanga/models/tarpana_model.dart';
 import 'package:path_provider/path_provider.dart';
 
 // ignore: must_be_immutable
@@ -29,6 +39,12 @@ class _PanchangaState extends State<Panchanga> {
   var jsonPanchanga;
   var jsonPanchangaUpdate;
 
+  var jsonAradane;
+  var jsonEkadashi;
+  var jsonFestivals;
+  var jsonShubhaAshubha;
+  var jsonTarpana;
+
   DateTime specificDate = DateTime.now();
 
   List<Day> panchangalistmodel = <Day>[];
@@ -39,6 +55,12 @@ class _PanchangaState extends State<Panchanga> {
   List<Day> updatedTamilPanchanaga = <Day>[];
   List<Day> updatedTeluguPanchanaga = <Day>[];
   List<Day> updatedSanskritPanchanaga = <Day>[];
+
+  List<AradaneModel> aradaneListmodel = <AradaneModel>[];
+  List<EkadashiModel> ekadashiListmodel = <EkadashiModel>[];
+  List<FestivalModel> festivalsListmodel = <FestivalModel>[];
+  List<TarpanaModel> tarpanaListmodel = <TarpanaModel>[];
+  List<ShubaAshubaModel> shubhaAshubhaListmodel = <ShubaAshubaModel>[];
 
   var path;
   File? mySettingsFile;
@@ -143,18 +165,84 @@ class _PanchangaState extends State<Panchanga> {
     return new File('$path/updatedDataSanskrit.json').create(recursive: true);
   }
 
+  Future<Object> get localAradanePath async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
+
+  Future<File> get localAradaneFile async {
+    path = await localSettingsPath;
+    print(path);
+    return new File('$path/aradane.json').create(recursive: true);
+  }
+
+  Future<Object> get localEkadashiPath async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
+
+  Future<File> get localEkadashiFile async {
+    path = await localSettingsPath;
+    print(path);
+    return new File('$path/ekadashi.json').create(recursive: true);
+  }
+
+  Future<Object> get localFestivalPath async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
+
+  Future<File> get localFestivalFile async {
+    path = await localSettingsPath;
+    print(path);
+    return new File('$path/festivals.json').create(recursive: true);
+  }
+
+  Future<Object> get localShubhaAshubhaPath async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
+
+  Future<File> get localShubhaAshubhaFile async {
+    path = await localSettingsPath;
+    print(path);
+    return new File('$path/shubhaAshubha.json').create(recursive: true);
+  }
+
+  Future<Object> get localTarpanaPath async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
+
+  Future<File> get localTarpanaFile async {
+    path = await localSettingsPath;
+    print(path);
+    return new File('$path/tarpana.json').create(recursive: true);
+  }
+
   var appScriptURLEnglish =
-      'https://script.google.com/macros/s/AKfycbyXsDv68rkWVVnVBlz9JwrYXJbHOImUibFJ1OL0XpS4XczPIqDS2C2HCLgXA1CzRJ1F/exec';
+      "https://script.google.com/macros/s/AKfycbxHmeYbeP1jolF97VSK6duKpN9W55eKDspbulATBl2dYynq5P04sLi-eu2aTf2PzUMiZg/exec";
   var appScriptURLKannada =
-      "https://script.google.com/macros/s/AKfycbxVZqerGm6bzpJs8p_97aPIdNOEgjCvyqf4FP9o0pO4OAZ0EnVrcFACPDbVQTPfsosP/exec";
+      "https://script.google.com/macros/s/AKfycbwtR-nNrO6tQyHoyiXcyzWjfQkklNKKXRZonq3UL4G8QIlND4uLmjHAi2O0CByZfG4q/exec";
   var appScriptURLTelugu =
-      "https://script.google.com/macros/s/AKfycbxqhFNyXrPe7y6uqOD_miG4TgASoVvnr0SFJZdz748xRH-5hDlBkhkThttnUpQMEnMf/exec";
+      "https://script.google.com/macros/s/AKfycbwPOrs-4OQzAs38KnKODevdbXtD5-5si-FvtEentWfIkv9TMM9ZfVRSOlsVlXr5FCJq/exec";
   var appScriptURLTamil =
-      "https://script.google.com/macros/s/AKfycbyY_-xuTNcKsEE669TVFePlSW-tqFxrWPBtgx-XmM84outXcedKIiTsELr6YO8V2JrzyA/exec";
+      "https://script.google.com/macros/s/AKfycbxdKV4LeYNc6VtJx4sbH6jMCuWIJB5EZ1m5rd-qICoRE2wKzPiCxXnXSITUg8nKnArj/exec";
   var appScriptURLSanskrit =
-      "https://script.google.com/macros/s/AKfycbyrnvgdG5Sw52dc7InQolaFoqVre0ZWsm8_AvsxbukfRva1YrdxjviU-72thmfyLsAg9g/exec";
+      "https://script.google.com/macros/s/AKfycbx4J3w81rCKnQTpZ51L0WByAn4L_6IlrsdWgO2ZyKHVxtMuMiX65aOSNOhF-mDV-uts/exec";
   var appScriptURLMarathi =
-      "https://script.google.com/macros/s/AKfycbxZtGrRR38cg2ocqy2i1iLdgsYMsXbj9XyXg_PNLxy_zoh4E4hlaWZMuHxY7Vj8DG96/exec";
+      "https://script.google.com/macros/s/AKfycbxCHtyTAMXxvA3GjERsat5jK6D9URzwaolS93CfPdwrb0hFxHyMO6S8IV8jgP-KK4_s/exec";
+
+  var appScriptURLAradane =
+      "https://script.google.com/macros/s/AKfycbz9KdNL_TG7MVQLggiUH49DD0vyeDDxBV-lbVUw210Q6OlUPc3zXiNpVdXYtq16eSu2/exec";
+  var appScriptURLTarpana =
+      "https://script.google.com/macros/s/AKfycby-QGqpQQCC2Jx1Ca0QnJ0XeCMVy_YbOr0MxidITmjounaKIsMhXMGbE0zRf5FGiPYyug/exec";
+  var appScriptURLShubhaAshubha =
+      "https://script.google.com/macros/s/AKfycbyzga-OHREVB3XmoIR-7oihRe0DE5fH4b35tVfRUHRmCzqqX9iwpHj3ZkFS-fpZOGFT/exec";
+  var appScriptURLFestival =
+      "https://script.google.com/macros/s/AKfycbwTYYhb4DDzQp8UYootDame0GrZz-gXiHBuDeSKz_E-DtQLC5Vh5lXNJI0TACDNa-T06w/exec";
+  var appScriptURLEkadashi =
+      "https://script.google.com/macros/s/AKfycbxUauI-6Z7rXn3TiTeaHVr_Rv4lQ4aKKQ9co9W33s9lvwCnWLOhdKdIyq517hTTonTh-w/exec";
 
   List<String> kannadaList = [
     'ಆಯನ',
@@ -477,9 +565,10 @@ class _PanchangaState extends State<Panchanga> {
       print(
           "Original English File is not present in Local database, Fetching from Remote Database");
       var raw = await http.get(Uri.parse(appScriptURLEnglish));
-      jsonPanchanga = convert.jsonDecode(raw.body);
+      jsonPanchanga = await convert.jsonDecode(raw.body);
       setState(() {
         getPanchangaDataFromSheet();
+        // getAradaneDataFromSheet();
       });
       String jsondata = raw.body
           .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
@@ -491,6 +580,7 @@ class _PanchangaState extends State<Panchanga> {
       print("Update Pressed getting Modified English files from Remote");
       if (contents.isEmpty == false && updatedContents.isEmpty == true) {
         print("Updated File is empty");
+
         getEnglishUpdateCompare();
       } else {
         print("Updated File is not empty");
@@ -690,7 +780,7 @@ class _PanchangaState extends State<Panchanga> {
   }
 
   getKannadaPanchanga() async {
-    langSettingsValue = 1;
+    langSettingsValue = 2;
     File? myfile;
     File? myUpdatedfile;
     myfile = await localKannadaFile;
@@ -932,7 +1022,7 @@ class _PanchangaState extends State<Panchanga> {
   }
 
   getMarathiPanchanga() async {
-    langSettingsValue = 1;
+    langSettingsValue = 3;
     File? myfile;
     File? myUpdatedfile;
     myfile = await localMarathiFile;
@@ -1174,7 +1264,7 @@ class _PanchangaState extends State<Panchanga> {
   }
 
   getTamilPanchanga() async {
-    langSettingsValue = 1;
+    langSettingsValue = 4;
     File? myfile;
     File? myUpdatedfile;
     myfile = await localTamilFile;
@@ -1415,7 +1505,7 @@ class _PanchangaState extends State<Panchanga> {
   }
 
   getTeluguPanchanga() async {
-    langSettingsValue = 1;
+    langSettingsValue = 5;
     File? myfile;
     File? myUpdatedfile;
     myfile = await localTeluguFile;
@@ -1656,7 +1746,7 @@ class _PanchangaState extends State<Panchanga> {
   }
 
   getSanskritPanchanga() async {
-    langSettingsValue = 1;
+    langSettingsValue = 6;
     File? myfile;
     File? myUpdatedfile;
     myfile = await localSanskritFile;
@@ -1940,6 +2030,7 @@ class _PanchangaState extends State<Panchanga> {
       day.vishesha = element['vishesha'].toString();
       panchangalistmodel.add(day);
     });
+
     for (dateDataIndex = 0;
         dateDataIndex < panchangalistmodel.length;
         dateDataIndex++) {
@@ -1954,6 +2045,200 @@ class _PanchangaState extends State<Panchanga> {
       }
     }
     print('Testing,$dateDataIndex');
+  }
+
+  getAradaneData() async {
+    File? myfile;
+    myfile = await localAradaneFile;
+    String? contents = await myfile.readAsString();
+    print(contents);
+    if (contents.isEmpty == true) {
+      print("Aradane data is fetching from Remote Database");
+      var raw = await http.get(Uri.parse(appScriptURLAradane));
+      jsonAradane = convert.jsonDecode(raw.body);
+      // setState(() {
+      getAradaneDataFromSheet();
+      // });
+      String jsondata = raw.body
+          .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
+        return "'${match.group(0)}'";
+      });
+      return myfile.writeAsString(jsondata);
+    } else {
+      jsonAradane = convert.jsonDecode(contents);
+      // setState(() {
+      // panchangalistmodel.clear();
+      // panchangalistmodelUpdate.clear();
+      getAradaneDataFromSheet();
+      // getUpdateLanguageCompareData();
+      // });
+    }
+  }
+
+  getAradaneDataFromSheet() async {
+    print("getAradaneDataFromSheet");
+    jsonAradane.forEach((element) {
+      AradaneModel aradaneModel =
+          new AradaneModel(aradane: '', date: '', day: '');
+      aradaneModel.day = element['day'].toString();
+      aradaneModel.date = element['date'].toString();
+      aradaneModel.aradane = element['aradane'].toString();
+      aradaneListmodel.add(aradaneModel);
+      // print(element);
+    });
+  }
+
+  getEkadashiData() async {
+    File? myfile;
+    myfile = await localEkadashiFile;
+    String? contents = await myfile.readAsString();
+
+    if (contents.isEmpty == true) {
+      print("Ekadashi data is fetching from Remote Database");
+
+      var raw = await http.get(Uri.parse(appScriptURLEkadashi));
+      jsonEkadashi = convert.jsonDecode(raw.body);
+      setState(() {
+        getEkadashiDataFromSheet();
+      });
+      String jsondata = raw.body
+          .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
+        return "'${match.group(0)}'";
+      });
+      return myfile.writeAsString(jsondata);
+    } else {
+      jsonEkadashi = convert.jsonDecode(contents);
+      // setState(() {
+      // panchangalistmodel.clear();
+      // panchangalistmodelUpdate.clear();
+      getEkadashiDataFromSheet();
+      // getUpdateLanguageCompareData();
+      // });
+    }
+  }
+
+  getEkadashiDataFromSheet() async {
+    jsonEkadashi.forEach((element) {
+      EkadashiModel ekadashiModel =
+          new EkadashiModel(ekadashi: '', date: '', day: '');
+      ekadashiModel.day = element['day'].toString();
+      ekadashiModel.date = element['date'].toString();
+      ekadashiModel.ekadashi = element['ekadashi'].toString();
+      ekadashiListmodel.add(ekadashiModel);
+    });
+  }
+
+  getFestivalsData() async {
+    File? myfile;
+    myfile = await localFestivalFile;
+    String? contents = await myfile.readAsString();
+    if (contents.isEmpty == true) {
+      print("Festival data is fetching from Remote Database");
+
+      var raw = await http.get(Uri.parse(appScriptURLFestival));
+      jsonFestivals = convert.jsonDecode(raw.body);
+      setState(() {
+        getFestivalsDataFromSheet();
+      });
+      String jsondata = raw.body
+          .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
+        return "'${match.group(0)}'";
+      });
+      return myfile.writeAsString(jsondata);
+    } else {
+      jsonFestivals = convert.jsonDecode(contents);
+      getFestivalsDataFromSheet();
+      // getUpdateLanguageCompareData();
+      // });
+    }
+  }
+
+  getFestivalsDataFromSheet() async {
+    jsonFestivals.forEach((element) {
+      FestivalModel festivalsModel =
+          new FestivalModel(festivals: '', date: '', day: '');
+      festivalsModel.day = element['day'].toString();
+      festivalsModel.date = element['date'].toString();
+      festivalsModel.festivals = element['festivals'].toString();
+      festivalsListmodel.add(festivalsModel);
+    });
+  }
+
+  getShubhaAshubhaData() async {
+    File? myfile;
+    myfile = await localShubhaAshubhaFile;
+    String? contents = await myfile.readAsString();
+
+    if (contents.isEmpty == true) {
+      print("Shubha ad Ashubha data is fetching from Remote Database");
+      var raw = await http.get(Uri.parse(appScriptURLShubhaAshubha));
+      jsonShubhaAshubha = convert.jsonDecode(raw.body);
+      setState(() {
+        getShubhaAshubhaDataFromSheet();
+      });
+      String jsondata = raw.body
+          .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
+        return "'${match.group(0)}'";
+      });
+      return myfile.writeAsString(jsondata);
+    } else {
+      jsonShubhaAshubha = convert.jsonDecode(contents);
+      // setState(() {
+      // panchangalistmodel.clear();
+      // panchangalistmodelUpdate.clear();
+      getShubhaAshubhaDataFromSheet();
+      // getUpdateLanguageCompareData();
+      // });
+    }
+  }
+
+  getShubhaAshubhaDataFromSheet() async {
+    jsonShubhaAshubha.forEach((element) {
+      ShubaAshubaModel shubhaAshubhaModel =
+          new ShubaAshubaModel(shubhaAshubha: '', date: '');
+      shubhaAshubhaModel.date = element['date'].toString();
+      shubhaAshubhaModel.shubhaAshubha = element['shubhaAshubha'].toString();
+      shubhaAshubhaListmodel.add(shubhaAshubhaModel);
+    });
+  }
+
+  getTarpanData() async {
+    File? myfile;
+    myfile = await localTarpanaFile;
+    String? contents = await myfile.readAsString();
+
+    if (contents.isEmpty == true) {
+      print("Tarpana data is fetching from Remote Database");
+      var raw = await http.get(Uri.parse(appScriptURLTarpana));
+      jsonTarpana = convert.jsonDecode(raw.body);
+      setState(() {
+        getTarpanDataFromSheet();
+      });
+      String jsondata = raw.body
+          .replaceAllMapped(RegExp(r'(?<=\{| )\w(.*?)(?=\: |, |,})'), (match) {
+        return "'${match.group(0)}'";
+      });
+      return myfile.writeAsString(jsondata);
+    } else {
+      jsonTarpana = convert.jsonDecode(contents);
+      // setState(() {
+      // panchangalistmodel.clear();
+      // panchangalistmodelUpdate.clear();
+      getTarpanDataFromSheet();
+      // getUpdateLanguageCompareData();
+      // });
+    }
+  }
+
+  getTarpanDataFromSheet() async {
+    jsonTarpana.forEach((element) {
+      TarpanaModel tarpanaModel =
+          new TarpanaModel(tarpana: '', date: '', day: '');
+      tarpanaModel.day = element['day'].toString();
+      tarpanaModel.date = element['date'].toString();
+      tarpanaModel.tarpana = element['tarpana'].toString();
+      tarpanaListmodel.add(tarpanaModel);
+    });
   }
 
   @override
@@ -2010,15 +2295,24 @@ class _PanchangaState extends State<Panchanga> {
         getKannadaList();
         getSanskritList();
         getKannadaList();
+
+        getAradaneData();
+        getEkadashiData();
+        getShubhaAshubhaData();
+        getFestivalsData();
+        getTarpanData();
+
+        // getAradaneDataFromSheet();
+        // getEkadashiDataFromSheet();
+        // getShubhaAshubhaDataFromSheet();
+        // getFestivalsDataFromSheet();
+        // getTarpanDataFromSheet();
         break;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    print('Data from the CalendarDisplay Class${widget.differenceDate}');
-    print('Index in Widget $dateIndex');
-
     if (dateIndex == null) {
       return Scaffold(
         appBar: AppBar(
@@ -2095,7 +2389,17 @@ class _PanchangaState extends State<Panchanga> {
               ListTile(
                 title: const Text('Aradhane'),
                 onTap: () {
-                  Navigator.pop(context);
+                  print(aradaneListmodel);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              SearchAradhane(aradanelistmodel: aradaneListmodel)
+                          // (CalendarData(data: calendarViewListModel))
+                          ));
+                  //   showSearch(
+                  //       context: context,
+                  //       delegate: SearchAradhane(aradaneListmodel));
                 },
               ),
               Divider(
@@ -2105,7 +2409,13 @@ class _PanchangaState extends State<Panchanga> {
               ListTile(
                 title: const Text('Ekadashi'),
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SearchEkadashi(
+                              ekadashilistmodel: ekadashiListmodel)
+                          // (CalendarData(data: calendarViewListModel))
+                          ));
                 },
               ),
               Divider(
@@ -2115,7 +2425,13 @@ class _PanchangaState extends State<Panchanga> {
               ListTile(
                 title: const Text('Festivals / Special days'),
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SearchFestival(
+                              festivalslistmodel: festivalsListmodel)
+                          // (CalendarData(data: calendarViewListModel))
+                          ));
                 },
               ),
               Divider(
@@ -2125,7 +2441,13 @@ class _PanchangaState extends State<Panchanga> {
               ListTile(
                 title: const Text('Tarapana'),
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              SearchTarpana(tarpanalistmodel: tarpanaListmodel)
+                          // (CalendarData(data: calendarViewListModel))
+                          ));
                 },
               ),
               Divider(
@@ -2135,7 +2457,13 @@ class _PanchangaState extends State<Panchanga> {
               ListTile(
                 title: const Text('Shubha / Ashuba'),
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SearchShubhaAshubha(
+                              shubhaAshubhalistmodel: shubhaAshubhaListmodel)
+                          // (CalendarData(data: calendarViewListModel))
+                          ));
                 },
               ),
               Divider(
