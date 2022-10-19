@@ -1,10 +1,5 @@
-import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:panchanga/models/panchanga_model.dart';
-import 'package:http/http.dart' as http;
 import 'package:panchanga/models/aradne_model.dart';
-import 'package:path_provider/path_provider.dart';
 
 // ignore: must_be_immutable
 class SearchAradhane extends StatefulWidget {

@@ -34,6 +34,8 @@ class _PanchangaState extends State<Panchanga> {
   var langSettingsValue;
   var settingsLanguage;
   var updatelanguage;
+  var updateWaitBool = false;
+
   var difference;
   // late Day updatedDay;
   var jsonPanchanga;
@@ -229,9 +231,9 @@ class _PanchangaState extends State<Panchanga> {
   var appScriptURLTamil =
       "https://script.google.com/macros/s/AKfycbxdKV4LeYNc6VtJx4sbH6jMCuWIJB5EZ1m5rd-qICoRE2wKzPiCxXnXSITUg8nKnArj/exec";
   var appScriptURLSanskrit =
-      "https://script.google.com/macros/s/AKfycbx4J3w81rCKnQTpZ51L0WByAn4L_6IlrsdWgO2ZyKHVxtMuMiX65aOSNOhF-mDV-uts/exec";
+      "https://script.google.com/macros/s/AKfycbxnEqU15RPW7p3PX-TcSLJSAP0jFCjPcXJou3SY-bU3l6F_n3GJswBeh1POTI_q1Q22/exec";
   var appScriptURLMarathi =
-      "https://script.google.com/macros/s/AKfycbxCHtyTAMXxvA3GjERsat5jK6D9URzwaolS93CfPdwrb0hFxHyMO6S8IV8jgP-KK4_s/exec";
+      "https://script.google.com/macros/s/AKfycbyJIdLSgvr8oQ68P7W-AwMmEuDCpEhJ6cKOFTDs9xprBP4VoYlYDgmODTpNf1ygmov0/exec";
 
   var appScriptURLAradane =
       "https://script.google.com/macros/s/AKfycbz9KdNL_TG7MVQLggiUH49DD0vyeDDxBV-lbVUw210Q6OlUPc3zXiNpVdXYtq16eSu2/exec";
@@ -272,7 +274,7 @@ class _PanchangaState extends State<Panchanga> {
     "Today's special"
   ];
 
-  List<String> hindiList = [
+  List<String> marathiList = [
     'अयाना',
     'रुतु',
     'मसा',
@@ -405,18 +407,18 @@ class _PanchangaState extends State<Panchanga> {
       languageListpaksha: '',
     );
     // print("maga element $element");
-    for (int i = 0; i < hindiList.length; i++) {
-      panchanagaLanguageList.languageListayana = hindiList[0];
-      panchanagaLanguageList.languageListpaksha = hindiList[4];
-      panchanagaLanguageList.languageListrutu = hindiList[1];
-      panchanagaLanguageList.languageListmasa = hindiList[2];
-      panchanagaLanguageList.languageListmasaniyamaka = hindiList[3];
-      panchanagaLanguageList.languageListvasara = hindiList[6];
-      panchanagaLanguageList.languageListnakshatra = hindiList[7];
-      panchanagaLanguageList.languageListtithi = hindiList[5];
-      panchanagaLanguageList.languageListyoga = hindiList[8];
-      panchanagaLanguageList.languageListkarana = hindiList[9];
-      panchanagaLanguageList.languageListvishesha = hindiList[10];
+    for (int i = 0; i < marathiList.length; i++) {
+      panchanagaLanguageList.languageListayana = marathiList[0];
+      panchanagaLanguageList.languageListpaksha = marathiList[4];
+      panchanagaLanguageList.languageListrutu = marathiList[1];
+      panchanagaLanguageList.languageListmasa = marathiList[2];
+      panchanagaLanguageList.languageListmasaniyamaka = marathiList[3];
+      panchanagaLanguageList.languageListvasara = marathiList[6];
+      panchanagaLanguageList.languageListnakshatra = marathiList[7];
+      panchanagaLanguageList.languageListtithi = marathiList[5];
+      panchanagaLanguageList.languageListyoga = marathiList[8];
+      panchanagaLanguageList.languageListkarana = marathiList[9];
+      panchanagaLanguageList.languageListvishesha = marathiList[10];
       allLanguageList.add(panchanagaLanguageList);
     }
     print(allLanguageList[1]);
@@ -442,18 +444,18 @@ class _PanchangaState extends State<Panchanga> {
       languageListpaksha: '',
     );
     // print("maga element $element");
-    for (int i = 0; i < hindiList.length; i++) {
-      panchanagaLanguageList.languageListayana = hindiList[0];
-      panchanagaLanguageList.languageListpaksha = hindiList[4];
-      panchanagaLanguageList.languageListrutu = hindiList[1];
-      panchanagaLanguageList.languageListmasa = hindiList[2];
-      panchanagaLanguageList.languageListmasaniyamaka = hindiList[3];
-      panchanagaLanguageList.languageListvasara = hindiList[6];
-      panchanagaLanguageList.languageListnakshatra = hindiList[7];
-      panchanagaLanguageList.languageListtithi = hindiList[5];
-      panchanagaLanguageList.languageListyoga = hindiList[8];
-      panchanagaLanguageList.languageListkarana = hindiList[9];
-      panchanagaLanguageList.languageListvishesha = hindiList[10];
+    for (int i = 0; i < marathiList.length; i++) {
+      panchanagaLanguageList.languageListayana = marathiList[0];
+      panchanagaLanguageList.languageListpaksha = marathiList[4];
+      panchanagaLanguageList.languageListrutu = marathiList[1];
+      panchanagaLanguageList.languageListmasa = marathiList[2];
+      panchanagaLanguageList.languageListmasaniyamaka = marathiList[3];
+      panchanagaLanguageList.languageListvasara = marathiList[6];
+      panchanagaLanguageList.languageListnakshatra = marathiList[7];
+      panchanagaLanguageList.languageListtithi = marathiList[5];
+      panchanagaLanguageList.languageListyoga = marathiList[8];
+      panchanagaLanguageList.languageListkarana = marathiList[9];
+      panchanagaLanguageList.languageListvishesha = marathiList[10];
       allLanguageList.add(panchanagaLanguageList);
     }
     print(allLanguageList[1]);
@@ -553,6 +555,12 @@ class _PanchangaState extends State<Panchanga> {
         print("First fails Else");
         jsonPanchanga = convert.jsonDecode(contents);
         jsonPanchangaUpdate = convert.jsonDecode(updatedContents);
+        getAradaneData();
+        getEkadashiData();
+        getShubhaAshubhaData();
+        getFestivalsData();
+        getTarpanData();
+
         setState(() {
           panchangalistmodel.clear();
           panchangalistmodelUpdate.clear();
@@ -566,6 +574,11 @@ class _PanchangaState extends State<Panchanga> {
           "Original English File is not present in Local database, Fetching from Remote Database");
       var raw = await http.get(Uri.parse(appScriptURLEnglish));
       jsonPanchanga = await convert.jsonDecode(raw.body);
+      getAradaneData();
+      getEkadashiData();
+      getShubhaAshubhaData();
+      getFestivalsData();
+      getTarpanData();
       setState(() {
         getPanchangaDataFromSheet();
         // getAradaneDataFromSheet();
@@ -594,6 +607,11 @@ class _PanchangaState extends State<Panchanga> {
     if (contents.isEmpty == false && updatedContents.isEmpty == true) {
       print("Just show Original English File from local database");
       jsonPanchanga = convert.jsonDecode(contents);
+      getAradaneData();
+      getEkadashiData();
+      getShubhaAshubhaData();
+      getFestivalsData();
+      getTarpanData();
       setState(() {
         panchangalistmodel.clear();
         getPanchangaDataFromSheet();
@@ -797,6 +815,11 @@ class _PanchangaState extends State<Panchanga> {
         print("First fails Else");
         jsonPanchanga = convert.jsonDecode(contents);
         jsonPanchangaUpdate = convert.jsonDecode(updatedContents);
+        getAradaneData();
+        getEkadashiData();
+        getShubhaAshubhaData();
+        getFestivalsData();
+        getTarpanData();
         setState(() {
           panchangalistmodel.clear();
           panchangalistmodelUpdate.clear();
@@ -810,6 +833,11 @@ class _PanchangaState extends State<Panchanga> {
           "Original Kannada File is not present in Local database, Fetching from Remote Database");
       var raw = await http.get(Uri.parse(appScriptURLKannada));
       jsonPanchanga = convert.jsonDecode(raw.body);
+      getAradaneData();
+      getEkadashiData();
+      getShubhaAshubhaData();
+      getFestivalsData();
+      getTarpanData();
       setState(() {
         getPanchangaDataFromSheet();
       });
@@ -835,7 +863,13 @@ class _PanchangaState extends State<Panchanga> {
     }
     if (contents.isEmpty == false && updatedContents.isEmpty == true) {
       print("Just show Original Kannada File from local database");
+
       jsonPanchanga = convert.jsonDecode(contents);
+      getAradaneData();
+      getEkadashiData();
+      getShubhaAshubhaData();
+      getFestivalsData();
+      getTarpanData();
       setState(() {
         panchangalistmodel.clear();
         getPanchangaDataFromSheet();
@@ -1039,6 +1073,11 @@ class _PanchangaState extends State<Panchanga> {
         print("First fails Else");
         jsonPanchanga = convert.jsonDecode(contents);
         jsonPanchangaUpdate = convert.jsonDecode(updatedContents);
+        getAradaneData();
+        getEkadashiData();
+        getShubhaAshubhaData();
+        getFestivalsData();
+        getTarpanData();
         setState(() {
           panchangalistmodel.clear();
           panchangalistmodelUpdate.clear();
@@ -1052,6 +1091,11 @@ class _PanchangaState extends State<Panchanga> {
           "Original Marathi File is not present in Local database, Fetching from Remote Database");
       var raw = await http.get(Uri.parse(appScriptURLMarathi));
       jsonPanchanga = convert.jsonDecode(raw.body);
+      getAradaneData();
+      getEkadashiData();
+      getShubhaAshubhaData();
+      getFestivalsData();
+      getTarpanData();
       setState(() {
         getPanchangaDataFromSheet();
       });
@@ -1078,6 +1122,11 @@ class _PanchangaState extends State<Panchanga> {
     if (contents.isEmpty == false && updatedContents.isEmpty == true) {
       print("Just show Original Marathi File from local database");
       jsonPanchanga = convert.jsonDecode(contents);
+      getAradaneData();
+      getEkadashiData();
+      getShubhaAshubhaData();
+      getFestivalsData();
+      getTarpanData();
       setState(() {
         panchangalistmodel.clear();
         getPanchangaDataFromSheet();
@@ -1280,11 +1329,15 @@ class _PanchangaState extends State<Panchanga> {
         print("First fails Else");
         jsonPanchanga = convert.jsonDecode(contents);
         jsonPanchangaUpdate = convert.jsonDecode(updatedContents);
+        getAradaneData();
+        getEkadashiData();
+        getShubhaAshubhaData();
+        getFestivalsData();
+        getTarpanData();
         setState(() {
           panchangalistmodel.clear();
           panchangalistmodelUpdate.clear();
           getUpdatedTamilLanguageData();
-          // getUpdateLanguageCompareData();
         });
       }
     }
@@ -1293,6 +1346,11 @@ class _PanchangaState extends State<Panchanga> {
           "Original Tamil File is not present in Local database, Fetching from Remote Database");
       var raw = await http.get(Uri.parse(appScriptURLTamil));
       jsonPanchanga = convert.jsonDecode(raw.body);
+      getAradaneData();
+      getEkadashiData();
+      getShubhaAshubhaData();
+      getFestivalsData();
+      getTarpanData();
       setState(() {
         getPanchangaDataFromSheet();
       });
@@ -1319,6 +1377,11 @@ class _PanchangaState extends State<Panchanga> {
     if (contents.isEmpty == false && updatedContents.isEmpty == true) {
       print("Just show Original Tamil File from local database");
       jsonPanchanga = convert.jsonDecode(contents);
+      getAradaneData();
+      getEkadashiData();
+      getShubhaAshubhaData();
+      getFestivalsData();
+      getTarpanData();
       setState(() {
         panchangalistmodel.clear();
         getPanchangaDataFromSheet();
@@ -1516,16 +1579,19 @@ class _PanchangaState extends State<Panchanga> {
       print("Original Telugu File and Modified Telugu files both are present");
       if (updatedContents.isEmpty == true) {
         print("First fails");
-        // jsonPanchangaUpdate = {};
       } else {
         print("First fails Else");
         jsonPanchanga = convert.jsonDecode(contents);
         jsonPanchangaUpdate = convert.jsonDecode(updatedContents);
+        getAradaneData();
+        getEkadashiData();
+        getShubhaAshubhaData();
+        getFestivalsData();
+        getTarpanData();
         setState(() {
           panchangalistmodel.clear();
           panchangalistmodelUpdate.clear();
           getUpdatedTeluguLanguageData();
-          // getUpdateLanguageCompareData();
         });
       }
     }
@@ -1534,6 +1600,11 @@ class _PanchangaState extends State<Panchanga> {
           "Original Telugu File is not present in Local database, Fetching from Remote Database");
       var raw = await http.get(Uri.parse(appScriptURLTelugu));
       jsonPanchanga = convert.jsonDecode(raw.body);
+      getAradaneData();
+      getEkadashiData();
+      getShubhaAshubhaData();
+      getFestivalsData();
+      getTarpanData();
       setState(() {
         getPanchangaDataFromSheet();
       });
@@ -1559,6 +1630,11 @@ class _PanchangaState extends State<Panchanga> {
     }
     if (contents.isEmpty == false && updatedContents.isEmpty == true) {
       print("Just show Original Telugu File from local database");
+      getAradaneData();
+      getEkadashiData();
+      getShubhaAshubhaData();
+      getFestivalsData();
+      getTarpanData();
       jsonPanchanga = convert.jsonDecode(contents);
       setState(() {
         panchangalistmodel.clear();
@@ -1758,16 +1834,20 @@ class _PanchangaState extends State<Panchanga> {
           "Original Sanskrit File and Modified Sanskrit files both are present");
       if (updatedContents.isEmpty == true) {
         print("First fails");
-        // jsonPanchangaUpdate = {};
       } else {
         print("First fails Else");
+
         jsonPanchanga = convert.jsonDecode(contents);
         jsonPanchangaUpdate = convert.jsonDecode(updatedContents);
+        getAradaneData();
+        getEkadashiData();
+        getShubhaAshubhaData();
+        getFestivalsData();
+        getTarpanData();
         setState(() {
           panchangalistmodel.clear();
           panchangalistmodelUpdate.clear();
           getUpdatedSanskritLanguageData();
-          // getUpdateLanguageCompareData();
         });
       }
     }
@@ -1802,6 +1882,11 @@ class _PanchangaState extends State<Panchanga> {
     if (contents.isEmpty == false && updatedContents.isEmpty == true) {
       print("Just show Original Sanskrit File from local database");
       jsonPanchanga = convert.jsonDecode(contents);
+      getAradaneData();
+      getEkadashiData();
+      getShubhaAshubhaData();
+      getFestivalsData();
+      getTarpanData();
       setState(() {
         panchangalistmodel.clear();
         getPanchangaDataFromSheet();
@@ -2065,13 +2150,10 @@ class _PanchangaState extends State<Panchanga> {
       });
       return myfile.writeAsString(jsondata);
     } else {
+      print(" Local Aradane data ");
+
       jsonAradane = convert.jsonDecode(contents);
-      // setState(() {
-      // panchangalistmodel.clear();
-      // panchangalistmodelUpdate.clear();
       getAradaneDataFromSheet();
-      // getUpdateLanguageCompareData();
-      // });
     }
   }
 
@@ -2084,7 +2166,6 @@ class _PanchangaState extends State<Panchanga> {
       aradaneModel.date = element['date'].toString();
       aradaneModel.aradane = element['aradane'].toString();
       aradaneListmodel.add(aradaneModel);
-      // print(element);
     });
   }
 
@@ -2107,13 +2188,9 @@ class _PanchangaState extends State<Panchanga> {
       });
       return myfile.writeAsString(jsondata);
     } else {
+      print(" Local Ekadashi data ");
       jsonEkadashi = convert.jsonDecode(contents);
-      // setState(() {
-      // panchangalistmodel.clear();
-      // panchangalistmodelUpdate.clear();
       getEkadashiDataFromSheet();
-      // getUpdateLanguageCompareData();
-      // });
     }
   }
 
@@ -2146,6 +2223,8 @@ class _PanchangaState extends State<Panchanga> {
       });
       return myfile.writeAsString(jsondata);
     } else {
+      print(" Local Festivals data ");
+
       jsonFestivals = convert.jsonDecode(contents);
       getFestivalsDataFromSheet();
       // getUpdateLanguageCompareData();
@@ -2170,7 +2249,6 @@ class _PanchangaState extends State<Panchanga> {
     String? contents = await myfile.readAsString();
 
     if (contents.isEmpty == true) {
-      print("Shubha ad Ashubha data is fetching from Remote Database");
       var raw = await http.get(Uri.parse(appScriptURLShubhaAshubha));
       jsonShubhaAshubha = convert.jsonDecode(raw.body);
       setState(() {
@@ -2182,13 +2260,10 @@ class _PanchangaState extends State<Panchanga> {
       });
       return myfile.writeAsString(jsondata);
     } else {
+      print(" Local Shubha Ashbha data ");
+
       jsonShubhaAshubha = convert.jsonDecode(contents);
-      // setState(() {
-      // panchangalistmodel.clear();
-      // panchangalistmodelUpdate.clear();
       getShubhaAshubhaDataFromSheet();
-      // getUpdateLanguageCompareData();
-      // });
     }
   }
 
@@ -2220,13 +2295,10 @@ class _PanchangaState extends State<Panchanga> {
       });
       return myfile.writeAsString(jsondata);
     } else {
+      print(" Local Tarpana data ");
+
       jsonTarpana = convert.jsonDecode(contents);
-      // setState(() {
-      // panchangalistmodel.clear();
-      // panchangalistmodelUpdate.clear();
       getTarpanDataFromSheet();
-      // getUpdateLanguageCompareData();
-      // });
     }
   }
 
@@ -2256,6 +2328,12 @@ class _PanchangaState extends State<Panchanga> {
       settingsLanguage = int.parse(contents);
     }
     allLanguageList.clear();
+    // kannadaList.clear();
+    // englishList.clear();
+    // tamilList.clear();
+    // teluguList.clear();
+    // marathiList.clear();
+
     switch (settingsLanguage) {
       case 1:
         getEnglishPanchanga();
@@ -2301,26 +2379,64 @@ class _PanchangaState extends State<Panchanga> {
         getShubhaAshubhaData();
         getFestivalsData();
         getTarpanData();
-
-        // getAradaneDataFromSheet();
-        // getEkadashiDataFromSheet();
-        // getShubhaAshubhaDataFromSheet();
-        // getFestivalsDataFromSheet();
-        // getTarpanDataFromSheet();
         break;
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+
+    // if (updateWaitBool == true) {
+    //   print("Hereeeeeeeee");
+    //   // Future.delayed(Duration(seconds: 3), () {
+
+    //   // });
+    //   return Scaffold(
+    //     appBar: AppBar(
+    //       title: Text(
+    //         "U M Panchanga",
+    //         style: TextStyle(color: Colors.black),
+    //         textAlign: TextAlign.center,
+    //       ),
+    //       iconTheme: IconThemeData(color: Color.fromARGB(255, 247, 206, 73)),
+    //       backgroundColor: Color.fromARGB(255, 247, 206, 73),
+    //     ),
+    //     body: Center(
+    //         child: CircularProgressIndicator(
+    //       color: Color.fromARGB(255, 247, 206, 73),
+    //     )),
+    //   );
+    // showLoaderDialog(BuildContext context) {
+    //   AlertDialog alert = AlertDialog(
+    //     content: new Row(
+    //       children: [
+    //         CircularProgressIndicator(),
+    //         Container(
+    //             margin: EdgeInsets.only(left: 7), child: Text("Loading...")),
+    //       ],
+    //     ),
+    //   );
+    //   showDialog(
+    //     barrierDismissible: false,
+    //     context: context,
+    //     builder: (BuildContext context) {
+    //       return Scaffold();
+    //     },
+    //   );
+    // }
+    // }
+    // else
+
     if (dateIndex == null) {
       return Scaffold(
         appBar: AppBar(
           title: Text(
             "U M Panchanga",
             style: TextStyle(color: Colors.black),
+            textAlign: TextAlign.center,
           ),
-          iconTheme: IconThemeData(color: Colors.black),
+          iconTheme: IconThemeData(color: Color.fromARGB(255, 247, 206, 73)),
           backgroundColor: Color.fromARGB(255, 247, 206, 73),
         ),
         body: Center(
@@ -2365,6 +2481,7 @@ class _PanchangaState extends State<Panchanga> {
           ],
         ),
         drawer: Drawer(
+          width: screenSize.width / 1.5,
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
@@ -2393,13 +2510,8 @@ class _PanchangaState extends State<Panchanga> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              SearchAradhane(aradanelistmodel: aradaneListmodel)
-                          // (CalendarData(data: calendarViewListModel))
-                          ));
-                  //   showSearch(
-                  //       context: context,
-                  //       delegate: SearchAradhane(aradaneListmodel));
+                          builder: (context) => SearchAradhane(
+                              aradanelistmodel: aradaneListmodel)));
                 },
               ),
               Divider(
@@ -2413,9 +2525,7 @@ class _PanchangaState extends State<Panchanga> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => SearchEkadashi(
-                              ekadashilistmodel: ekadashiListmodel)
-                          // (CalendarData(data: calendarViewListModel))
-                          ));
+                              ekadashilistmodel: ekadashiListmodel)));
                 },
               ),
               Divider(
@@ -2429,9 +2539,7 @@ class _PanchangaState extends State<Panchanga> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => SearchFestival(
-                              festivalslistmodel: festivalsListmodel)
-                          // (CalendarData(data: calendarViewListModel))
-                          ));
+                              festivalslistmodel: festivalsListmodel)));
                 },
               ),
               Divider(
@@ -2461,9 +2569,7 @@ class _PanchangaState extends State<Panchanga> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => SearchShubhaAshubha(
-                              shubhaAshubhalistmodel: shubhaAshubhaListmodel)
-                          // (CalendarData(data: calendarViewListModel))
-                          ));
+                              shubhaAshubhalistmodel: shubhaAshubhaListmodel)));
                 },
               ),
               Divider(
@@ -2474,6 +2580,8 @@ class _PanchangaState extends State<Panchanga> {
           ),
         ),
         body: Container(
+          // width: screenSize.width,
+          // height: screenSize.height,
           child: PageView.builder(
               clipBehavior: Clip.hardEdge,
               controller: controller,
@@ -2499,18 +2607,6 @@ class _PanchangaState extends State<Panchanga> {
                   paksha: panchangalistmodel[index].paksha,
                   shradhatithi: panchangalistmodel[index].shradhatithi,
                   vishesha: panchangalistmodel[index].vishesha,
-                  // languageListkarana: kannadaList[9],
-                  // languageListmasa: kannadaList[2],
-                  // languageListmasaniyamaka: kannadaList[3],
-                  // languageListpaksha: kannadaList[4],
-                  // languageListrutu: kannadaList[1],
-                  // languageListnakshatra: kannadaList[7],
-                  // languageListvasara: kannadaList[6],
-                  // languageListvishesha: kannadaList[10],
-                  // languageListtithi: kannadaList[5],
-                  // languageListyoga: kannadaList[8],
-                  // languageListayana: kannadaList[0],
-
                   languageListayana: allLanguageList[0].languageListayana,
                   languageListrutu: allLanguageList[1].languageListrutu,
                   languageListmasa: allLanguageList[2].languageListmasa,
@@ -2533,6 +2629,8 @@ class _PanchangaState extends State<Panchanga> {
   }
 
   Widget nomalPopMenu() {
+    Size screenSize = MediaQuery.of(context).size;
+
     return PopupMenuButton<int>(
       iconSize: 20,
       icon: const Icon(Icons.more_vert, color: Colors.black),
@@ -2550,175 +2648,149 @@ class _PanchangaState extends State<Panchanga> {
               showModalBottomSheet<void>(
                 context: context,
                 builder: (BuildContext context) {
-                  return Container(
-                    height: 450,
-                    color: Color.fromARGB(255, 232, 220, 184),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          const Text('Select Language'),
-                          RadioListTile(
-                            title: Text("English"),
-                            value: "1",
-                            toggleable: true,
-                            autofocus: true,
-                            enableFeedback: false,
-                            groupValue: langValue,
-                            onChanged: (value) async {
-                              mySettingsFile = await localSettingsFile;
-                              mySettingsFile?.writeAsString(value.toString());
-                              langValue = value;
-                              langSettingsValue = value;
-                              panchangalistmodel.clear();
-                              panchangalistmodelUpdate.clear();
-                              allLanguageList.clear();
-                              getEnglishPanchanga();
-                              getEnglishList();
-                              Navigator.pop(context);
-                              // });
-                            },
-                          ),
-                          RadioListTile(
-                            title: Text("Kannada"),
-                            value: "2",
-                            groupValue: langValue,
-                            toggleable: true,
-                            autofocus: true,
-                            onChanged: (value) async {
-                              mySettingsFile = await localSettingsFile;
-                              mySettingsFile?.writeAsString(value.toString());
-                              // setState(() async {
-                              // await new Future.delayed(
-                              //     const Duration(seconds: 2));
+                  return SingleChildScrollView(
+                    child: Container(
+                      color: Color.fromARGB(255, 232, 220, 184),
+                      child: Center(
+                        child: Column(
+                          // mainAxisAlignment: MainAxisAlignment.start,
+                          // mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            const Text('Select Language'),
+                            RadioListTile(
+                              title: Text("English"),
+                              value: "1",
+                              toggleable: true,
+                              autofocus: true,
+                              enableFeedback: false,
+                              groupValue: langValue,
+                              onChanged: (value) async {
+                                mySettingsFile = await localSettingsFile;
+                                mySettingsFile?.writeAsString(value.toString());
+                                langValue = value;
+                                langSettingsValue = value;
+                                panchangalistmodel.clear();
+                                panchangalistmodelUpdate.clear();
+                                allLanguageList.clear();
+                                getEnglishPanchanga();
+                                getEnglishList();
+                                Navigator.pop(context);
+                                // });
+                              },
+                            ),
+                            RadioListTile(
+                              title: Text("Kannada"),
+                              value: "2",
+                              groupValue: langValue,
+                              toggleable: true,
+                              autofocus: true,
+                              onChanged: (value) async {
+                                mySettingsFile = await localSettingsFile;
+                                mySettingsFile?.writeAsString(value.toString());
+                                langValue = value;
+                                langSettingsValue = value;
+                                panchangalistmodel.clear();
+                                panchangalistmodelUpdate.clear();
+                                allLanguageList.clear();
+                                getKannadaPanchanga();
+                                getKannadaList();
+                                Navigator.pop(context);
+                                // });
+                              },
+                            ),
+                            RadioListTile(
+                              title: Text("Marathi"),
+                              value: "3",
+                              groupValue: langValue,
+                              toggleable: true,
+                              autofocus: true,
+                              onChanged: (value) async {
+                                mySettingsFile = await localSettingsFile;
+                                mySettingsFile?.writeAsString(value.toString());
 
-                              // setState(() async {
-                              //   await new Future.delayed(
-                              //       const Duration(milliseconds: 100));
-                              langValue = value;
-                              langSettingsValue = value;
-                              panchangalistmodel.clear();
-                              panchangalistmodelUpdate.clear();
-                              allLanguageList.clear();
-                              getKannadaPanchanga();
-                              getKannadaList();
-                              Navigator.pop(context);
-                              // });
-                            },
-                          ),
-                          RadioListTile(
-                            title: Text("Marathi"),
-                            value: "3",
-                            groupValue: langValue,
-                            toggleable: true,
-                            autofocus: true,
-                            onChanged: (value) async {
-                              mySettingsFile = await localSettingsFile;
-                              mySettingsFile?.writeAsString(value.toString());
-                              // setState(() async {
-                              // await new Future.delayed(
-                              //     const Duration(seconds: 2));
+                                langValue = value;
+                                langSettingsValue = value;
+                                panchangalistmodel.clear();
+                                panchangalistmodelUpdate.clear();
+                                allLanguageList.clear();
+                                getMarathiPanchanga();
+                                getMarathiList();
+                                Navigator.pop(context);
+                                // });
+                              },
+                            ),
+                            RadioListTile(
+                              title: Text("Tamil"),
+                              value: "4",
+                              groupValue: langValue,
+                              toggleable: true,
+                              autofocus: true,
+                              onChanged: (value) async {
+                                mySettingsFile = await localSettingsFile;
+                                mySettingsFile?.writeAsString(value.toString());
 
-                              // setState(() async {
-                              // await new Future.delayed(
-                              //     const Duration(milliseconds: 100));
-                              langValue = value;
-                              langSettingsValue = value;
-                              panchangalistmodel.clear();
-                              panchangalistmodelUpdate.clear();
-                              allLanguageList.clear();
-                              getMarathiPanchanga();
-                              getMarathiList();
-                              Navigator.pop(context);
-                              // });
-                            },
-                          ),
-                          RadioListTile(
-                            title: Text("Tamil"),
-                            value: "4",
-                            groupValue: langValue,
-                            toggleable: true,
-                            autofocus: true,
-                            onChanged: (value) async {
-                              mySettingsFile = await localSettingsFile;
-                              mySettingsFile?.writeAsString(value.toString());
-                              // setState(() async {
-                              // await new Future.delayed(
-                              //     const Duration(seconds: 2));
+                                // await new Future.delayed(
+                                //     const Duration(milliseconds: 100));
+                                langValue = value;
+                                langSettingsValue = value;
 
-                              // setState(() async {
-                              await new Future.delayed(
-                                  const Duration(milliseconds: 100));
-                              langValue = value;
-                              langSettingsValue = value;
+                                panchangalistmodel.clear();
+                                panchangalistmodelUpdate.clear();
+                                allLanguageList.clear();
+                                getTamilPanchanga();
+                                getTamilList();
+                                Navigator.pop(context);
+                                // });
+                              },
+                            ),
+                            RadioListTile(
+                              title: Text("Telugu"),
+                              value: "5",
+                              groupValue: langValue,
+                              toggleable: true,
+                              autofocus: true,
+                              onChanged: (value) async {
+                                mySettingsFile = await localSettingsFile;
+                                mySettingsFile?.writeAsString(value.toString());
 
-                              panchangalistmodel.clear();
-                              panchangalistmodelUpdate.clear();
-                              allLanguageList.clear();
-                              getTamilPanchanga();
-                              getTamilList();
-                              Navigator.pop(context);
-                              // });
-                            },
-                          ),
-                          RadioListTile(
-                            title: Text("Telugu"),
-                            value: "5",
-                            groupValue: langValue,
-                            toggleable: true,
-                            autofocus: true,
-                            onChanged: (value) async {
-                              mySettingsFile = await localSettingsFile;
-                              mySettingsFile?.writeAsString(value.toString());
-                              // setState(() async {
-                              // await new Future.delayed(
-                              //     const Duration(seconds: 2));
+                                langValue = value;
+                                langSettingsValue = value;
+                                panchangalistmodel.clear();
+                                panchangalistmodelUpdate.clear();
+                                allLanguageList.clear();
+                                getTeluguPanchanga();
+                                getTeluguList();
+                                Navigator.pop(context);
+                                // });
+                              },
+                            ),
+                            RadioListTile(
+                              title: Text("Sanskrit"),
+                              value: "6",
+                              groupValue: langValue,
+                              toggleable: true,
+                              autofocus: true,
+                              onChanged: (value) async {
+                                mySettingsFile = await localSettingsFile;
+                                mySettingsFile?.writeAsString(value.toString());
 
-                              // setState(() async {
-                              //   await new Future.delayed(
-                              //       const Duration(milliseconds: 100));
-                              langValue = value;
-                              langSettingsValue = value;
-                              panchangalistmodel.clear();
-                              panchangalistmodelUpdate.clear();
-                              allLanguageList.clear();
-                              getTeluguPanchanga();
-                              getTeluguList();
-                              Navigator.pop(context);
-                              // });
-                            },
-                          ),
-                          RadioListTile(
-                            title: Text("Sanskrit"),
-                            value: "6",
-                            groupValue: langValue,
-                            toggleable: true,
-                            autofocus: true,
-                            onChanged: (value) async {
-                              mySettingsFile = await localSettingsFile;
-                              mySettingsFile?.writeAsString(value.toString());
-                              // setState(() async {
-
-                              // setState(() async {
-                              //   await new Future.delayed(
-                              //       const Duration(milliseconds: 100));
-                              langValue = value;
-                              langSettingsValue = value;
-                              panchangalistmodel.clear();
-                              panchangalistmodelUpdate.clear();
-                              allLanguageList.clear();
-                              getSanskritPanchanga();
-                              getSanskritList();
-                              Navigator.pop(context);
-                              // });
-                            },
-                          ),
-                          ElevatedButton(
-                            child: const Text('Close'),
-                            onPressed: () => Navigator.pop(context),
-                          )
-                        ],
+                                langValue = value;
+                                langSettingsValue = value;
+                                panchangalistmodel.clear();
+                                panchangalistmodelUpdate.clear();
+                                allLanguageList.clear();
+                                getSanskritPanchanga();
+                                getSanskritList();
+                                Navigator.pop(context);
+                                // });
+                              },
+                            ),
+                            ElevatedButton(
+                              child: const Text('Close'),
+                              onPressed: () => Navigator.pop(context),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   );
@@ -2732,12 +2804,13 @@ class _PanchangaState extends State<Panchanga> {
             child: TextButton(
               style: ElevatedButton.styleFrom(
                 minimumSize: Size.fromHeight(40),
-                // fromHeight use double.infinity as width and 40 is the height
               ),
               child: const Text('Update'),
               onPressed: () async {
                 Navigator.pop(context);
+                // showLoaderDialog(context);
 
+                updateWaitBool = true;
                 updatelanguage = true;
                 File? myUpdatedEnglishFile;
                 myUpdatedEnglishFile = await localUpdateEnglishFile;
@@ -2850,7 +2923,6 @@ class _PanchangaState extends State<Panchanga> {
             child: TextButton(
               style: ElevatedButton.styleFrom(
                 minimumSize: Size.fromHeight(40),
-                // fromHeight use double.infinity as width and 40 is the height
               ),
               child: const Text('Exit'),
               onPressed: () {
@@ -2875,8 +2947,6 @@ class _PanchangaDayState extends State<PanchangaDay> {
     return PageView(
       scrollDirection: Axis.horizontal,
       reverse: true,
-      // padEnds: true,
-      // dragStartBehavior: DragStartBehavior.down,
       children: [
         DisplayDesign(
           ayana: '',
@@ -2910,18 +2980,6 @@ class _PanchangaDayState extends State<PanchangaDay> {
           languageListyoga: '',
           languageListpaksha: '',
         ),
-        // PanchanagaLanguageList(
-        //     languageListayana: '',
-        //     languageListrutu: '',
-        //     languageListmasa: '',
-        //     languageListmasaniyamaka: '',
-        //     languageListpaksha: '',
-        //     languageListtithi: '',
-        //     languageListvasara: '',
-        //     languageListnakshatra: '',
-        //     languageListyoga: '',
-        //     languageListkarana: '',
-        //     languageListvishesha: '')
       ],
     );
   }
@@ -3063,124 +3121,114 @@ class _DisplayDesignState extends State<DisplayDesign> {
   @override
   Widget build(BuildContext context) {
     getFile();
-    // double screenWidth = MediaQuery.of(context).size.width;
-
-    // GoogleTranslator translator = GoogleTranslator();
-    // translator.translate("Ayana", from: 'en', to: 'hi').then((s) {
-    //   print(s);
-    // });
-    // translator.translate("Ayana", from: 'en', to: 'kn').then((s) {
-    //   print(s);
-    // });
-    // translator.translate("Ayana", from: 'en', to: 'te').then((s) {
-    //   print(s);
-    // });
-    // translator.translate("Ayana", from: 'en', to: 'ta').then((s) {
-    //   print(s);
-    // });
+    Size screenSize = MediaQuery.of(context).size;
 
     return Container(
-      child: SizedBox(
+      width: screenSize.width,
+      // height: screenSize.height / 2,
+      child: SingleChildScrollView(
+        // height: screenSize.height / 2,
         child: Container(
+          width: screenSize.width,
           color: Color.fromARGB(255, 245, 240, 225),
           alignment: Alignment.center,
           child: Column(children: <Widget>[
-            // Divider(
-            //   color: Color.fromARGB(255, 255, 192, 2),
-            //   thickness: 03.0,
-            // ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(width: 5),
-                    Icon(
-                      Icons.sunny,
-                      size: 18,
-                    ),
-                    SizedBox(width: 3),
-                    Text(
-                      'Sunrise',
-                      style: TextStyle(
-                        fontSize: 15,
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(width: 5),
+                      Icon(
+                        Icons.sunny,
+                        size: 18,
                       ),
-                    ),
-                    SizedBox(width: 3),
-                    Text(
-                      widget.sunrise,
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    SizedBox(width: 5),
-                    Container(
-                        height: 25,
-                        width: 1,
-                        decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 2, 2, 2),
-                        )),
-                    SizedBox(width: 5),
-                    Icon(
-                      Icons.nightlight_round_outlined,
-                      size: 18,
-                    ),
-                    SizedBox(width: 3),
-                    Text(
-                      'Sunset',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    SizedBox(width: 3),
-                    Text(
-                      widget.sunset,
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    SizedBox(width: 4),
-                    Container(
-                        height: 25,
-                        width: 1,
-                        decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 2, 2, 2),
-                        )),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    IconButton(
-                      iconSize: 20,
-                      icon: const Icon(Icons.calendar_month),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => (CalendarData(
-                                    data: calendarViewListModel))));
-                      },
-                    ),
-                    Text(
-                      widget.date,
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    Text(
-                      '/',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    Text(
-                      widget.month,
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    Text(
-                      '/',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    Text(
-                      widget.year,
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    SizedBox(width: 5),
-                  ],
-                ),
-              ],
+                      SizedBox(width: 3),
+                      Text(
+                        'Sunrise',
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
+                      SizedBox(width: 3),
+                      Text(
+                        widget.sunrise,
+                        style: TextStyle(fontSize: 15),
+                      ),
+                      SizedBox(width: 5),
+                      Container(
+                          height: 25,
+                          width: 1,
+                          decoration: const BoxDecoration(
+                            color: Color.fromARGB(255, 2, 2, 2),
+                          )),
+                      SizedBox(width: 5),
+                      Icon(
+                        Icons.nightlight_round_outlined,
+                        size: 18,
+                      ),
+                      SizedBox(width: 3),
+                      Text(
+                        'Sunset',
+                        style: TextStyle(fontSize: 15),
+                      ),
+                      SizedBox(width: 3),
+                      Text(
+                        widget.sunset,
+                        style: TextStyle(fontSize: 15),
+                      ),
+                      SizedBox(width: 4),
+                      Container(
+                          height: 25,
+                          width: 1,
+                          decoration: const BoxDecoration(
+                            color: Color.fromARGB(255, 2, 2, 2),
+                          )),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                        iconSize: 20,
+                        icon: const Icon(Icons.calendar_month),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => (CalendarData(
+                                      data: calendarViewListModel))));
+                        },
+                      ),
+                      Text(
+                        widget.date,
+                        style: TextStyle(fontSize: 15),
+                      ),
+                      Text(
+                        '/',
+                        style: TextStyle(fontSize: 15),
+                      ),
+                      Text(
+                        widget.month,
+                        style: TextStyle(fontSize: 15),
+                      ),
+                      Text(
+                        '/',
+                        style: TextStyle(fontSize: 15),
+                      ),
+                      Text(
+                        widget.year,
+                        style: TextStyle(fontSize: 15),
+                      ),
+                      SizedBox(width: 5),
+                    ],
+                  ),
+                ],
+              ),
             ),
             Divider(
               color: Color.fromARGB(255, 255, 192, 2),
@@ -3206,6 +3254,7 @@ class _DisplayDesignState extends State<DisplayDesign> {
               border: TableBorder.all(
                 color: Color.fromARGB(255, 255, 192, 2),
                 width: 1.0,
+
                 style: BorderStyle.solid,
                 // borderRadius: BorderRadius.circular(50)
               ),
@@ -3214,6 +3263,7 @@ class _DisplayDesignState extends State<DisplayDesign> {
                 1: FlexColumnWidth(),
                 // 2: FixedColumnWidth(64),
               },
+
               // defaultVerticalAlignment: TableCellVerticalAlignment.middle,
               children: [
                 TableRow(children: [

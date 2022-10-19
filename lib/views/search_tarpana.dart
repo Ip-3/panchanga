@@ -1,12 +1,5 @@
-import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:panchanga/models/shuba_ashuba_model.dart';
-import 'package:panchanga/models/panchanga_model.dart';
-import 'package:http/http.dart' as http;
-import 'package:panchanga/models/aradne_model.dart';
 import 'package:panchanga/models/tarpana_model.dart';
-import 'package:path_provider/path_provider.dart';
 
 // ignore: must_be_immutable
 class SearchTarpana extends StatefulWidget {
@@ -20,15 +13,7 @@ class SearchTarpana extends StatefulWidget {
 }
 
 class _SearchTarpanaState extends State<SearchTarpana> {
-  // late Future<List<TarpanaModel>> shows;
-  // List<TarpanaModel> shows = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'];
-
   String searchAradane = "";
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  // }
 
   @override
   Widget build(BuildContext context) {

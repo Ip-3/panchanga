@@ -46,6 +46,7 @@ dependencies:
   flutter_calendar_carousel:
   calendar_view: ^1.0.0
   flutter_clean_calendar:
+  sizer: ^2.0.15
   
   
 
