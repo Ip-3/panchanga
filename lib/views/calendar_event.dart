@@ -20,12 +20,15 @@ class _CalendarDataState extends State<CalendarData> {
   Widget build(BuildContext context) {
     final cellCalendarPageController = CellCalendarPageController();
     var _sampleEvents = sampleEvents(widget.data);
+    // DateTime date = DateTime.now();
+
     return Scaffold(
         appBar: AppBar(
           title: Text(
             'Calendar',
             style: TextStyle(color: Colors.black),
           ),
+          // automaticallyImplyLeading: false,
           iconTheme: IconThemeData(color: Colors.black),
           backgroundColor: Color.fromARGB(255, 247, 206, 73),
         ),
@@ -101,13 +104,14 @@ class _CalendarDataState extends State<CalendarData> {
                     builder: (context) => Panchanga(
                           differenceDate: date,
                         )));
-
             final eventsOnTheDate = _sampleEvents.where((event) {
               final eventDate = event.eventDate;
               return eventDate.year == date.year &&
                   eventDate.month == date.month &&
                   eventDate.day == date.day;
             }).toList();
+            // eventsOnTheDate.clear();
+
             showDialog(
                 context: context,
                 builder: (_) => AlertDialog(
@@ -132,6 +136,7 @@ class _CalendarDataState extends State<CalendarData> {
                       ),
                     ));
           },
+
           onPageChanged: (firstDate, lastDate) {},
         ));
   }

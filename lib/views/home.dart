@@ -236,15 +236,15 @@ class _PanchangaState extends State<Panchanga> {
       "https://script.google.com/macros/s/AKfycbyJIdLSgvr8oQ68P7W-AwMmEuDCpEhJ6cKOFTDs9xprBP4VoYlYDgmODTpNf1ygmov0/exec";
 
   var appScriptURLAradane =
-      "https://script.google.com/macros/s/AKfycbz9KdNL_TG7MVQLggiUH49DD0vyeDDxBV-lbVUw210Q6OlUPc3zXiNpVdXYtq16eSu2/exec";
+      "https://script.google.com/macros/s/AKfycbwEn4e7isUiI40pmokWOcs6BZMWVBU3Xo4ninvw-jmWxjiSwGCRic5LeGBh3Np8jpj8/exec";
   var appScriptURLTarpana =
-      "https://script.google.com/macros/s/AKfycby-QGqpQQCC2Jx1Ca0QnJ0XeCMVy_YbOr0MxidITmjounaKIsMhXMGbE0zRf5FGiPYyug/exec";
+      "https://script.google.com/macros/s/AKfycbzU_d_5bBhL_l3p5zsWWhqWl7HB9pC-fw3HXCNQWhW4QCQVQAnoYBVNr7isye3cj0kuww/exec";
   var appScriptURLShubhaAshubha =
-      "https://script.google.com/macros/s/AKfycbyzga-OHREVB3XmoIR-7oihRe0DE5fH4b35tVfRUHRmCzqqX9iwpHj3ZkFS-fpZOGFT/exec";
+      "https://script.google.com/macros/s/AKfycbwubuWuig57hEq7k_JrJz61F5AjgHkJqBwB73j5ZKAcpCoZ20tN6dZclnRAPdQP82EF/exec";
   var appScriptURLFestival =
-      "https://script.google.com/macros/s/AKfycbwTYYhb4DDzQp8UYootDame0GrZz-gXiHBuDeSKz_E-DtQLC5Vh5lXNJI0TACDNa-T06w/exec";
+      "https://script.google.com/macros/s/AKfycby1QilA7Y3kX-9tj1_RjY7kaCuENlhP5C1L7X_qqOg-UN7vjdYYtBHmKgOHARryC0lOwg/exec";
   var appScriptURLEkadashi =
-      "https://script.google.com/macros/s/AKfycbxUauI-6Z7rXn3TiTeaHVr_Rv4lQ4aKKQ9co9W33s9lvwCnWLOhdKdIyq517hTTonTh-w/exec";
+      "https://script.google.com/macros/s/AKfycbxfkiskFlNiUw4GWH7kOrQMOaMXTBx4lYdbfDeZUbMkJtACoaSCfFfmmTojPN0v4fIMTQ/exec";
 
   List<String> kannadaList = [
     'ಆಯನ',
@@ -319,6 +319,8 @@ class _PanchangaState extends State<Panchanga> {
   List<PanchanagaLanguageList> allLanguageList = <PanchanagaLanguageList>[];
 
   getKannadaList() async {
+    allLanguageList.clear();
+
     PanchanagaLanguageList panchanagaLanguageList = new PanchanagaLanguageList(
       languageListayana: '',
       languageListkarana: '',
@@ -346,15 +348,15 @@ class _PanchangaState extends State<Panchanga> {
       panchanagaLanguageList.languageListvishesha = kannadaList[10];
       allLanguageList.add(panchanagaLanguageList);
     }
-    print(allLanguageList[1]);
   }
 
   getEnglishList() async {
-    print("maga ili English list");
     // kannadaList.forEach((element) {
     //   print('Macha bari erlemet');
     //   print(element);
     // });
+    allLanguageList.clear();
+
     PanchanagaLanguageList panchanagaLanguageList = new PanchanagaLanguageList(
       languageListayana: '',
       languageListkarana: '',
@@ -383,16 +385,15 @@ class _PanchangaState extends State<Panchanga> {
       panchanagaLanguageList.languageListvishesha = englishList[10];
       allLanguageList.add(panchanagaLanguageList);
     }
-
-    print(allLanguageList[1]);
   }
 
   getMarathiList() async {
-    print("maga ili Marathi list");
     // kannadaList.forEach((element) {
     //   print('Macha bari erlemet');
     //   print(element);
     // });
+    allLanguageList.clear();
+
     PanchanagaLanguageList panchanagaLanguageList = new PanchanagaLanguageList(
       languageListayana: '',
       languageListkarana: '',
@@ -421,15 +422,15 @@ class _PanchangaState extends State<Panchanga> {
       panchanagaLanguageList.languageListvishesha = marathiList[10];
       allLanguageList.add(panchanagaLanguageList);
     }
-    print(allLanguageList[1]);
   }
 
   getSanskritList() async {
-    print("maga ili Sanskrit list");
     // kannadaList.forEach((element) {
     //   print('Macha bari erlemet');
     //   print(element);
     // });
+    allLanguageList.clear();
+
     PanchanagaLanguageList panchanagaLanguageList = new PanchanagaLanguageList(
       languageListayana: '',
       languageListkarana: '',
@@ -458,15 +459,15 @@ class _PanchangaState extends State<Panchanga> {
       panchanagaLanguageList.languageListvishesha = marathiList[10];
       allLanguageList.add(panchanagaLanguageList);
     }
-    print(allLanguageList[1]);
   }
 
   getTeluguList() async {
-    print("maga ili Telugu list");
+    // print("maga ili Telugu list");
     // kannadaList.forEach((element) {
     //   print('Macha bari erlemet');
     //   print(element);
     // });
+    allLanguageList.clear();
     PanchanagaLanguageList panchanagaLanguageList = new PanchanagaLanguageList(
       languageListayana: '',
       languageListkarana: '',
@@ -495,16 +496,15 @@ class _PanchangaState extends State<Panchanga> {
       panchanagaLanguageList.languageListvishesha = teluguList[10];
       allLanguageList.add(panchanagaLanguageList);
     }
-
-    print(allLanguageList[1]);
   }
 
   getTamilList() async {
-    print("maga ili Tamil list");
     // kannadaList.forEach((element) {
     //   print('Macha bari erlemet');
     //   print(element);
     // });
+    allLanguageList.clear();
+
     PanchanagaLanguageList panchanagaLanguageList = new PanchanagaLanguageList(
       languageListayana: '',
       languageListkarana: '',
@@ -533,12 +533,12 @@ class _PanchangaState extends State<Panchanga> {
       panchanagaLanguageList.languageListvishesha = tamilList[10];
       allLanguageList.add(panchanagaLanguageList);
     }
-
-    print(allLanguageList[1]);
   }
 
   getEnglishPanchanga() async {
+    print("getEnglishPanchanga");
     langSettingsValue = 1;
+    getEnglishList();
     File? myfile;
     File? myUpdatedfile;
     myfile = await localEnglishFile;
@@ -546,13 +546,11 @@ class _PanchangaState extends State<Panchanga> {
     String? contents = await myfile.readAsString();
     String? updatedContents = await myUpdatedfile.readAsString();
     if (contents.isEmpty == false && updatedContents.isEmpty == false) {
-      print(
-          "Original English File and Modified English files both are present");
+      // print(
+      //     "Original English File and Modified English files both are present");
       if (updatedContents.isEmpty == true) {
-        print("First fails");
         // jsonPanchangaUpdate = {};
       } else {
-        print("First fails Else");
         jsonPanchanga = convert.jsonDecode(contents);
         jsonPanchangaUpdate = convert.jsonDecode(updatedContents);
         getAradaneData();
@@ -570,8 +568,8 @@ class _PanchangaState extends State<Panchanga> {
       }
     }
     if (contents.isEmpty == true) {
-      print(
-          "Original English File is not present in Local database, Fetching from Remote Database");
+      // print(
+      //     "Original English File is not present in Local database, Fetching from Remote Database");
       var raw = await http.get(Uri.parse(appScriptURLEnglish));
       jsonPanchanga = await convert.jsonDecode(raw.body);
       getAradaneData();
@@ -590,13 +588,13 @@ class _PanchangaState extends State<Panchanga> {
       return myfile.writeAsString(jsondata);
     }
     if (updatelanguage == true) {
-      print("Update Pressed getting Modified English files from Remote");
+      // print("Update Pressed getting Modified English files from Remote");
       if (contents.isEmpty == false && updatedContents.isEmpty == true) {
-        print("Updated File is empty");
+        // print("Updated File is empty");
 
         getEnglishUpdateCompare();
       } else {
-        print("Updated File is not empty");
+        // print("Updated File is not empty");
         jsonPanchanga = convert.jsonDecode(contents);
         setState(() {
           panchangalistmodel.clear();
@@ -605,7 +603,7 @@ class _PanchangaState extends State<Panchanga> {
       }
     }
     if (contents.isEmpty == false && updatedContents.isEmpty == true) {
-      print("Just show Original English File from local database");
+      // print("Just show Original English File from local database");
       jsonPanchanga = convert.jsonDecode(contents);
       getAradaneData();
       getEkadashiData();
@@ -772,7 +770,7 @@ class _PanchangaState extends State<Panchanga> {
         if (day.date == updatedDay.date &&
             day.month == updatedDay.month &&
             day.year == updatedDay.year) {
-          print("Compare two list data");
+          // print("Compare two list data");
           // panchangalistmodel.add(updatedDay);
           print(updatedDay.date);
           print(updatedDay.month);
@@ -795,10 +793,14 @@ class _PanchangaState extends State<Panchanga> {
         dateIndex = dateDataIndex;
       }
     }
+    updateWaitBool = false;
   }
 
   getKannadaPanchanga() async {
+    print("getKannadaPanchanga");
     langSettingsValue = 2;
+
+    getKannadaList();
     File? myfile;
     File? myUpdatedfile;
     myfile = await localKannadaFile;
@@ -806,13 +808,13 @@ class _PanchangaState extends State<Panchanga> {
     String? contents = await myfile.readAsString();
     String? updatedContents = await myUpdatedfile.readAsString();
     if (contents.isEmpty == false && updatedContents.isEmpty == false) {
-      print(
-          "Original Kannada File and Modified Kannada files both are present");
+      // print(
+      //     "Original Kannada File and Modified Kannada files both are present");
       if (updatedContents.isEmpty == true) {
-        print("First fails");
+        // print("First fails");
         // jsonPanchangaUpdate = {};
       } else {
-        print("First fails Else");
+        // print("First fails Else");
         jsonPanchanga = convert.jsonDecode(contents);
         jsonPanchangaUpdate = convert.jsonDecode(updatedContents);
         getAradaneData();
@@ -829,8 +831,8 @@ class _PanchangaState extends State<Panchanga> {
       }
     }
     if (contents.isEmpty == true) {
-      print(
-          "Original Kannada File is not present in Local database, Fetching from Remote Database");
+      // print(
+      // "Original Kannada File is not present in Local database, Fetching from Remote Database");
       var raw = await http.get(Uri.parse(appScriptURLKannada));
       jsonPanchanga = convert.jsonDecode(raw.body);
       getAradaneData();
@@ -848,12 +850,12 @@ class _PanchangaState extends State<Panchanga> {
       return myfile.writeAsString(jsondata);
     }
     if (updatelanguage == true) {
-      print("Update Pressed getting Modified Kannada files from Remote");
+      // print("Update Pressed getting Modified Kannada files from Remote");
       if (contents.isEmpty == false && updatedContents.isEmpty == true) {
-        print("Updated File is empty");
+        // print("Updated File is empty");
         getKannadaUpdateCompare();
       } else {
-        print("Updated File is not empty");
+        // print("Updated File is not empty");
         jsonPanchanga = convert.jsonDecode(contents);
         setState(() {
           panchangalistmodel.clear();
@@ -862,7 +864,7 @@ class _PanchangaState extends State<Panchanga> {
       }
     }
     if (contents.isEmpty == false && updatedContents.isEmpty == true) {
-      print("Just show Original Kannada File from local database");
+      // print("Just show Original Kannada File from local database");
 
       jsonPanchanga = convert.jsonDecode(contents);
       getAradaneData();
@@ -1030,7 +1032,7 @@ class _PanchangaState extends State<Panchanga> {
         if (day.date == updatedDay.date &&
             day.month == updatedDay.month &&
             day.year == updatedDay.year) {
-          print("Compare two list data");
+          // print("Compare two list data");
           // panchangalistmodel.add(updatedDay);
           print(updatedDay.date);
           print(updatedDay.month);
@@ -1053,10 +1055,14 @@ class _PanchangaState extends State<Panchanga> {
         dateIndex = dateDataIndex;
       }
     }
+    updateWaitBool = false;
   }
 
   getMarathiPanchanga() async {
+    print("getMarathiPanchanga");
     langSettingsValue = 3;
+
+    getMarathiList();
     File? myfile;
     File? myUpdatedfile;
     myfile = await localMarathiFile;
@@ -1064,13 +1070,13 @@ class _PanchangaState extends State<Panchanga> {
     String? contents = await myfile.readAsString();
     String? updatedContents = await myUpdatedfile.readAsString();
     if (contents.isEmpty == false && updatedContents.isEmpty == false) {
-      print(
-          "Original Marathi File and Modified Marathi files both are present");
+      // print(
+      // "Original Marathi File and Modified Marathi files both are present");
       if (updatedContents.isEmpty == true) {
-        print("First fails");
+        // print("First fails");
         // jsonPanchangaUpdate = {};
       } else {
-        print("First fails Else");
+        // print("First fails Else");
         jsonPanchanga = convert.jsonDecode(contents);
         jsonPanchangaUpdate = convert.jsonDecode(updatedContents);
         getAradaneData();
@@ -1087,8 +1093,8 @@ class _PanchangaState extends State<Panchanga> {
       }
     }
     if (contents.isEmpty == true) {
-      print(
-          "Original Marathi File is not present in Local database, Fetching from Remote Database");
+      // print(
+      // "Original Marathi File is not present in Local database, Fetching from Remote Database");
       var raw = await http.get(Uri.parse(appScriptURLMarathi));
       jsonPanchanga = convert.jsonDecode(raw.body);
       getAradaneData();
@@ -1106,12 +1112,12 @@ class _PanchangaState extends State<Panchanga> {
       return myfile.writeAsString(jsondata);
     }
     if (updatelanguage == true) {
-      print("Update Pressed getting Modified Marathi files from Remote");
+      // print("Update Pressed getting Modified Marathi files from Remote");
       if (contents.isEmpty == false && updatedContents.isEmpty == true) {
-        print("Updated File is empty");
+        // print("Updated File is empty");
         getMarathiUpdateCompare();
       } else {
-        print("Updated File is not empty");
+        // print("Updated File is not empty");
         jsonPanchanga = convert.jsonDecode(contents);
         setState(() {
           panchangalistmodel.clear();
@@ -1120,7 +1126,7 @@ class _PanchangaState extends State<Panchanga> {
       }
     }
     if (contents.isEmpty == false && updatedContents.isEmpty == true) {
-      print("Just show Original Marathi File from local database");
+      // print("Just show Original Marathi File from local database");
       jsonPanchanga = convert.jsonDecode(contents);
       getAradaneData();
       getEkadashiData();
@@ -1287,7 +1293,7 @@ class _PanchangaState extends State<Panchanga> {
         if (day.date == updatedDay.date &&
             day.month == updatedDay.month &&
             day.year == updatedDay.year) {
-          print("Compare two list data");
+          // print("Compare two list data");
           // panchangalistmodel.add(updatedDay);
           print(updatedDay.date);
           print(updatedDay.month);
@@ -1310,10 +1316,14 @@ class _PanchangaState extends State<Panchanga> {
         dateIndex = dateDataIndex;
       }
     }
+    updateWaitBool = false;
   }
 
   getTamilPanchanga() async {
+    print("getTamilPanchanga");
     langSettingsValue = 4;
+
+    getTamilList();
     File? myfile;
     File? myUpdatedfile;
     myfile = await localTamilFile;
@@ -1321,12 +1331,12 @@ class _PanchangaState extends State<Panchanga> {
     String? contents = await myfile.readAsString();
     String? updatedContents = await myUpdatedfile.readAsString();
     if (contents.isEmpty == false && updatedContents.isEmpty == false) {
-      print("Original Tamil File and Modified Tamil files both are present");
+      // print("Original Tamil File and Modified Tamil files both are present");
       if (updatedContents.isEmpty == true) {
-        print("First fails");
+        // print("First fails");
         // jsonPanchangaUpdate = {};
       } else {
-        print("First fails Else");
+        // print("First fails Else");
         jsonPanchanga = convert.jsonDecode(contents);
         jsonPanchangaUpdate = convert.jsonDecode(updatedContents);
         getAradaneData();
@@ -1342,8 +1352,8 @@ class _PanchangaState extends State<Panchanga> {
       }
     }
     if (contents.isEmpty == true) {
-      print(
-          "Original Tamil File is not present in Local database, Fetching from Remote Database");
+      // print(
+      // "Original Tamil File is not present in Local database, Fetching from Remote Database");
       var raw = await http.get(Uri.parse(appScriptURLTamil));
       jsonPanchanga = convert.jsonDecode(raw.body);
       getAradaneData();
@@ -1361,12 +1371,12 @@ class _PanchangaState extends State<Panchanga> {
       return myfile.writeAsString(jsondata);
     }
     if (updatelanguage == true) {
-      print("Update Pressed getting Modified Tamil files from Remote");
+      // print("Update Pressed getting Modified Tamil files from Remote");
       if (contents.isEmpty == false && updatedContents.isEmpty == true) {
-        print("Updated File is empty");
+        // print("Updated File is empty");
         getTamilUpdateCompare();
       } else {
-        print("Updated File is not empty");
+        // print("Updated File is not empty");
         jsonPanchanga = convert.jsonDecode(contents);
         setState(() {
           panchangalistmodel.clear();
@@ -1375,7 +1385,7 @@ class _PanchangaState extends State<Panchanga> {
       }
     }
     if (contents.isEmpty == false && updatedContents.isEmpty == true) {
-      print("Just show Original Tamil File from local database");
+      // print("Just show Original Tamil File from local database");
       jsonPanchanga = convert.jsonDecode(contents);
       getAradaneData();
       getEkadashiData();
@@ -1542,7 +1552,7 @@ class _PanchangaState extends State<Panchanga> {
         if (day.date == updatedDay.date &&
             day.month == updatedDay.month &&
             day.year == updatedDay.year) {
-          print("Compare two list data");
+          // print("Compare two list data");
           // panchangalistmodel.add(updatedDay);
           print(updatedDay.date);
           print(updatedDay.month);
@@ -1565,10 +1575,13 @@ class _PanchangaState extends State<Panchanga> {
         dateIndex = dateDataIndex;
       }
     }
+    updateWaitBool = false;
   }
 
   getTeluguPanchanga() async {
+    print("getTeluguPanchanga");
     langSettingsValue = 5;
+    getTeluguList();
     File? myfile;
     File? myUpdatedfile;
     myfile = await localTeluguFile;
@@ -1576,11 +1589,11 @@ class _PanchangaState extends State<Panchanga> {
     String? contents = await myfile.readAsString();
     String? updatedContents = await myUpdatedfile.readAsString();
     if (contents.isEmpty == false && updatedContents.isEmpty == false) {
-      print("Original Telugu File and Modified Telugu files both are present");
+      // print("Original Telugu File and Modified Telugu files both are present");
       if (updatedContents.isEmpty == true) {
-        print("First fails");
+        // print("First fails");
       } else {
-        print("First fails Else");
+        // print("First fails Else");
         jsonPanchanga = convert.jsonDecode(contents);
         jsonPanchangaUpdate = convert.jsonDecode(updatedContents);
         getAradaneData();
@@ -1596,8 +1609,8 @@ class _PanchangaState extends State<Panchanga> {
       }
     }
     if (contents.isEmpty == true) {
-      print(
-          "Original Telugu File is not present in Local database, Fetching from Remote Database");
+      // print(
+      // "Original Telugu File is not present in Local database, Fetching from Remote Database");
       var raw = await http.get(Uri.parse(appScriptURLTelugu));
       jsonPanchanga = convert.jsonDecode(raw.body);
       getAradaneData();
@@ -1615,12 +1628,12 @@ class _PanchangaState extends State<Panchanga> {
       return myfile.writeAsString(jsondata);
     }
     if (updatelanguage == true) {
-      print("Update Pressed getting Modified Telugu files from Remote");
+      // print("Update Pressed getting Modified Telugu files from Remote");
       if (contents.isEmpty == false && updatedContents.isEmpty == true) {
-        print("Updated File is empty");
+        // print("Updated File is empty");
         getTeluguUpdateCompare();
       } else {
-        print("Updated File is not empty");
+        // print("Updated File is not empty");
         jsonPanchanga = convert.jsonDecode(contents);
         setState(() {
           panchangalistmodel.clear();
@@ -1629,7 +1642,7 @@ class _PanchangaState extends State<Panchanga> {
       }
     }
     if (contents.isEmpty == false && updatedContents.isEmpty == true) {
-      print("Just show Original Telugu File from local database");
+      // print("Just show Original Telugu File from local database");
       getAradaneData();
       getEkadashiData();
       getShubhaAshubhaData();
@@ -1796,7 +1809,7 @@ class _PanchangaState extends State<Panchanga> {
         if (day.date == updatedDay.date &&
             day.month == updatedDay.month &&
             day.year == updatedDay.year) {
-          print("Compare two list data");
+          // print("Compare two list data");
           // panchangalistmodel.add(updatedDay);
           print(updatedDay.date);
           print(updatedDay.month);
@@ -1819,10 +1832,14 @@ class _PanchangaState extends State<Panchanga> {
         dateIndex = dateDataIndex;
       }
     }
+    updateWaitBool = false;
   }
 
   getSanskritPanchanga() async {
+    print("getSanskritPanchanga");
     langSettingsValue = 6;
+
+    getSanskritList();
     File? myfile;
     File? myUpdatedfile;
     myfile = await localSanskritFile;
@@ -1830,12 +1847,12 @@ class _PanchangaState extends State<Panchanga> {
     String? contents = await myfile.readAsString();
     String? updatedContents = await myUpdatedfile.readAsString();
     if (contents.isEmpty == false && updatedContents.isEmpty == false) {
-      print(
-          "Original Sanskrit File and Modified Sanskrit files both are present");
+      // print(
+      // "Original Sanskrit File and Modified Sanskrit files both are present");
       if (updatedContents.isEmpty == true) {
-        print("First fails");
+        // print("First fails");
       } else {
-        print("First fails Else");
+        // print("First fails Else");
 
         jsonPanchanga = convert.jsonDecode(contents);
         jsonPanchangaUpdate = convert.jsonDecode(updatedContents);
@@ -1852,8 +1869,8 @@ class _PanchangaState extends State<Panchanga> {
       }
     }
     if (contents.isEmpty == true) {
-      print(
-          "Original Sanskrit File is not present in Local database, Fetching from Remote Database");
+      // print(
+      // "Original Sanskrit File is not present in Local database, Fetching from Remote Database");
       var raw = await http.get(Uri.parse(appScriptURLSanskrit));
       jsonPanchanga = convert.jsonDecode(raw.body);
       setState(() {
@@ -1866,12 +1883,12 @@ class _PanchangaState extends State<Panchanga> {
       return myfile.writeAsString(jsondata);
     }
     if (updatelanguage == true) {
-      print("Update Pressed getting Modified Sanskrit files from Remote");
+      // print("Update Pressed getting Modified Sanskrit files from Remote");
       if (contents.isEmpty == false && updatedContents.isEmpty == true) {
-        print("Updated File is empty");
+        // print("Updated File is empty");
         getSanskritUpdateCompare();
       } else {
-        print("Updated File is not empty");
+        // print("Updated File is not empty");
         jsonPanchanga = convert.jsonDecode(contents);
         setState(() {
           panchangalistmodel.clear();
@@ -1880,7 +1897,7 @@ class _PanchangaState extends State<Panchanga> {
       }
     }
     if (contents.isEmpty == false && updatedContents.isEmpty == true) {
-      print("Just show Original Sanskrit File from local database");
+      // print("Just show Original Sanskrit File from local database");
       jsonPanchanga = convert.jsonDecode(contents);
       getAradaneData();
       getEkadashiData();
@@ -2047,7 +2064,7 @@ class _PanchangaState extends State<Panchanga> {
         if (day.date == updatedDay.date &&
             day.month == updatedDay.month &&
             day.year == updatedDay.year) {
-          print("Compare two list data");
+          // print("Compare two list data");
           // panchangalistmodel.add(updatedDay);
           print(updatedDay.date);
           print(updatedDay.month);
@@ -2070,6 +2087,7 @@ class _PanchangaState extends State<Panchanga> {
         dateIndex = dateDataIndex;
       }
     }
+    updateWaitBool = false;
   }
 
   getPanchangaDataFromSheet() {
@@ -2125,20 +2143,20 @@ class _PanchangaState extends State<Panchanga> {
               panchangalistmodel[dateDataIndex].month &&
           widget.differenceDate.year.toString() ==
               panchangalistmodel[dateDataIndex].year) {
-        print('Index of the this date is $dateDataIndex');
+        // print('Index of the this date is $dateDataIndex');
         dateIndex = dateDataIndex;
       }
     }
-    print('Testing,$dateDataIndex');
+    // print('Testing,$dateDataIndex');
   }
 
   getAradaneData() async {
     File? myfile;
     myfile = await localAradaneFile;
     String? contents = await myfile.readAsString();
-    print(contents);
+    // print(contents);
     if (contents.isEmpty == true) {
-      print("Aradane data is fetching from Remote Database");
+      // print("Aradane data is fetching from Remote Database");
       var raw = await http.get(Uri.parse(appScriptURLAradane));
       jsonAradane = convert.jsonDecode(raw.body);
       // setState(() {
@@ -2150,7 +2168,7 @@ class _PanchangaState extends State<Panchanga> {
       });
       return myfile.writeAsString(jsondata);
     } else {
-      print(" Local Aradane data ");
+      // print(" Local Aradane data ");
 
       jsonAradane = convert.jsonDecode(contents);
       getAradaneDataFromSheet();
@@ -2158,11 +2176,13 @@ class _PanchangaState extends State<Panchanga> {
   }
 
   getAradaneDataFromSheet() async {
-    print("getAradaneDataFromSheet");
+    // print("getAradaneDataFromSheet");
     jsonAradane.forEach((element) {
-      AradaneModel aradaneModel =
-          new AradaneModel(aradane: '', date: '', day: '');
-      aradaneModel.day = element['day'].toString();
+      AradaneModel aradaneModel = new AradaneModel(
+        aradane: '',
+        date: '',
+      );
+
       aradaneModel.date = element['date'].toString();
       aradaneModel.aradane = element['aradane'].toString();
       aradaneListmodel.add(aradaneModel);
@@ -2175,7 +2195,7 @@ class _PanchangaState extends State<Panchanga> {
     String? contents = await myfile.readAsString();
 
     if (contents.isEmpty == true) {
-      print("Ekadashi data is fetching from Remote Database");
+      // print("Ekadashi data is fetching from Remote Database");
 
       var raw = await http.get(Uri.parse(appScriptURLEkadashi));
       jsonEkadashi = convert.jsonDecode(raw.body);
@@ -2188,7 +2208,7 @@ class _PanchangaState extends State<Panchanga> {
       });
       return myfile.writeAsString(jsondata);
     } else {
-      print(" Local Ekadashi data ");
+      // print(" Local Ekadashi data ");
       jsonEkadashi = convert.jsonDecode(contents);
       getEkadashiDataFromSheet();
     }
@@ -2210,7 +2230,7 @@ class _PanchangaState extends State<Panchanga> {
     myfile = await localFestivalFile;
     String? contents = await myfile.readAsString();
     if (contents.isEmpty == true) {
-      print("Festival data is fetching from Remote Database");
+      // print("Festival data is fetching from Remote Database");
 
       var raw = await http.get(Uri.parse(appScriptURLFestival));
       jsonFestivals = convert.jsonDecode(raw.body);
@@ -2223,7 +2243,7 @@ class _PanchangaState extends State<Panchanga> {
       });
       return myfile.writeAsString(jsondata);
     } else {
-      print(" Local Festivals data ");
+      // print(" Local Festivals data ");
 
       jsonFestivals = convert.jsonDecode(contents);
       getFestivalsDataFromSheet();
@@ -2235,8 +2255,9 @@ class _PanchangaState extends State<Panchanga> {
   getFestivalsDataFromSheet() async {
     jsonFestivals.forEach((element) {
       FestivalModel festivalsModel =
-          new FestivalModel(festivals: '', date: '', day: '');
-      festivalsModel.day = element['day'].toString();
+          new FestivalModel(festivals: '', date: '', month: '', year: '');
+      festivalsModel.month = element['month'].toString();
+      festivalsModel.year = element['year'].toString();
       festivalsModel.date = element['date'].toString();
       festivalsModel.festivals = element['festivals'].toString();
       festivalsListmodel.add(festivalsModel);
@@ -2260,7 +2281,7 @@ class _PanchangaState extends State<Panchanga> {
       });
       return myfile.writeAsString(jsondata);
     } else {
-      print(" Local Shubha Ashbha data ");
+      // print(" Local Shubha Ashbha data ");
 
       jsonShubhaAshubha = convert.jsonDecode(contents);
       getShubhaAshubhaDataFromSheet();
@@ -2269,9 +2290,13 @@ class _PanchangaState extends State<Panchanga> {
 
   getShubhaAshubhaDataFromSheet() async {
     jsonShubhaAshubha.forEach((element) {
-      ShubaAshubaModel shubhaAshubhaModel =
-          new ShubaAshubaModel(shubhaAshubha: '', date: '');
+      ShubaAshubaModel shubhaAshubhaModel = new ShubaAshubaModel(
+          shubhaAshubha: '', date: '', month: '', year: '');
       shubhaAshubhaModel.date = element['date'].toString();
+      shubhaAshubhaModel.month = element['month'].toString();
+
+      shubhaAshubhaModel.year = element['year'].toString();
+
       shubhaAshubhaModel.shubhaAshubha = element['shubhaAshubha'].toString();
       shubhaAshubhaListmodel.add(shubhaAshubhaModel);
     });
@@ -2283,7 +2308,7 @@ class _PanchangaState extends State<Panchanga> {
     String? contents = await myfile.readAsString();
 
     if (contents.isEmpty == true) {
-      print("Tarpana data is fetching from Remote Database");
+      // print("Tarpana data is fetching from Remote Database");
       var raw = await http.get(Uri.parse(appScriptURLTarpana));
       jsonTarpana = convert.jsonDecode(raw.body);
       setState(() {
@@ -2295,7 +2320,7 @@ class _PanchangaState extends State<Panchanga> {
       });
       return myfile.writeAsString(jsondata);
     } else {
-      print(" Local Tarpana data ");
+      // print(" Local Tarpana data ");
 
       jsonTarpana = convert.jsonDecode(contents);
       getTarpanDataFromSheet();
@@ -2304,9 +2329,10 @@ class _PanchangaState extends State<Panchanga> {
 
   getTarpanDataFromSheet() async {
     jsonTarpana.forEach((element) {
-      TarpanaModel tarpanaModel =
-          new TarpanaModel(tarpana: '', date: '', day: '');
-      tarpanaModel.day = element['day'].toString();
+      TarpanaModel tarpanaModel = new TarpanaModel(
+        tarpana: '',
+        date: '',
+      );
       tarpanaModel.date = element['date'].toString();
       tarpanaModel.tarpana = element['tarpana'].toString();
       tarpanaListmodel.add(tarpanaModel);
@@ -2321,64 +2347,75 @@ class _PanchangaState extends State<Panchanga> {
 
   void initialState() async {
     // rm -rf ./*.tmp
+    // allLanguageList.clear();
+
     mySettingsFile = await localSettingsFile;
     String? contents = (await mySettingsFile?.readAsString());
     if (contents!.isNotEmpty) {
-      print("Its here");
+      // print("Its here");
       settingsLanguage = int.parse(contents);
     }
-    allLanguageList.clear();
-    // kannadaList.clear();
+    // allLanguageList.clear();
     // englishList.clear();
     // tamilList.clear();
     // teluguList.clear();
     // marathiList.clear();
+    int count = 1;
 
     switch (settingsLanguage) {
       case 1:
         getEnglishPanchanga();
-        getEnglishList();
+        // getEnglishList();
         break;
       case 2:
         getKannadaPanchanga();
-        getKannadaList();
+        // getKannadaList();
         break;
       case 3:
         getMarathiPanchanga();
-        getMarathiList();
+        // getMarathiList();
         break;
       case 4:
         getTamilPanchanga();
-        getTamilList();
+        // getTamilList();
         break;
       case 5:
         getTeluguPanchanga();
-        getTeluguList();
+        // getTeluguList();
         break;
       case 6:
         getSanskritPanchanga();
-        getSanskritList();
+        // getSanskritList();
         break;
       default:
-        getEnglishPanchanga();
-        getSanskritPanchanga();
-        getMarathiPanchanga();
-        getTamilPanchanga();
-        getKannadaPanchanga();
-        getTeluguPanchanga();
-        getEnglishList();
-        getTeluguList();
-        getTamilPanchanga();
-        getMarathiList();
-        getKannadaList();
-        getSanskritList();
-        getKannadaList();
+        if (count == 1) {
+          getSanskritPanchanga();
+          // sleep(Duration(milliseconds: 10));
+          getMarathiPanchanga();
+          // sleep(Duration(milliseconds: 10));
+          getTamilPanchanga();
+          // sleep(Duration(milliseconds: 10));
+          getKannadaPanchanga();
+          // sleep(Duration(milliseconds: 10));
 
+          getTeluguPanchanga();
+        }
+        getEnglishPanchanga();
+
+        // getEnglishList();
+        // getTeluguList();
+        // getMarathiList();
+        // getKannadaList();
+        // getSanskritList();
+        // getKannadaList();
         getAradaneData();
         getEkadashiData();
         getShubhaAshubhaData();
         getFestivalsData();
         getTarpanData();
+
+        // sleep(Duration(milliseconds: 10));
+
         break;
     }
   }
@@ -2387,46 +2424,26 @@ class _PanchangaState extends State<Panchanga> {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
 
-    // if (updateWaitBool == true) {
-    //   print("Hereeeeeeeee");
-    //   // Future.delayed(Duration(seconds: 3), () {
-
-    //   // });
-    //   return Scaffold(
-    //     appBar: AppBar(
-    //       title: Text(
-    //         "U M Panchanga",
-    //         style: TextStyle(color: Colors.black),
-    //         textAlign: TextAlign.center,
-    //       ),
-    //       iconTheme: IconThemeData(color: Color.fromARGB(255, 247, 206, 73)),
-    //       backgroundColor: Color.fromARGB(255, 247, 206, 73),
-    //     ),
-    //     body: Center(
-    //         child: CircularProgressIndicator(
-    //       color: Color.fromARGB(255, 247, 206, 73),
-    //     )),
-    //   );
-    // showLoaderDialog(BuildContext context) {
-    //   AlertDialog alert = AlertDialog(
-    //     content: new Row(
-    //       children: [
-    //         CircularProgressIndicator(),
-    //         Container(
-    //             margin: EdgeInsets.only(left: 7), child: Text("Loading...")),
-    //       ],
-    //     ),
-    //   );
-    //   showDialog(
-    //     barrierDismissible: false,
-    //     context: context,
-    //     builder: (BuildContext context) {
-    //       return Scaffold();
-    //     },
-    //   );
-    // }
-    // }
-    // else
+    if (updateWaitBool == true) {
+      // print("Hereeeeeeeee");
+      Future.delayed(Duration(seconds: 3), () {});
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "U M Panchanga",
+            style: TextStyle(color: Colors.black),
+            textAlign: TextAlign.center,
+          ),
+          automaticallyImplyLeading: false,
+          // iconTheme: IconThemeData(color: Color.fromARGB(255, 247, 206, 73)),
+          backgroundColor: Color.fromARGB(255, 247, 206, 73),
+        ),
+        body: Center(
+            child: CircularProgressIndicator(
+          color: Color.fromARGB(255, 247, 206, 73),
+        )),
+      );
+    }
 
     if (dateIndex == null) {
       return Scaffold(
@@ -2454,7 +2471,7 @@ class _PanchangaState extends State<Panchanga> {
             "U M Panchanga",
             style: TextStyle(
               color: Color.fromARGB(255, 162, 56, 7),
-              fontSize: 18,
+              fontSize: screenSize.width / 26,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -2487,14 +2504,15 @@ class _PanchangaState extends State<Panchanga> {
             children: [
               const DrawerHeader(
                 decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 247, 206, 73),
-                    image: DecorationImage(
-                        image: NetworkImage(
-                          "https://lh5.googleusercontent.com/p/AF1QipPpOk5SBoE7ney7zLqajq77mjYBqueiEFeM5-7T=w1080-k-no",
-                        ),
-                        fit: BoxFit.cover)),
+                  color: Color.fromARGB(255, 247, 206, 73),
+                  //     image: DecorationImage(
+                  //         image: NetworkImage(
+                  //           "https://lh5.googleusercontent.com/p/AF1QipPpOk5SBoE7ney7zLqajq77mjYBqueiEFeM5-7T=w1080-k-no",
+                  //         ),
+                  // fit: BoxFit.cover)
+                ),
                 child: Text(
-                  "Uttaradi Math",
+                  "Uttaradi Math Panchanga",
                   style: TextStyle(fontSize: 15),
                   textAlign: TextAlign.justify,
                 ),
@@ -2506,7 +2524,7 @@ class _PanchangaState extends State<Panchanga> {
               ListTile(
                 title: const Text('Aradhane'),
                 onTap: () {
-                  print(aradaneListmodel);
+                  // print(aradaneListmodel);
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -2582,54 +2600,58 @@ class _PanchangaState extends State<Panchanga> {
         body: Container(
           // width: screenSize.width,
           // height: screenSize.height,
-          child: PageView.builder(
-              clipBehavior: Clip.hardEdge,
-              controller: controller,
-              itemCount: panchangalistmodel.length,
-              itemBuilder: (context, index) {
-                return DisplayDesign(
-                  date: panchangalistmodel[index].date,
-                  month: panchangalistmodel[index].month,
-                  year: panchangalistmodel[index].year,
-                  samvatsara: panchangalistmodel[index].samvatsara,
-                  ayana: panchangalistmodel[index].ayana,
-                  rutu: panchangalistmodel[index].rutu,
-                  masa: panchangalistmodel[index].masa,
-                  masaniyamaka: panchangalistmodel[index].masaniyamaka,
-                  calendarmark: panchangalistmodel[index].calendarmark,
-                  vasara: panchangalistmodel[index].vasara,
-                  nakshatra: panchangalistmodel[index].nakshatra,
-                  yoga: panchangalistmodel[index].yoga,
-                  karana: panchangalistmodel[index].karana,
-                  sunrise: panchangalistmodel[index].sunrise,
-                  sunset: panchangalistmodel[index].sunset,
-                  tithi: panchangalistmodel[index].tithi,
-                  paksha: panchangalistmodel[index].paksha,
-                  shradhatithi: panchangalistmodel[index].shradhatithi,
-                  vishesha: panchangalistmodel[index].vishesha,
-                  languageListayana: allLanguageList[0].languageListayana,
-                  languageListrutu: allLanguageList[1].languageListrutu,
-                  languageListmasa: allLanguageList[2].languageListmasa,
-                  languageListmasaniyamaka:
-                      allLanguageList[3].languageListmasaniyamaka,
-                  languageListpaksha: allLanguageList[4].languageListpaksha,
-                  languageListtithi: allLanguageList[5].languageListtithi,
-                  languageListvasara: allLanguageList[6].languageListvasara,
-                  languageListnakshatra:
-                      allLanguageList[7].languageListnakshatra,
-                  languageListyoga: allLanguageList[8].languageListyoga,
-                  languageListkarana: allLanguageList[9].languageListkarana,
-                  languageListvishesha:
-                      allLanguageList[10].languageListvishesha,
-                );
-              }),
+          child:
+              // children: [
+              PageView.builder(
+                  clipBehavior: Clip.hardEdge,
+                  controller: controller,
+                  itemCount: panchangalistmodel.length,
+                  itemBuilder: (context, index) {
+                    return DisplayDesign(
+                      date: panchangalistmodel[index].date,
+                      month: panchangalistmodel[index].month,
+                      year: panchangalistmodel[index].year,
+                      samvatsara: panchangalistmodel[index].samvatsara,
+                      ayana: panchangalistmodel[index].ayana,
+                      rutu: panchangalistmodel[index].rutu,
+                      masa: panchangalistmodel[index].masa,
+                      masaniyamaka: panchangalistmodel[index].masaniyamaka,
+                      calendarmark: panchangalistmodel[index].calendarmark,
+                      vasara: panchangalistmodel[index].vasara,
+                      nakshatra: panchangalistmodel[index].nakshatra,
+                      yoga: panchangalistmodel[index].yoga,
+                      karana: panchangalistmodel[index].karana,
+                      sunrise: panchangalistmodel[index].sunrise,
+                      sunset: panchangalistmodel[index].sunset,
+                      tithi: panchangalistmodel[index].tithi,
+                      paksha: panchangalistmodel[index].paksha,
+                      shradhatithi: panchangalistmodel[index].shradhatithi,
+                      vishesha: panchangalistmodel[index].vishesha,
+                      languageListayana: allLanguageList[0].languageListayana,
+                      languageListrutu: allLanguageList[1].languageListrutu,
+                      languageListmasa: allLanguageList[2].languageListmasa,
+                      languageListmasaniyamaka:
+                          allLanguageList[3].languageListmasaniyamaka,
+                      languageListpaksha: allLanguageList[4].languageListpaksha,
+                      languageListtithi: allLanguageList[5].languageListtithi,
+                      languageListvasara: allLanguageList[6].languageListvasara,
+                      languageListnakshatra:
+                          allLanguageList[7].languageListnakshatra,
+                      languageListyoga: allLanguageList[8].languageListyoga,
+                      languageListkarana: allLanguageList[9].languageListkarana,
+                      languageListvishesha:
+                          allLanguageList[10].languageListvishesha,
+                    );
+                  }),
+
+          // ],
         ),
       );
     }
   }
 
   Widget nomalPopMenu() {
-    Size screenSize = MediaQuery.of(context).size;
+    // Size screenSize = MediaQuery.of(context).size;
 
     return PopupMenuButton<int>(
       iconSize: 20,
@@ -3125,509 +3147,517 @@ class _DisplayDesignState extends State<DisplayDesign> {
 
     return Container(
       width: screenSize.width,
-      // height: screenSize.height / 2,
+      height: screenSize.height,
       child: SingleChildScrollView(
         // height: screenSize.height / 2,
-        child: Container(
-          width: screenSize.width,
-          color: Color.fromARGB(255, 245, 240, 225),
-          alignment: Alignment.center,
-          child: Column(children: <Widget>[
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
+        child: Flex(
+            // width: screenSize.width,
+            // color: Color.fromARGB(255, 245, 240, 225),
+            // alignment: Alignment.center,
+            direction: Axis.vertical,
+            children: [
+              Column(children: <Widget>[
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(width: 5),
-                      Icon(
-                        Icons.sunny,
-                        size: 18,
-                      ),
-                      SizedBox(width: 3),
-                      Text(
-                        'Sunrise',
-                        style: TextStyle(
-                          fontSize: 15,
-                        ),
-                      ),
-                      SizedBox(width: 3),
-                      Text(
-                        widget.sunrise,
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      SizedBox(width: 5),
-                      Container(
-                          height: 25,
-                          width: 1,
-                          decoration: const BoxDecoration(
-                            color: Color.fromARGB(255, 2, 2, 2),
-                          )),
-                      SizedBox(width: 5),
-                      Icon(
-                        Icons.nightlight_round_outlined,
-                        size: 18,
-                      ),
-                      SizedBox(width: 3),
-                      Text(
-                        'Sunset',
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      SizedBox(width: 3),
-                      Text(
-                        widget.sunset,
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      SizedBox(width: 4),
-                      Container(
-                          height: 25,
-                          width: 1,
-                          decoration: const BoxDecoration(
-                            color: Color.fromARGB(255, 2, 2, 2),
-                          )),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      IconButton(
-                        iconSize: 20,
-                        icon: const Icon(Icons.calendar_month),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => (CalendarData(
-                                      data: calendarViewListModel))));
-                        },
-                      ),
-                      Text(
-                        widget.date,
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      Text(
-                        '/',
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      Text(
-                        widget.month,
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      Text(
-                        '/',
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      Text(
-                        widget.year,
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      SizedBox(width: 5),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Divider(
-              color: Color.fromARGB(255, 255, 192, 2),
-              thickness: 03.0,
-            ),
-            Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    widget.samvatsara,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ] //Samvasthara goes here
-                ),
-            Divider(
-              color: Color.fromARGB(255, 255, 192, 2),
-              thickness: 03.0,
-            ),
-            // SizedBox(height: 15),
-            Table(
-              border: TableBorder.all(
-                color: Color.fromARGB(255, 255, 192, 2),
-                width: 1.0,
-
-                style: BorderStyle.solid,
-                // borderRadius: BorderRadius.circular(50)
-              ),
-              columnWidths: const <int, TableColumnWidth>{
-                // 0: IntrinsicColumnWidth(),
-                1: FlexColumnWidth(),
-                // 2: FixedColumnWidth(64),
-              },
-
-              // defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-              children: [
-                TableRow(children: [
-                  Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // SizedBox(height: 5),
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(
-                              // 'Ayana',
-                              widget.languageListayana,
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                        ),
-                        // SizedBox(height: 5),
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(
-                            widget.ayana,
-                            textAlign: TextAlign.left,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(width: 5),
+                          Icon(
+                            Icons.sunny,
+                            size: 18,
+                          ),
+                          SizedBox(width: 3),
+                          Text(
+                            'Sunrise',
                             style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 162, 56, 7),
+                              fontSize: 15,
                             ),
                           ),
-                        ),
-                        // SizedBox(height: 5),
-                      ]),
-                  Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Column(children: [
-                        // SizedBox(height: 5),
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(
-                              // 'Rutu',
-                              widget.languageListrutu,
-                              // textAlign: TextAlign.left,
+                          SizedBox(width: 3),
+                          Text(
+                            widget.sunrise,
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          SizedBox(width: 5),
+                          Container(
+                              height: 25,
+                              width: 1,
+                              decoration: const BoxDecoration(
+                                color: Color.fromARGB(255, 2, 2, 2),
+                              )),
+                          SizedBox(width: 5),
+                          Icon(
+                            Icons.nightlight_round_outlined,
+                            size: 18,
+                          ),
+                          SizedBox(width: 3),
+                          Text(
+                            'Sunset',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          SizedBox(width: 3),
+                          Text(
+                            widget.sunset,
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          SizedBox(width: 4),
+                          Container(
+                              height: 25,
+                              width: 1,
+                              decoration: const BoxDecoration(
+                                color: Color.fromARGB(255, 2, 2, 2),
+                              )),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          IconButton(
+                            iconSize: 20,
+                            icon: const Icon(Icons.calendar_month),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => (CalendarData(
+                                          data: calendarViewListModel))));
+                            },
+                          ),
+                          Text(
+                            widget.date,
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          Text(
+                            '/',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          Text(
+                            widget.month,
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          Text(
+                            '/',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          Text(
+                            widget.year,
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          SizedBox(width: 5),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Divider(
+                  color: Color.fromARGB(255, 255, 192, 2),
+                  thickness: 03.0,
+                ),
+                Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        widget.samvatsara,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ] //Samvasthara goes here
+                    ),
+                Divider(
+                  color: Color.fromARGB(255, 255, 192, 2),
+                  thickness: 03.0,
+                ),
+                // SizedBox(height: 15),
+                Table(
+                  border: TableBorder.all(
+                    color: Color.fromARGB(255, 255, 192, 2),
+                    width: 1.0,
 
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                        ),
-                        // SizedBox(height: 5),
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(widget.rutu,
-                              // textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                        ),
-                        // SizedBox(height: 5),
-                        // ]),
-                      ]),
-                ]),
-                TableRow(children: [
-                  Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // SizedBox(height: 5),
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(widget.languageListmasa,
-                              // 'Masa',
-                              // textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                        ),
-                        // SizedBox(height: 5),
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(widget.masa,
-                              // textAlign: TextAlign.justify,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                        ),
-                        // SizedBox(height: 5),
-                      ]),
-                  Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Column(children: [
-                        // SizedBox(height: 5),
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(widget.languageListmasaniyamaka,
-                              // 'Masa Niyamika',
-                              // textAlign: TextAlign.start,
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                        ),
-                        // SizedBox(height: 5),
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(widget.masaniyamaka,
-                              // textAlign: TextAlign.justify,
-                              // overflow: TextOverflow.ellipsis,
-                              // maxLines: 2,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                        ),
-                        // SizedBox(height: 5),
-                        // ]),
-                      ]),
-                ]),
-                TableRow(children: [
-                  Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // SizedBox(height: 5),
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(widget.languageListpaksha,
-                              // 'Paksha',
-                              // textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                        ),
-                        // SizedBox(height: 5),
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(widget.paksha,
-                              // textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                        ),
-                        // SizedBox(height: 5),
-                      ]),
-                  Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Column(children: [
-                        // SizedBox(height: 5),
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(widget.languageListtithi,
-                              // 'Tithi',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                        ),
-                        // SizedBox(height: 5),
-                        Padding(
-                            padding: EdgeInsets.all(8),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Text((widget.tithi),
-                                      textAlign: TextAlign.left,
-                                      maxLines: 3,
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color.fromARGB(255, 162, 56, 7),
-                                      )),
-                                ),
-                                Text('(',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      letterSpacing: 3,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color.fromARGB(255, 162, 56, 7),
-                                    )),
-                                Text(widget.shradhatithi,
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      letterSpacing: 3,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color.fromARGB(255, 162, 56, 7),
-                                    )),
-                                Text(')',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      letterSpacing: 3,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color.fromARGB(255, 162, 56, 7),
-                                    )),
-                              ],
-                            )),
-                        // SizedBox(height: 5),
-                        // ]),
-                      ]),
-                ]),
-                TableRow(children: [
-                  Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // SizedBox(height: 5),
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(widget.languageListvasara,
-                              // 'Vasara',
-                              // textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                        ),
-                        // SizedBox(height: 5),
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(widget.vasara,
-                              // textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                        ),
-                        // SizedBox(height: 5),
-                      ]),
-                  Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Column(children: [
-                        // SizedBox(height: 5),
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(widget.languageListnakshatra,
-                              // 'Nakshatra',
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                        ),
-                        // SizedBox(height: 5),
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(widget.nakshatra,
-                              textAlign: TextAlign.justify,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                        ),
-                        // SizedBox(height: 5),
-                        // ]),
-                      ]),
-                ]),
-                TableRow(children: [
-                  Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // SizedBox(height: 5),
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(widget.languageListyoga,
-                              // 'Yoga',
-                              // textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                          // SizedBox(height: 5),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(widget.yoga,
-                              // textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                        ),
-                        // SizedBox(height: 5),
-                      ]),
-                  Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Column(children: [
-                        // SizedBox(height: 5),
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(widget.languageListkarana,
-                              // 'Karana',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 162, 56, 7),
-                              )),
-                        ),
-                        // SizedBox(height: 5),
-                        Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(widget.karana,
-                              // textAlign: TextAlign.justify,
-                              style: TextStyle(
+                    style: BorderStyle.solid,
+                    // borderRadius: BorderRadius.circular(50)
+                  ),
+                  columnWidths: const <int, TableColumnWidth>{
+                    // 0: IntrinsicColumnWidth(),
+                    1: FlexColumnWidth(),
+                    // 2: FixedColumnWidth(64),
+                  },
+
+                  // defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                  children: [
+                    TableRow(children: [
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // SizedBox(height: 5),
+                            Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(
+                                  // 'Ayana',
+                                  widget.languageListayana,
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 162, 56, 7),
+                                  )),
+                            ),
+                            // SizedBox(height: 5),
+                            Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(
+                                widget.ayana,
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 162, 56, 7))),
-                          // ]),
-                        ),
-                        // SizedBox(height: 5),
-                      ]),
-                ]),
-              ],
-            ),
-            // SizedBox(height: 15),
-            Divider(
-              color: Color.fromARGB(255, 255, 192, 2),
-              thickness: 03.0,
-            ),
-            SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                          padding: EdgeInsets.all(15),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                widget.languageListvishesha,
-                                // "Today's Special",
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(height: 5),
-                              Text(
-                                widget.vishesha,
-                                style: TextStyle(
-                                  fontSize: 16,
+                                  color: Color.fromARGB(255, 162, 56, 7),
                                 ),
                               ),
-                            ],
-                          )),
-                    ])),
-          ]),
-        ),
+                            ),
+                            // SizedBox(height: 5),
+                          ]),
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Column(children: [
+                            // SizedBox(height: 5),
+                            Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(
+                                  // 'Rutu',
+                                  widget.languageListrutu,
+                                  // textAlign: TextAlign.left,
+
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 162, 56, 7),
+                                  )),
+                            ),
+                            // SizedBox(height: 5),
+                            Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(widget.rutu,
+                                  // textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 162, 56, 7),
+                                  )),
+                            ),
+                            // SizedBox(height: 5),
+                            // ]),
+                          ]),
+                    ]),
+                    TableRow(children: [
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // SizedBox(height: 5),
+                            Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(widget.languageListmasa,
+                                  // 'Masa',
+                                  // textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 162, 56, 7),
+                                  )),
+                            ),
+                            // SizedBox(height: 5),
+                            Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(widget.masa,
+                                  // textAlign: TextAlign.justify,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 162, 56, 7),
+                                  )),
+                            ),
+                            // SizedBox(height: 5),
+                          ]),
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Column(children: [
+                            // SizedBox(height: 5),
+                            Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(widget.languageListmasaniyamaka,
+                                  // 'Masa Niyamika',
+                                  // textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 162, 56, 7),
+                                  )),
+                            ),
+                            // SizedBox(height: 5),
+                            Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(widget.masaniyamaka,
+                                  // textAlign: TextAlign.justify,
+                                  // overflow: TextOverflow.ellipsis,
+                                  // maxLines: 2,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 162, 56, 7),
+                                  )),
+                            ),
+                            // SizedBox(height: 5),
+                            // ]),
+                          ]),
+                    ]),
+                    TableRow(children: [
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // SizedBox(height: 5),
+                            Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(widget.languageListpaksha,
+                                  // 'Paksha',
+                                  // textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 162, 56, 7),
+                                  )),
+                            ),
+                            // SizedBox(height: 5),
+                            Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(widget.paksha,
+                                  // textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 162, 56, 7),
+                                  )),
+                            ),
+                            // SizedBox(height: 5),
+                          ]),
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Column(children: [
+                            // SizedBox(height: 5),
+                            Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(widget.languageListtithi,
+                                  // 'Tithi',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 162, 56, 7),
+                                  )),
+                            ),
+                            // SizedBox(height: 5),
+                            Padding(
+                                padding: EdgeInsets.all(8),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text((widget.tithi),
+                                          textAlign: TextAlign.left,
+                                          maxLines: 3,
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            color:
+                                                Color.fromARGB(255, 162, 56, 7),
+                                          )),
+                                    ),
+                                    Text('(',
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          letterSpacing: 3,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color:
+                                              Color.fromARGB(255, 162, 56, 7),
+                                        )),
+                                    Text(widget.shradhatithi,
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          letterSpacing: 3,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color:
+                                              Color.fromARGB(255, 162, 56, 7),
+                                        )),
+                                    Text(')',
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          letterSpacing: 3,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color:
+                                              Color.fromARGB(255, 162, 56, 7),
+                                        )),
+                                  ],
+                                )),
+                            // SizedBox(height: 5),
+                            // ]),
+                          ]),
+                    ]),
+                    TableRow(children: [
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // SizedBox(height: 5),
+                            Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(widget.languageListvasara,
+                                  // 'Vasara',
+                                  // textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 162, 56, 7),
+                                  )),
+                            ),
+                            // SizedBox(height: 5),
+                            Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(widget.vasara,
+                                  // textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 162, 56, 7),
+                                  )),
+                            ),
+                            // SizedBox(height: 5),
+                          ]),
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Column(children: [
+                            // SizedBox(height: 5),
+                            Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(widget.languageListnakshatra,
+                                  // 'Nakshatra',
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 162, 56, 7),
+                                  )),
+                            ),
+                            // SizedBox(height: 5),
+                            Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(widget.nakshatra,
+                                  textAlign: TextAlign.justify,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 162, 56, 7),
+                                  )),
+                            ),
+                            // SizedBox(height: 5),
+                            // ]),
+                          ]),
+                    ]),
+                    TableRow(children: [
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // SizedBox(height: 5),
+                            Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(widget.languageListyoga,
+                                  // 'Yoga',
+                                  // textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 162, 56, 7),
+                                  )),
+                              // SizedBox(height: 5),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(widget.yoga,
+                                  // textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 162, 56, 7),
+                                  )),
+                            ),
+                            // SizedBox(height: 5),
+                          ]),
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Column(children: [
+                            // SizedBox(height: 5),
+                            Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(widget.languageListkarana,
+                                  // 'Karana',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 162, 56, 7),
+                                  )),
+                            ),
+                            // SizedBox(height: 5),
+                            Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Text(widget.karana,
+                                  // textAlign: TextAlign.justify,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 162, 56, 7))),
+                              // ]),
+                            ),
+                            // SizedBox(height: 5),
+                          ]),
+                    ]),
+                  ],
+                ),
+                // SizedBox(height: 15),
+                Divider(
+                  color: Color.fromARGB(255, 255, 192, 2),
+                  thickness: 03.0,
+                ),
+                SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                              padding: EdgeInsets.all(15),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    widget.languageListvishesha,
+                                    // "Today's Special",
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    widget.vishesha,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
+                              )),
+                        ])),
+              ]),
+            ]),
       ),
     );
   }

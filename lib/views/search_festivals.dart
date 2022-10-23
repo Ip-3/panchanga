@@ -76,7 +76,7 @@ class _SearchFestivalState extends State<SearchFestival> {
                         title: Text(
                             '${widget.festivalslistmodel[index].festivals}'),
                         subtitle: Text(
-                            'Date: ${widget.festivalslistmodel[index].date}'),
+                            'Date: ${widget.festivalslistmodel[index].date}/${widget.festivalslistmodel[index].month}/${widget.festivalslistmodel[index].year}'),
                       )
                     : Container();
               },

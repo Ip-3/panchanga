@@ -77,7 +77,7 @@ class _SearchShubhaAshubhaState extends State<SearchShubhaAshubha> {
                         title: Text(
                             '${widget.shubhaAshubhalistmodel[index].shubhaAshubha}'),
                         subtitle: Text(
-                            'Date: ${widget.shubhaAshubhalistmodel[index].date}'),
+                            'Date: ${widget.shubhaAshubhalistmodel[index].date}/${widget.shubhaAshubhalistmodel[index].month}/${widget.shubhaAshubhalistmodel[index].year}'),
                       )
                     : Container();
               },
