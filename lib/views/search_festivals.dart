@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:panchanga/models/festival_model.dart';
 
@@ -18,14 +20,45 @@ class _SearchFestivalState extends State<SearchFestival> {
   // List<FestivalModel> shows = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'];
 
   String searchAradane = "";
+  var dateIndex = DateTime.now();
+
+  //  var dateIndex;
+  // @override
+  // void initState() {
+  //   super.initState();
 
   // @override
   // void initState() {
   //   super.initState();
+  //   dateIndex = {widget.festivalslistmodel};
   // }
+
+  // }
+  //  if (day.date == updatedDay.date &&
+  //           day.month == updatedDay.month &&
+  //           day.year == updatedDay.year) {
+  //         // print("Compare two list data");
+  //         // panchangalistmodel.add(updatedDay);
+  //         print(updatedDay.date);
+  //         print(updatedDay.month);
+  //         print(updatedDay.year);
+  //         print(updatedDay.rutu);
+  //         panchangalistmodel.remove(day);
+  //         panchangalistmodel.add(updatedDay);
+  //       }
 
   @override
   Widget build(BuildContext context) {
+    // print(widget.festivalslistmodel);
+    // print(widget.festivalslistmodel.month);
+    // print(widget.festivalslistmodel.year);
+    // List<int> dateList = [dateIndex.day, dateIndex.month, dateIndex.year];
+
+    // for (var i = 0; i < widget.festivalslistmodel.length; i++) {
+    //   if (widget.festivalslistmodel[i].date == dateList[0] &&
+    //       widget.festivalslistmodel[i].month == dateList[1] &&
+    //       widget.festivalslistmodel[i].year == dateList[2]) {}
+    // }
     return Scaffold(
       appBar: AppBar(
         title: Text(
