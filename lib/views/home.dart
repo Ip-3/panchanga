@@ -225,7 +225,7 @@ class _PanchangaState extends State<Panchanga> {
   var appScriptURLEnglish =
       "https://script.google.com/macros/s/AKfycbxHmeYbeP1jolF97VSK6duKpN9W55eKDspbulATBl2dYynq5P04sLi-eu2aTf2PzUMiZg/exec";
   var appScriptURLKannada =
-      "https://script.google.com/macros/s/AKfycbwtR-nNrO6tQyHoyiXcyzWjfQkklNKKXRZonq3UL4G8QIlND4uLmjHAi2O0CByZfG4q/exec";
+      "https://script.google.com/macros/s/AKfycbxQsWJy9mgmrRUeXlknlfm_n8Us9y2m5b5qmuG0dgfyf3Q_qXeiiGiP8633qvo-SMjZ/exec";
   var appScriptURLTelugu =
       "https://script.google.com/macros/s/AKfycbwPOrs-4OQzAs38KnKODevdbXtD5-5si-FvtEentWfIkv9TMM9ZfVRSOlsVlXr5FCJq/exec";
   var appScriptURLTamil =
